@@ -3,7 +3,7 @@ version: "3.9"
 
 services:
   execute-1:
-    image: tscel/geth:v1.13-base-v5
+    image: geth:latest
     container_name: execute-1
     entrypoint: /usr/local/bin/execution.sh
     deploy:
@@ -22,7 +22,7 @@ services:
       - meta
 
   beacon-1:
-    image: tscel/beacon-v5.0.1-t1-reorg:0805
+    image: modified_beacon:latest
     container_name: beacon-1
     entrypoint: /usr/local/bin/beacon-node.sh
     environment:
@@ -50,7 +50,7 @@ services:
         ipv4_address: 172.99.1.2
 
   beacon-2:
-    image: tscel/beacon-v5.0.1-t1-reorg:0805
+    image: modified_beacon:latest
     container_name: beacon-2
     entrypoint: /usr/local/bin/beacon-node.sh
     environment:
@@ -78,7 +78,7 @@ services:
         ipv4_address: 172.99.1.3
 
   beacon-3:
-    image: tscel/beacon-v5.0.1-t1-reorg:0805
+    image: modified_beacon:latest
     container_name: beacon-3
     entrypoint: /usr/local/bin/beacon-node.sh
     environment:
@@ -106,7 +106,7 @@ services:
         ipv4_address: 172.99.1.4
 
   beacon-4:
-    image: tscel/beacon-v5.0.1-t1-reorg:0805
+    image: modified_beacon:latest
     container_name: beacon-4
     entrypoint: /usr/local/bin/beacon-node.sh
     environment:
@@ -134,7 +134,7 @@ services:
         ipv4_address: 172.99.1.5
 
   beacon-5:
-    image: tscel/beacon-v5.0.1-t1-reorg:0805
+    image: modified_beacon:latest
     container_name: beacon-5
     entrypoint: /usr/local/bin/beacon-node.sh
     environment:
@@ -162,7 +162,7 @@ services:
         ipv4_address: 172.99.1.6
 
   validator-1:
-    image: tscel/validator-v5.0.1-t1-reorg:0805
+    image: modified_validator:latest
     container_name: validator-1
     entrypoint: /usr/local/bin/validator.sh
     environment:
@@ -186,7 +186,7 @@ services:
       - meta
 
   validator-2:
-    image: tscel/validator-v5.0.1-t1-reorg:0805
+    image: modified_validator:latest
     container_name: validator-2
     entrypoint: /usr/local/bin/validator.sh
     environment:
@@ -209,7 +209,7 @@ services:
       - meta
 
   validator-3:
-    image: tscel/validator-v5.0.1-t1-reorg:0805
+    image: modified_validator:latest
     container_name: validator-3
     entrypoint: /usr/local/bin/validator.sh
     environment:
@@ -232,7 +232,7 @@ services:
       - meta
 
   validator-4:
-    image: tscel/validator-v5.0.1-t1-reorg:0805
+    image: modified_validator:latest
     container_name: validator-4
     entrypoint: /usr/local/bin/validator.sh
     environment:
@@ -255,7 +255,7 @@ services:
       - meta
 
   validator-5:
-    image: tscel/validator-v5.0.1-t1-reorg:0805
+    image: modified_validator:latest
     container_name: validator-5
     entrypoint: /usr/local/bin/validator.sh
     environment:

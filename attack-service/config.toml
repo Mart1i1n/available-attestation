@@ -1,0 +1,16 @@
+http_port=12000
+http_host="0.0.0.0"
+metrics_port = 28080
+execute_rpc = "http://13.41.176.56:11000"
+beacon_rpc = "13.41.176.56:14000"
+reward_file = "/root/reward.csv"
+strategy = "./strategy.json"
+swag_host = "13.41.176.56:12100"
+
+[mysql]
+host="127.0.0.1"
+port=3306
+user="ai"
+password="RFnnKHRar5xk7TEF"
+database="ai"
+

@@ -1,0 +1,24 @@
+{
+	"rpc-nodes": [
+		"http://172.17.0.1:11000",
+		"http://172.17.0.1:11000",
+		"http://172.17.0.1:11000"
+	],
+	"chain-name": "eth",
+	"base-count": 30,
+	"interval": 1,
+	"round": 10,
+	"batch": 400,
+	"amount": "10000000",
+	"accounts":"accounts.json",
+	"inc-rate": 50,
+	"begin-to-start": 5,
+	"receive_addr": "0x8e0cd8dC765f8a69703ca7b56cee9802080E4052"
+}
+
+
+
+
+
+
+

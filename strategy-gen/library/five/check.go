@@ -5,9 +5,8 @@ import (
 	"strconv"
 )
 
-// 判断是否有两个作恶者之间穿插了一个正常验证者.
+
 func CheckDuties(maxValidatorIndex int, duties []utils.ProposerDuty) ([]interface{}, bool) {
-	// 判断是否有两个作恶者之间穿插了一个正常验证者.
 	result := make([]interface{}, 0)
 	for i := 0; i < len(duties)-2; {
 		a := duties[i]

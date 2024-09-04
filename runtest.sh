@@ -12,7 +12,7 @@ updategenesis() {
 		testnet \
 		generate-genesis \
 		--fork=deneb \
-		--num-validators=256 \
+		--num-validators=16384 \
 		--genesis-time-delay=15 \
 		--output-ssz=/root/config/genesis.ssz \
 		--chain-config-file=/root/config/config.yml \
@@ -31,7 +31,7 @@ testcase1() {
 	mkdir -p $resultdir
 
 	echo "Running testcase $subdir"
-	echo "first test with normal version"
+	echo "first test with vanilla version"
 	updategenesis
 	docker compose -f $targetdir/docker-compose-normal.yml up -d 
 	echo "wait $caseduration seconds" && sleep $caseduration
@@ -53,7 +53,7 @@ testcase1() {
 	awk -F, '{sum+=$2}END{print "Generate attestation cost avg=", sum/NR}' /tmp/normal_getatt.csv
 	cd $basedir
 
-	echo "second test with reorg-fix version"
+	echo "second test with modified version"
 	updategenesis
 	docker compose -f $targetdir/docker-compose-reorg.yml up -d
 	echo "wait $caseduration seconds" && sleep $caseduration
@@ -78,7 +78,7 @@ testcase1() {
 }
 
 testcase2() {
-	subdir="attack-reorg"
+	subdir="attack-exante"
 	targetdir="${casedir}/${subdir}"
 	resultdir="${basedir}/results/${subdir}"
 	# if resultdir exist, delete it.
@@ -87,17 +87,17 @@ testcase2() {
 	fi
 	mkdir -p $resultdir
 
-	epochsToWait=20
+	epochsToWait=24
 
 	echo "Running testcase $subdir"
-	echo "first test with normal version"
+	echo "first test with vanilla version"
 	updategenesis
 	docker compose -f $targetdir/docker-compose-normal.yml up -d 
 	echo "wait $epochsToWait epochs" && sleep $(($epochsToWait * 12 * 32))
 	docker compose -f $targetdir/docker-compose-normal.yml down
 	sudo mv data $resultdir/data-normal
 
-	echo "second test with reorg-fix version"
+	echo "second test with modified version"
 	updategenesis
 	docker compose -f $targetdir/docker-compose-reorg.yml up -d
 	echo "wait $epochsToWait epochs" && sleep $(($epochsToWait * 12 * 32))
@@ -118,14 +118,14 @@ testcase3() {
 	mkdir -p $resultdir
 
 	echo "Running testcase $subdir"
-	echo "first test with normal version"
+	echo "first test with vanilla version"
 	updategenesis
 	docker compose -f $targetdir/docker-compose-normal.yml up -d 
 	echo "wait $caseduration seconds" && sleep $caseduration
 	docker compose -f $targetdir/docker-compose-normal.yml down
 	sudo mv data $resultdir/data-normal
 
-	echo "second test with reorg version"
+	echo "second test with modified version"
 	updategenesis
 	docker compose -f $targetdir/docker-compose-reorg.yml up -d 
 	echo "wait $caseduration seconds" && sleep $caseduration
@@ -134,16 +134,148 @@ testcase3() {
 	echo "test done and result in $resultdir"
 }
 
+testcase4() {
+	subdir="attack-sandwich"
+	targetdir="${casedir}/${subdir}"
+	resultdir="${basedir}/results/${subdir}"
+	# if resultdir exist, delete it.
+	if [ -d $resultdir ]; then
+		rm -rf $resultdir
+	fi
+	mkdir -p $resultdir
+
+	epochsToWait=24
+
+	echo "Running testcase $subdir"
+	echo "first test with vanilla version"
+	updategenesis
+	docker compose -f $targetdir/docker-compose-normal.yml up -d 
+	echo "wait $epochsToWait epochs" && sleep $(($epochsToWait * 12 * 32))
+	docker compose -f $targetdir/docker-compose-normal.yml down
+	sudo mv data $resultdir/data-normal
+
+	echo "second test with modified version"
+	updategenesis
+	docker compose -f $targetdir/docker-compose-reorg.yml up -d
+	echo "wait $epochsToWait epochs" && sleep $(($epochsToWait * 12 * 32))
+	docker compose -f $targetdir/docker-compose-reorg.yml down
+	sudo mv data $resultdir/data-reorg
+
+	echo "test done and result in $resultdir"
+}
+
+testcase5() {
+	subdir="attack-unrealized"
+	targetdir="${casedir}/${subdir}"
+	resultdir="${basedir}/results/${subdir}"
+	# if resultdir exist, delete it.
+	if [ -d $resultdir ]; then
+		rm -rf $resultdir
+	fi
+	mkdir -p $resultdir
+
+	epochsToWait=24
+
+	echo "Running testcase $subdir"
+	echo "first test with vanilla version"
+	updategenesis
+	docker compose -f $targetdir/docker-compose-normal.yml up -d 
+	echo "wait $epochsToWait epochs" && sleep $(($epochsToWait * 12 * 32))
+	docker compose -f $targetdir/docker-compose-normal.yml down
+	sudo mv data $resultdir/data-normal
+
+	echo "second test with modified version"
+	updategenesis
+	docker compose -f $targetdir/docker-compose-reorg.yml up -d
+	echo "wait $epochsToWait epochs" && sleep $(($epochsToWait * 12 * 32))
+	docker compose -f $targetdir/docker-compose-reorg.yml down
+	sudo mv data $resultdir/data-reorg
+
+	echo "test done and result in $resultdir"
+}
+
+testcase6() {
+	subdir="attack-withholding"
+	targetdir="${casedir}/${subdir}"
+	resultdir="${basedir}/results/${subdir}"
+	# if resultdir exist, delete it.
+	if [ -d $resultdir ]; then
+		rm -rf $resultdir
+	fi
+	mkdir -p $resultdir
+
+	epochsToWait=24
+
+	echo "Running testcase $subdir"
+	echo "first test with vanilla version"
+	updategenesis
+	docker compose -f $targetdir/docker-compose-normal.yml up -d 
+	echo "wait $epochsToWait epochs" && sleep $(($epochsToWait * 12 * 32))
+	docker compose -f $targetdir/docker-compose-normal.yml down
+	sudo mv data $resultdir/data-normal
+
+	echo "second test with modified version"
+	updategenesis
+	docker compose -f $targetdir/docker-compose-reorg.yml up -d
+	echo "wait $epochsToWait epochs" && sleep $(($epochsToWait * 12 * 32))
+	docker compose -f $targetdir/docker-compose-reorg.yml down
+	sudo mv data $resultdir/data-reorg
+
+	echo "test done and result in $resultdir"
+}
+
+testcase7() {
+	subdir="attack-staircase"
+	targetdir="${casedir}/${subdir}"
+	resultdir="${basedir}/results/${subdir}"
+	# if resultdir exist, delete it.
+	if [ -d $resultdir ]; then
+		rm -rf $resultdir
+	fi
+	mkdir -p $resultdir
+
+	epochsToWait=24
+
+	echo "Running testcase $subdir"
+	echo "first test with vanilla version"
+	updategenesis
+	docker compose -f $targetdir/docker-compose-normal.yml up -d 
+	echo "wait $epochsToWait epochs" && sleep $(($epochsToWait * 12 * 32))
+	docker compose -f $targetdir/docker-compose-normal.yml down
+	sudo mv data $resultdir/data-normal
+
+	echo "second test with modified version"
+	updategenesis
+	docker compose -f $targetdir/docker-compose-reorg.yml up -d
+	echo "wait $epochsToWait epochs" && sleep $(($epochsToWait * 12 * 32))
+	docker compose -f $targetdir/docker-compose-reorg.yml down
+	sudo mv data $resultdir/data-reorg
+
+	echo "test done and result in $resultdir"
+}
+
 echo "casetype is $casetype"
 case $casetype in
 	1)
-		testcase1
-		;;
-	2)
 		testcase2
 		;;
+	2)
+		testcase4
+		;;
 	3)
+		testcase5
+		;;
+	4)
+		testcase6
+		;;
+	5)
+		testcase7
+		;;
+	6)
 		testcase3
+		;;
+	7)
+		testcase1
 		;;
 	*)
 		echo "Invalid case type"

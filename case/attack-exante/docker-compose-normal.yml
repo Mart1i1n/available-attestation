@@ -2,9 +2,26 @@
 version: "3.9"
 
 services:
-  execute-1:
+  mysql:
+    container_name: "ethmysql"
+    image: "mysql:latest"
+    environment:
+      - MYSQL_ROOT_PASSWORD=12345678
+    ports:
+      - "3306:3306"
+    restart: always
+    privileged: true
+    volumes:
+      - /etc/localtime:/etc/localtime
+      - ${BASEDIR}./data/mysql/data:/var/lib/mysql
+      - ${BASEDIR}./config/mysql/conf/my.cnf:/etc/my.cnf
+      - ${BASEDIR}./config/mysql/init:/docker-entrypoint-initdb.d/
+    networks:
+      - meta
+
+  execute1:
     image: geth:latest
-    container_name: execute-1
+    container_name: execute1
     entrypoint: /usr/local/bin/execution.sh
     deploy:
       restart_policy:
@@ -21,15 +38,118 @@ services:
     networks:
       - meta
 
+  execute2:
+    image: geth:latest
+    container_name: execute2
+    entrypoint: /usr/local/bin/execution.sh
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 1s
+        max_attempts: 100
+        window: 120s
+    ports:
+      - "10001:8551"
+      - "11001:8545"
+    volumes:
+      - ${BASEDIR}./config:/root/config
+      - ${BASEDIR}./data/execute2:/root/gethdata
+    networks:
+      - meta
+
+  execute3:
+    image: geth:latest
+    container_name: execute3
+    entrypoint: /usr/local/bin/execution.sh
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 1s
+        max_attempts: 100
+        window: 120s
+    ports:
+      - "10002:8551"
+      - "11002:8545"
+    volumes:
+      - ${BASEDIR}./config:/root/config
+      - ${BASEDIR}./data/execute3:/root/gethdata
+    networks:
+      - meta
+        
+  execute4:
+    image: geth:latest
+    container_name: execute4
+    entrypoint: /usr/local/bin/execution.sh
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 1s
+        max_attempts: 100
+        window: 120s
+    ports:
+      - "10003:8551"
+      - "11003:8545"
+    volumes:
+      - ${BASEDIR}./config:/root/config
+      - ${BASEDIR}./data/execute4:/root/gethdata
+    networks:
+      - meta
+
+  execute5:
+    image: geth:latest
+    container_name: execute5
+    entrypoint: /usr/local/bin/execution.sh
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 1s
+        max_attempts: 100
+        window: 120s
+    ports:
+      - "10004:8551"
+      - "11004:8545"
+    volumes:
+      - ${BASEDIR}./config:/root/config
+      - ${BASEDIR}./data/execute5:/root/gethdata
+    networks:
+      - meta
+
+  attacker-1:
+    image: attacker:latest
+    container_name: attacker-1
+    entrypoint: /usr/local/bin/attacker.sh
+    environment:
+      - NAME=attacker-1
+
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 1s
+        max_attempts: 100
+        window: 120s
+    ports:
+      - "12000:10000"
+      - "12100:10001"
+    volumes:
+      - ${BASEDIR}./config/attacker-config.toml:/root/config.toml
+      - ${BASEDIR}./config/strategy-empty.json:/root/strategy.json
+      - ${BASEDIR}./data/attacker-1:/root/attackerdata
+    depends_on:
+      - mysql
+    networks:
+      meta:
+        ipv4_address: 172.99.1.150
+
   beacon-1:
     image: normal_beacon:latest
     container_name: beacon-1
     entrypoint: /usr/local/bin/beacon-node.sh
     environment:
       - ALLPEERS= --peer /ip4/172.99.1.3/tcp/13000/p2p/16Uiu2HAmQDMFQcKYKt2oTPS4uvYDbGxp3S8t7oGyd8maCSq2vSCV  --peer /ip4/172.99.1.4/tcp/13000/p2p/16Uiu2HAm9XmGsj5GVuACMVZ2zNiJJw3GMngjYtNrJzLDEGWHQoCU  --peer /ip4/172.99.1.5/tcp/13000/p2p/16Uiu2HAmQqks3Wz9D3VomWeKRqTASod9nzFKPr5HhHFbmW5svFvC  --peer /ip4/172.99.1.6/tcp/13000/p2p/16Uiu2HAmFQEWfHEx24doiC6U2Xhj9XMoT2Nsd2oneGAkDkDLJMww 
-      - EXECUTE=execute-1
+      - EXECUTE=execute1
       - MAXPEERS=70
       - P2PKEY=0692f57d5ddf34d0f2649d968bf82e2dda69d1f435a7f3a7a26d81a1a11e687b
+      - ATTACKER_SERVICE_URL=http://172.17.0.1:12000
 
     deploy:
       restart_policy:
@@ -44,7 +164,7 @@ services:
       - ${BASEDIR}./config:/root/config
       - ${BASEDIR}./data/beacon-1:/root/beacondata
     depends_on:
-      - execute-1
+      - execute1
     networks:
       meta:
         ipv4_address: 172.99.1.2
@@ -55,7 +175,7 @@ services:
     entrypoint: /usr/local/bin/beacon-node.sh
     environment:
       - ALLPEERS= --peer /ip4/172.99.1.2/tcp/13000/p2p/16Uiu2HAmDaSUVFJ2yKW3zfagjSUxp9kz9EG8bQWa5P8HAGE2evD5  --peer /ip4/172.99.1.4/tcp/13000/p2p/16Uiu2HAm9XmGsj5GVuACMVZ2zNiJJw3GMngjYtNrJzLDEGWHQoCU  --peer /ip4/172.99.1.5/tcp/13000/p2p/16Uiu2HAmQqks3Wz9D3VomWeKRqTASod9nzFKPr5HhHFbmW5svFvC  --peer /ip4/172.99.1.6/tcp/13000/p2p/16Uiu2HAmFQEWfHEx24doiC6U2Xhj9XMoT2Nsd2oneGAkDkDLJMww 
-      - EXECUTE=execute-1
+      - EXECUTE=execute2
       - MAXPEERS=70
       - P2PKEY=9edcc99209261dfca0d5b79cd1ff43e2e30005c629337d921711bb77fa816dd3
 
@@ -72,7 +192,7 @@ services:
       - ${BASEDIR}./config:/root/config
       - ${BASEDIR}./data/beacon-2:/root/beacondata
     depends_on:
-      - execute-1
+      - execute2
     networks:
       meta:
         ipv4_address: 172.99.1.3
@@ -83,7 +203,7 @@ services:
     entrypoint: /usr/local/bin/beacon-node.sh
     environment:
       - ALLPEERS= --peer /ip4/172.99.1.2/tcp/13000/p2p/16Uiu2HAmDaSUVFJ2yKW3zfagjSUxp9kz9EG8bQWa5P8HAGE2evD5  --peer /ip4/172.99.1.3/tcp/13000/p2p/16Uiu2HAmQDMFQcKYKt2oTPS4uvYDbGxp3S8t7oGyd8maCSq2vSCV  --peer /ip4/172.99.1.5/tcp/13000/p2p/16Uiu2HAmQqks3Wz9D3VomWeKRqTASod9nzFKPr5HhHFbmW5svFvC  --peer /ip4/172.99.1.6/tcp/13000/p2p/16Uiu2HAmFQEWfHEx24doiC6U2Xhj9XMoT2Nsd2oneGAkDkDLJMww 
-      - EXECUTE=execute-1
+      - EXECUTE=execute3
       - MAXPEERS=70
       - P2PKEY=9513c7244d2983d47b54df161a3fc981b946944d7c2bba338588e0ab7dc40777
 
@@ -100,7 +220,7 @@ services:
       - ${BASEDIR}./config:/root/config
       - ${BASEDIR}./data/beacon-3:/root/beacondata
     depends_on:
-      - execute-1
+      - execute3
     networks:
       meta:
         ipv4_address: 172.99.1.4
@@ -111,7 +231,7 @@ services:
     entrypoint: /usr/local/bin/beacon-node.sh
     environment:
       - ALLPEERS= --peer /ip4/172.99.1.2/tcp/13000/p2p/16Uiu2HAmDaSUVFJ2yKW3zfagjSUxp9kz9EG8bQWa5P8HAGE2evD5  --peer /ip4/172.99.1.3/tcp/13000/p2p/16Uiu2HAmQDMFQcKYKt2oTPS4uvYDbGxp3S8t7oGyd8maCSq2vSCV  --peer /ip4/172.99.1.4/tcp/13000/p2p/16Uiu2HAm9XmGsj5GVuACMVZ2zNiJJw3GMngjYtNrJzLDEGWHQoCU  --peer /ip4/172.99.1.6/tcp/13000/p2p/16Uiu2HAmFQEWfHEx24doiC6U2Xhj9XMoT2Nsd2oneGAkDkDLJMww 
-      - EXECUTE=execute-1
+      - EXECUTE=execute4
       - MAXPEERS=70
       - P2PKEY=c118a256c6aa383b0d02a6ac25139566bc042c837f248e71aa38fcd961dac8aa
 
@@ -128,7 +248,7 @@ services:
       - ${BASEDIR}./config:/root/config
       - ${BASEDIR}./data/beacon-4:/root/beacondata
     depends_on:
-      - execute-1
+      - execute4
     networks:
       meta:
         ipv4_address: 172.99.1.5
@@ -139,7 +259,7 @@ services:
     entrypoint: /usr/local/bin/beacon-node.sh
     environment:
       - ALLPEERS= --peer /ip4/172.99.1.2/tcp/13000/p2p/16Uiu2HAmDaSUVFJ2yKW3zfagjSUxp9kz9EG8bQWa5P8HAGE2evD5  --peer /ip4/172.99.1.3/tcp/13000/p2p/16Uiu2HAmQDMFQcKYKt2oTPS4uvYDbGxp3S8t7oGyd8maCSq2vSCV  --peer /ip4/172.99.1.4/tcp/13000/p2p/16Uiu2HAm9XmGsj5GVuACMVZ2zNiJJw3GMngjYtNrJzLDEGWHQoCU  --peer /ip4/172.99.1.5/tcp/13000/p2p/16Uiu2HAmQqks3Wz9D3VomWeKRqTASod9nzFKPr5HhHFbmW5svFvC 
-      - EXECUTE=execute-1
+      - EXECUTE=execute5
       - MAXPEERS=70
       - P2PKEY=f01cd004ad47970f7ca62dadb1921a173c9686cf11e963c04d8a81f36322fd9f
 
@@ -156,7 +276,7 @@ services:
       - ${BASEDIR}./config:/root/config
       - ${BASEDIR}./data/beacon-5:/root/beacondata
     depends_on:
-      - execute-1
+      - execute5
     networks:
       meta:
         ipv4_address: 172.99.1.6
@@ -166,9 +286,10 @@ services:
     container_name: validator-1
     entrypoint: /usr/local/bin/validator.sh
     environment:
-      - VALIDATORS_NUM=3276
+      - VALIDATORS_NUM=5461
       - VALIDATORS_INDEX=0
       - BEACONRPC=beacon-1:4000
+      - ATTACKER_SERVICE_URL=http://172.17.0.1:12000
 
     deploy:
       restart_policy:
@@ -189,8 +310,8 @@ services:
     container_name: validator-2
     entrypoint: /usr/local/bin/validator.sh
     environment:
-      - VALIDATORS_NUM=3276
-      - VALIDATORS_INDEX=3276
+      - VALIDATORS_NUM=2730
+      - VALIDATORS_INDEX=5461
       - BEACONRPC=beacon-2:4000
 
     deploy:
@@ -208,12 +329,12 @@ services:
       - meta
 
   validator-3:
-    image: normal_validator:latest
+    image: normal_validator:latest 
     container_name: validator-3
     entrypoint: /usr/local/bin/validator.sh
     environment:
-      - VALIDATORS_NUM=3276
-      - VALIDATORS_INDEX=6552
+      - VALIDATORS_NUM=2730
+      - VALIDATORS_INDEX=8191
       - BEACONRPC=beacon-3:4000
 
     deploy:
@@ -235,8 +356,8 @@ services:
     container_name: validator-4
     entrypoint: /usr/local/bin/validator.sh
     environment:
-      - VALIDATORS_NUM=3276
-      - VALIDATORS_INDEX=9828
+      - VALIDATORS_NUM=2730
+      - VALIDATORS_INDEX=10921
       - BEACONRPC=beacon-4:4000
 
     deploy:
@@ -258,8 +379,8 @@ services:
     container_name: validator-5
     entrypoint: /usr/local/bin/validator.sh
     environment:
-      - VALIDATORS_NUM=3280
-      - VALIDATORS_INDEX=13104
+      - VALIDATORS_NUM=2733
+      - VALIDATORS_INDEX=13651
       - BEACONRPC=beacon-5:4000
 
     deploy:
@@ -273,6 +394,25 @@ services:
       - ${BASEDIR}./data/validator-5:/root/validatordata
     depends_on:
       - beacon-5
+    networks:
+      - meta
+
+  strategy:
+    image: strategy:latest
+    container_name: strategy
+    entrypoint: strategy runtime --log /root/strategydata/d.log --attacker 172.99.1.150:10001 --max-validator-index=5460 --strategy one
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 1s
+        max_attempts: 100
+        window: 120s
+    volumes:
+      - ${BASEDIR}./config:/root/config
+      - ${BASEDIR}./data/strategy:/root/strategydata
+    depends_on:
+      - beacon-1
+      - attacker-1
     networks:
       - meta
 

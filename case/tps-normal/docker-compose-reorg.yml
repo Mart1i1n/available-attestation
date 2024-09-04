@@ -166,7 +166,7 @@ services:
     container_name: validator-1
     entrypoint: /usr/local/bin/validator.sh
     environment:
-      - VALIDATORS_NUM=85
+      - VALIDATORS_NUM=3276
       - VALIDATORS_INDEX=0
       - BEACONRPC=beacon-1:4000
 
@@ -189,8 +189,8 @@ services:
     container_name: validator-2
     entrypoint: /usr/local/bin/validator.sh
     environment:
-      - VALIDATORS_NUM=51
-      - VALIDATORS_INDEX=85
+      - VALIDATORS_NUM=3276
+      - VALIDATORS_INDEX=3276
       - BEACONRPC=beacon-2:4000
 
     deploy:
@@ -212,8 +212,8 @@ services:
     container_name: validator-3
     entrypoint: /usr/local/bin/validator.sh
     environment:
-      - VALIDATORS_NUM=51
-      - VALIDATORS_INDEX=136
+      - VALIDATORS_NUM=3276
+      - VALIDATORS_INDEX=6552
       - BEACONRPC=beacon-3:4000
 
     deploy:
@@ -235,8 +235,8 @@ services:
     container_name: validator-4
     entrypoint: /usr/local/bin/validator.sh
     environment:
-      - VALIDATORS_NUM=51
-      - VALIDATORS_INDEX=187
+      - VALIDATORS_NUM=3276
+      - VALIDATORS_INDEX=9828
       - BEACONRPC=beacon-4:4000
 
     deploy:
@@ -258,8 +258,8 @@ services:
     container_name: validator-5
     entrypoint: /usr/local/bin/validator.sh
     environment:
-      - VALIDATORS_NUM=18
-      - VALIDATORS_INDEX=238
+      - VALIDATORS_NUM=3280
+      - VALIDATORS_INDEX=13104
       - BEACONRPC=beacon-5:4000
 
     deploy:

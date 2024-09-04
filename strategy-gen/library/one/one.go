@@ -11,16 +11,10 @@ type One struct {
 }
 
 func (o *One) Description() string {
-	//	desc_cn := `
-	//提前一个epoch 查看下一个epoch的恶意节点出块顺序；
-	//如果有连续两个以上恶意节点出块，开始进行策略；
-	//delay策略：blockdelay 到其中最后一个恶意节点出块的下一个slot；
-	//恶意节点的投票者 开始做恶，对投票进行delay，执行的策略和blockdelay一样。`
-	desc_eng := `	Check the order of malicious nodes in the next epoch one epoch in advance;
-	If there are more than three malicious nodes in a row, start the strategy;
-	Delay strategy: blockdelay to the next slot after the last malicious node;
-	Malicious nodes' voters start to do evil, delay the voting, and execute the
-	same strategy as blockdelay.`
+	//Check the blocking sequence of malicious nodes one epoch ahead of the next epoch；
+	//If more than two malicious nodes create blocks in a row, the policy is started；
+	//Strategy: Blockdelay to the next slot where the last malicious node exits the block；
+	desc_eng := `Exante reorg attack.`
 	return desc_eng
 }
 

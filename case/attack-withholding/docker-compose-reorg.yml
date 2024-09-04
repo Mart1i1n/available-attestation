@@ -141,15 +141,15 @@ services:
         ipv4_address: 172.99.1.150
 
   beacon-1:
-    image: normal_beacon:latest
+    image: modified_beacon:latest
     container_name: beacon-1
     entrypoint: /usr/local/bin/beacon-node.sh
     environment:
-      - ALLPEERS= --peer /ip4/172.99.1.3/tcp/13000/p2p/16Uiu2HAmQDMFQcKYKt2oTPS4uvYDbGxp3S8t7oGyd8maCSq2vSCV  --peer /ip4/172.99.1.4/tcp/13000/p2p/16Uiu2HAm9XmGsj5GVuACMVZ2zNiJJw3GMngjYtNrJzLDEGWHQoCU  --peer /ip4/172.99.1.5/tcp/13000/p2p/16Uiu2HAmQqks3Wz9D3VomWeKRqTASod9nzFKPr5HhHFbmW5svFvC  --peer /ip4/172.99.1.6/tcp/13000/p2p/16Uiu2HAmFQEWfHEx24doiC6U2Xhj9XMoT2Nsd2oneGAkDkDLJMww 
+      - ALLPEERS= --peer /ip4/172.99.1.3/tcp/13000/p2p/16Uiu2HAmViS3SUn4cBmMGkRx6CBzgSFHu7JJY6oztwvbhzPKrQSQ  --peer /ip4/172.99.1.4/tcp/13000/p2p/16Uiu2HAkuVr12eYtMNuxcRcTYj9PYHxVTz8TYkDjGgg8ZtFWi2rP  --peer /ip4/172.99.1.5/tcp/13000/p2p/16Uiu2HAm42EM98s9Feq2VoWP6R78FtHs6T9sWY3HaGFn7assWc87  --peer /ip4/172.99.1.6/tcp/13000/p2p/16Uiu2HAmNhdZermeUdkQuZeathnkEiWHH8KFJcSsXPeTR3JA6Zue 
       - EXECUTE=execute1
       - MAXPEERS=70
-      - P2PKEY=0692f57d5ddf34d0f2649d968bf82e2dda69d1f435a7f3a7a26d81a1a11e687b
-      - ATTACKER_SERVICE_URL=http://172.17.0.1:12000
+      - P2PKEY=f4138210a3f9805e47da011384d9109d968f76aa85d65348c02ab78aa7f2ce92
+      - ATTACKER_SERVICE_URL=http://172.17.0.1:12000 
 
     deploy:
       restart_policy:
@@ -170,14 +170,14 @@ services:
         ipv4_address: 172.99.1.2
 
   beacon-2:
-    image: normal_beacon:latest
+    image: modified_beacon:latest
     container_name: beacon-2
     entrypoint: /usr/local/bin/beacon-node.sh
     environment:
-      - ALLPEERS= --peer /ip4/172.99.1.2/tcp/13000/p2p/16Uiu2HAmDaSUVFJ2yKW3zfagjSUxp9kz9EG8bQWa5P8HAGE2evD5  --peer /ip4/172.99.1.4/tcp/13000/p2p/16Uiu2HAm9XmGsj5GVuACMVZ2zNiJJw3GMngjYtNrJzLDEGWHQoCU  --peer /ip4/172.99.1.5/tcp/13000/p2p/16Uiu2HAmQqks3Wz9D3VomWeKRqTASod9nzFKPr5HhHFbmW5svFvC  --peer /ip4/172.99.1.6/tcp/13000/p2p/16Uiu2HAmFQEWfHEx24doiC6U2Xhj9XMoT2Nsd2oneGAkDkDLJMww 
+      - ALLPEERS= --peer /ip4/172.99.1.2/tcp/13000/p2p/16Uiu2HAmDashuTodN3KUjWFM3yvcUE5h1qUHYGnEGJ98vFaFVB9W  --peer /ip4/172.99.1.4/tcp/13000/p2p/16Uiu2HAkuVr12eYtMNuxcRcTYj9PYHxVTz8TYkDjGgg8ZtFWi2rP  --peer /ip4/172.99.1.5/tcp/13000/p2p/16Uiu2HAm42EM98s9Feq2VoWP6R78FtHs6T9sWY3HaGFn7assWc87  --peer /ip4/172.99.1.6/tcp/13000/p2p/16Uiu2HAmNhdZermeUdkQuZeathnkEiWHH8KFJcSsXPeTR3JA6Zue 
       - EXECUTE=execute2
       - MAXPEERS=70
-      - P2PKEY=9edcc99209261dfca0d5b79cd1ff43e2e30005c629337d921711bb77fa816dd3
+      - P2PKEY=c4676d3a5b9026bb045d366a9c77922373050a7a4cc08d78d2423de08010a712
 
     deploy:
       restart_policy:
@@ -198,14 +198,14 @@ services:
         ipv4_address: 172.99.1.3
 
   beacon-3:
-    image: normal_beacon:latest
+    image: modified_beacon:latest
     container_name: beacon-3
     entrypoint: /usr/local/bin/beacon-node.sh
     environment:
-      - ALLPEERS= --peer /ip4/172.99.1.2/tcp/13000/p2p/16Uiu2HAmDaSUVFJ2yKW3zfagjSUxp9kz9EG8bQWa5P8HAGE2evD5  --peer /ip4/172.99.1.3/tcp/13000/p2p/16Uiu2HAmQDMFQcKYKt2oTPS4uvYDbGxp3S8t7oGyd8maCSq2vSCV  --peer /ip4/172.99.1.5/tcp/13000/p2p/16Uiu2HAmQqks3Wz9D3VomWeKRqTASod9nzFKPr5HhHFbmW5svFvC  --peer /ip4/172.99.1.6/tcp/13000/p2p/16Uiu2HAmFQEWfHEx24doiC6U2Xhj9XMoT2Nsd2oneGAkDkDLJMww 
+      - ALLPEERS= --peer /ip4/172.99.1.2/tcp/13000/p2p/16Uiu2HAmDashuTodN3KUjWFM3yvcUE5h1qUHYGnEGJ98vFaFVB9W  --peer /ip4/172.99.1.3/tcp/13000/p2p/16Uiu2HAmViS3SUn4cBmMGkRx6CBzgSFHu7JJY6oztwvbhzPKrQSQ  --peer /ip4/172.99.1.5/tcp/13000/p2p/16Uiu2HAm42EM98s9Feq2VoWP6R78FtHs6T9sWY3HaGFn7assWc87  --peer /ip4/172.99.1.6/tcp/13000/p2p/16Uiu2HAmNhdZermeUdkQuZeathnkEiWHH8KFJcSsXPeTR3JA6Zue 
       - EXECUTE=execute3
       - MAXPEERS=70
-      - P2PKEY=9513c7244d2983d47b54df161a3fc981b946944d7c2bba338588e0ab7dc40777
+      - P2PKEY=34996cf9c006df01068469b3b075f88aabad343be623859e3695ac54a0f233d5
 
     deploy:
       restart_policy:
@@ -226,14 +226,14 @@ services:
         ipv4_address: 172.99.1.4
 
   beacon-4:
-    image: normal_beacon:latest
+    image: modified_beacon:latest
     container_name: beacon-4
     entrypoint: /usr/local/bin/beacon-node.sh
     environment:
-      - ALLPEERS= --peer /ip4/172.99.1.2/tcp/13000/p2p/16Uiu2HAmDaSUVFJ2yKW3zfagjSUxp9kz9EG8bQWa5P8HAGE2evD5  --peer /ip4/172.99.1.3/tcp/13000/p2p/16Uiu2HAmQDMFQcKYKt2oTPS4uvYDbGxp3S8t7oGyd8maCSq2vSCV  --peer /ip4/172.99.1.4/tcp/13000/p2p/16Uiu2HAm9XmGsj5GVuACMVZ2zNiJJw3GMngjYtNrJzLDEGWHQoCU  --peer /ip4/172.99.1.6/tcp/13000/p2p/16Uiu2HAmFQEWfHEx24doiC6U2Xhj9XMoT2Nsd2oneGAkDkDLJMww 
+      - ALLPEERS= --peer /ip4/172.99.1.2/tcp/13000/p2p/16Uiu2HAmDashuTodN3KUjWFM3yvcUE5h1qUHYGnEGJ98vFaFVB9W  --peer /ip4/172.99.1.3/tcp/13000/p2p/16Uiu2HAmViS3SUn4cBmMGkRx6CBzgSFHu7JJY6oztwvbhzPKrQSQ  --peer /ip4/172.99.1.4/tcp/13000/p2p/16Uiu2HAkuVr12eYtMNuxcRcTYj9PYHxVTz8TYkDjGgg8ZtFWi2rP  --peer /ip4/172.99.1.6/tcp/13000/p2p/16Uiu2HAmNhdZermeUdkQuZeathnkEiWHH8KFJcSsXPeTR3JA6Zue 
       - EXECUTE=execute4
       - MAXPEERS=70
-      - P2PKEY=c118a256c6aa383b0d02a6ac25139566bc042c837f248e71aa38fcd961dac8aa
+      - P2PKEY=21d4f1dcef2492ae517685309a9359193b12fd4ab84194417b6d9ef0c6f66922
 
     deploy:
       restart_policy:
@@ -254,14 +254,14 @@ services:
         ipv4_address: 172.99.1.5
 
   beacon-5:
-    image: normal_beacon:latest
+    image: modified_beacon:latest
     container_name: beacon-5
     entrypoint: /usr/local/bin/beacon-node.sh
     environment:
-      - ALLPEERS= --peer /ip4/172.99.1.2/tcp/13000/p2p/16Uiu2HAmDaSUVFJ2yKW3zfagjSUxp9kz9EG8bQWa5P8HAGE2evD5  --peer /ip4/172.99.1.3/tcp/13000/p2p/16Uiu2HAmQDMFQcKYKt2oTPS4uvYDbGxp3S8t7oGyd8maCSq2vSCV  --peer /ip4/172.99.1.4/tcp/13000/p2p/16Uiu2HAm9XmGsj5GVuACMVZ2zNiJJw3GMngjYtNrJzLDEGWHQoCU  --peer /ip4/172.99.1.5/tcp/13000/p2p/16Uiu2HAmQqks3Wz9D3VomWeKRqTASod9nzFKPr5HhHFbmW5svFvC 
+      - ALLPEERS= --peer /ip4/172.99.1.2/tcp/13000/p2p/16Uiu2HAmDashuTodN3KUjWFM3yvcUE5h1qUHYGnEGJ98vFaFVB9W  --peer /ip4/172.99.1.3/tcp/13000/p2p/16Uiu2HAmViS3SUn4cBmMGkRx6CBzgSFHu7JJY6oztwvbhzPKrQSQ  --peer /ip4/172.99.1.4/tcp/13000/p2p/16Uiu2HAkuVr12eYtMNuxcRcTYj9PYHxVTz8TYkDjGgg8ZtFWi2rP  --peer /ip4/172.99.1.5/tcp/13000/p2p/16Uiu2HAm42EM98s9Feq2VoWP6R78FtHs6T9sWY3HaGFn7assWc87 
       - EXECUTE=execute5
       - MAXPEERS=70
-      - P2PKEY=f01cd004ad47970f7ca62dadb1921a173c9686cf11e963c04d8a81f36322fd9f
+      - P2PKEY=fc93695551533f08ee0350ac8c17501d1c3c5adbc7ebb00211934ec923a57ad7
 
     deploy:
       restart_policy:
@@ -282,11 +282,11 @@ services:
         ipv4_address: 172.99.1.6
 
   validator-1:
-    image: normal_validator:latest
+    image: modified_validator:latest
     container_name: validator-1
     entrypoint: /usr/local/bin/validator.sh
     environment:
-      - VALIDATORS_NUM=86
+      - VALIDATORS_NUM=5461
       - VALIDATORS_INDEX=0
       - BEACONRPC=beacon-1:4000
       - ATTACKER_SERVICE_URL=http://172.17.0.1:12000
@@ -306,12 +306,12 @@ services:
       - meta
 
   validator-2:
-    image: normal_validator:latest
+    image: modified_validator:latest
     container_name: validator-2
     entrypoint: /usr/local/bin/validator.sh
     environment:
-      - VALIDATORS_NUM=50
-      - VALIDATORS_INDEX=86
+      - VALIDATORS_NUM=2730
+      - VALIDATORS_INDEX=5461
       - BEACONRPC=beacon-2:4000
 
     deploy:
@@ -329,12 +329,12 @@ services:
       - meta
 
   validator-3:
-    image: normal_validator:latest 
+    image: modified_validator:latest
     container_name: validator-3
     entrypoint: /usr/local/bin/validator.sh
     environment:
-      - VALIDATORS_NUM=51
-      - VALIDATORS_INDEX=136
+      - VALIDATORS_NUM=2730
+      - VALIDATORS_INDEX=8191
       - BEACONRPC=beacon-3:4000
 
     deploy:
@@ -352,12 +352,12 @@ services:
       - meta
 
   validator-4:
-    image: normal_validator:latest
+    image: modified_validator:latest
     container_name: validator-4
     entrypoint: /usr/local/bin/validator.sh
     environment:
-      - VALIDATORS_NUM=51
-      - VALIDATORS_INDEX=187
+      - VALIDATORS_NUM=2730
+      - VALIDATORS_INDEX=10921
       - BEACONRPC=beacon-4:4000
 
     deploy:
@@ -375,12 +375,12 @@ services:
       - meta
 
   validator-5:
-    image: normal_validator:latest
+    image: modified_validator:latest
     container_name: validator-5
     entrypoint: /usr/local/bin/validator.sh
     environment:
-      - VALIDATORS_NUM=18
-      - VALIDATORS_INDEX=238
+      - VALIDATORS_NUM=2733
+      - VALIDATORS_INDEX=13651
       - BEACONRPC=beacon-5:4000
 
     deploy:
@@ -400,7 +400,7 @@ services:
   strategy:
     image: strategy:latest
     container_name: strategy
-    entrypoint: strategy runtime --log /root/strategydata/d.log --attacker 172.99.1.150:10001 --max-validator-index=86 --strategy two
+    entrypoint: strategy runtime --log /root/strategydata/d.log --attacker 172.99.1.150:10001 --max-validator-index=86 --strategy four
     deploy:
       restart_policy:
         condition: on-failure

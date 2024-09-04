@@ -11,13 +11,7 @@ type Five struct {
 }
 
 func (o *Five) Description() string {
-	//	desc_cn := `
-	//提前一个epoch 查看下一个epoch的恶意节点出块顺序；
-	//两个恶意节点之间穿插了一个诚实节点的块，让第二恶意节点的区块的parent，指向上一个恶意节点的slot.
-	//delay 策略：第一个恶意节点的区块，广播delay 1个slot;
-	desc_eng := `	Check the order of malicious nodes in the next epoch one epoch in advance;
-	Two malicious nodes are interspersed with an honest node's block, so that the parent of the second malicious node's block points to the slot of the previous malicious node.
-	Delay strategy: the block of the first malicious node broadcasts a delay of 1 slot.`
+	desc_eng := `Sandwich reorg attack.`
 	return desc_eng
 }
 

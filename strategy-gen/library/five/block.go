@@ -7,9 +7,7 @@ import (
 )
 
 /*
-提前一个epoch 查看下一个epoch的恶意节点出块顺序；
-两个恶意节点之间穿插了一个诚实节点的块，让第二恶意节点的区块的parent，指向上一个恶意节点的slot.
-delay 策略：第一个恶意节点的区块，广播delay 1个slot;
+sandwich reorg attack
 */
 
 func GenSlotStrategy(duties []interface{}) []types.SlotStrategy {

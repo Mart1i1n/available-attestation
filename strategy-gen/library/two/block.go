@@ -5,10 +5,10 @@ import (
 	"github.com/tsinghua-cel/strategy-gen/types"
 )
 
-func GenSlotStrategy(latestHackDutySlot int, epoch int64) []types.SlotStrategy {
+func GenSlotStrategy(latestHackDutySlot int, epoch int64, cas int) []types.SlotStrategy {
 	strategys := make([]types.SlotStrategy, 0)
-	switch epoch % 3 {
-	case 0, 1:
+	switch cas {
+	case 0:
 		strategy := types.SlotStrategy{
 			Slot:    "every",
 			Level:   0,
@@ -18,7 +18,7 @@ func GenSlotStrategy(latestHackDutySlot int, epoch int64) []types.SlotStrategy {
 		strategy.Actions["AttestBeforeSign"] = fmt.Sprintf("return")
 		strategys = append(strategys, strategy)
 
-	case 2:
+	case 1:
 		{
 			strategy := types.SlotStrategy{
 				Slot:    "every",

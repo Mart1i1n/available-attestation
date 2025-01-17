@@ -46,11 +46,13 @@ func (s *OpenAPI) startHttp(port int) {
 		v1.GET("/reward/:epoch", apiHandler{backend: s.backend}.GetRewardByEpoch)
 		v1.GET("/strategy", apiHandler{backend: s.backend}.GetStrategy)
 		v1.POST("/update-strategy", apiHandler{backend: s.backend}.UpdateStrategy)
+		v1.GET("/strategy-feedback/:uid", apiHandler{backend: s.backend}.GetFeedBack)
 		v1.GET("/reorgs", apiHandler{backend: s.backend}.GetReorgs)
 		v1.GET("/block/:slot", apiHandler{backend: s.backend}.GetBlockBySlot)
 		v1.GET("/epoch", apiHandler{backend: s.backend}.GetEpoch)
 		v1.GET("/slot", apiHandler{backend: s.backend}.GetSlot)
 		v1.GET("/curslot", apiHandler{backend: s.backend}.GetCurSlot)
+		v1.GET("/chain-base-info", apiHandler{backend: s.backend}.ChainBaseInfo)
 	}
 	log.WithField("swagger", fmt.Sprintf("http://%s/swagger/index.html", docs.SwaggerInfo.Host)).Info("swagger docs url")
 
@@ -65,7 +67,7 @@ func ginLogrus() gin.HandlerFunc {
 			"path":   c.Request.URL.Path,
 			"query":  c.Request.URL.RawQuery,
 			"ip":     c.ClientIP(),
-		}).Info("request")
+		}).Debug("request")
 		c.Next()
 	}
 }

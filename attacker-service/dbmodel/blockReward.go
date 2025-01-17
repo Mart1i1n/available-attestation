@@ -1,17 +1,19 @@
 package dbmodel
 
 import (
-	"fmt"
 	"github.com/astaxie/beego/orm"
+	"github.com/tsinghua-cel/attacker-service/common"
 )
 
 type BlockReward struct {
-	ID             int64 `orm:"column(id)" db:"id" json:"id" form:"id"`                                                     //  任务类型id
-	Epoch          int64 `orm:"column(epoch)" db:"epoch" json:"epoch" form:"epoch"`                                         // epoch
-	ValidatorIndex int   `orm:"column(validator_index)" db:"validator_index" json:"validator_index" form:"validator_index"` // 验证者索引
-	HeadAmount     int64 `orm:"column(head_amount)" db:"head_amount" json:"head_amount" form:"head_amount"`                 // Head 奖励数量
-	TargetAmount   int64 `orm:"column(target_amount)" db:"target_amount" json:"target_amount" form:"target_amount"`         // Target 奖励数量
-	//Head	Target	Source	Inclusion Delay	Inactivity
+	ID                     int64 `orm:"column(id)" db:"id" json:"id" form:"id"`                                                                                         //  任务类型id
+	Slot                   int64 `orm:"column(slot)" db:"slot" json:"slot" form:"slot"`                                                                                 // slot
+	ProposerIndex          int   `orm:"column(proposer_index)" db:"proposer_index" json:"proposer_index" form:"proposer_index"`                                         // 验证者索引
+	TotalAmount            int64 `orm:"column(total_amount)" db:"total_amount" json:"total_amount" form:"total_amount"`                                                 // Total 奖励数量
+	AttestationAmount      int64 `orm:"column(attestation_amount)" db:"attestation_amount" json:"attestation_amount" form:"attestation_amount"`                         // Target 奖励数量
+	SyncAggregateAmount    int64 `orm:"column(sync_aggregate_amount)" db:"sync_aggregate_amount" json:"sync_aggregate_amount" form:"sync_aggregate_amount"`             // Sync Aggregate 奖励数量
+	ProposerSlashingAmount int64 `orm:"column(proposer_slashing_amount)" db:"proposer_slashing_amount" json:"proposer_slashing_amount" form:"proposer_slashing_amount"` // Proposer Slashing 奖励数量
+	AttesterSlashingAmount int64 `orm:"column(attester_slashing_amount)" db:"attester_slashing_amount" json:"attester_slashing_amount" form:"attester_slashing_amount"` // Attester Slashing 奖励数量
 }
 
 func (BlockReward) TableName() string {
@@ -21,6 +23,7 @@ func (BlockReward) TableName() string {
 type BlockRewardRepository interface {
 	Create(reward *BlockReward) error
 	GetListByFilter(filters ...interface{}) []*BlockReward
+	GetListBySlotRange(start int64, end int64) []*BlockReward
 }
 
 type blockRewardRepositoryImpl struct {
@@ -45,39 +48,26 @@ func (repo *blockRewardRepositoryImpl) GetListByFilter(filters ...interface{}) [
 			query = query.Filter(filters[k].(string), filters[k+1])
 		}
 	}
-	query.OrderBy("-epoch").All(&list)
+	query.OrderBy("-slot").All(&list)
 	return list
 }
 
-func GetRewardListByEpoch(epoch int64) []*BlockReward {
-	filters := make([]interface{}, 0)
-	filters = append(filters, "epoch", epoch)
-	return NewBlockRewardRepository(orm.NewOrm()).GetListByFilter(filters...)
+func (repo *blockRewardRepositoryImpl) GetListBySlotRange(start int64, end int64) []*BlockReward {
+	list := make([]*BlockReward, 0)
+	query := repo.o.QueryTable(new(BlockReward).TableName())
+	query = query.Filter("slot__gte", start)
+	query = query.Filter("slot__lte", end)
+	query.OrderBy("-slot").All(&list)
+
+	return list
 }
 
-func GetRewardListByValidatorIndex(index int) []*BlockReward {
-	filters := make([]interface{}, 0)
-	filters = append(filters, "validator_index", index)
-	return NewBlockRewardRepository(orm.NewOrm()).GetListByFilter(filters...)
+func InsertBlockReward(o orm.Ormer, reward *BlockReward) error {
+	return NewBlockRewardRepository(o).Create(reward)
 }
 
-func GetRewardByValidatorAndEpoch(epoch int64, index int) *BlockReward {
-	filters := make([]interface{}, 0)
-	filters = append(filters, "epoch", epoch)
-	filters = append(filters, "validator_index", index)
-
-	list := NewBlockRewardRepository(orm.NewOrm()).GetListByFilter(filters...)
-	if len(list) >= 0 {
-		return list[0]
-	}
-	return nil
-}
-
-func GetMaxEpoch() int64 {
-	var max int64
-	sql := fmt.Sprintf("select max(epoch) from %s", new(BlockReward).TableName())
-	if err := orm.NewOrm().Raw(sql).QueryRow(&max); err == orm.ErrNoRows {
-		return -1
-	}
-	return max
+func GetBlockRewardListByEpoch(epoch int64) []*BlockReward {
+	start := common.EpochStart(epoch)
+	end := common.EpochEnd(epoch)
+	return NewBlockRewardRepository(orm.NewOrm()).GetListBySlotRange(start, end)
 }

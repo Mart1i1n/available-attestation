@@ -1,6 +1,7 @@
 package dbmodel
 
 import (
+	"fmt"
 	"github.com/astaxie/beego/orm"
 	"github.com/tsinghua-cel/attacker-service/types"
 )
@@ -69,4 +70,16 @@ func InsertNewReorg(ev types.ReorgEvent) {
 
 func GetAllReorgList() []*ChainReorg {
 	return NewChainReorgRepository(orm.NewOrm()).GetListByFilter()
+}
+
+func GetReorgListByEpoch(epoch int64) []*ChainReorg {
+	return NewChainReorgRepository(orm.NewOrm()).GetListByFilter("epoch", epoch)
+}
+
+func GetReorgCountByEpoch(epoch int64) int {
+	// select count(1) from t_chain_reorg where epoch = epoch;
+	var count int
+	sql := fmt.Sprintf("select count(1) from %s where epoch = ?", new(ChainReorg).TableName())
+	orm.NewOrm().Raw(sql, epoch).QueryRow(&count)
+	return count
 }

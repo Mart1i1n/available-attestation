@@ -61,3 +61,12 @@ type ReorgEvent struct {
 	OldHeadState          string `json:"old_head_state"`
 	NewHeadState          string `json:"new_head_state"`
 }
+
+type BlockRewardInfo struct {
+	ProposerIndex     string `json:"proposer_index"`
+	Total             string `json:"total"`
+	Attestations      string `json:"attestations"`
+	SyncAggregate     string `json:"sync_aggregate"`
+	ProposerSlashings string `json:"proposer_slashings"`
+	AttesterSlashings string `json:"attester_slashings"`
+}

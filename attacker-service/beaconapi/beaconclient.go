@@ -224,6 +224,16 @@ func (b *BeaconGwClient) GetNextEpochAttestDuties() ([]types.AttestDuty, error) 
 	return b.GetAttesterDuties(epoch+1, vals)
 }
 
+func (b *BeaconGwClient) GetBlockReward(slot int) (types.BlockRewardInfo, error) {
+	response, err := b.doGet(fmt.Sprintf("http://%s/eth/v1/beacon/rewards/blocks/%d", b.endpoint, slot))
+	var reward = types.BlockRewardInfo{}
+	err = json.Unmarshal(response.Data, &reward)
+	if err != nil {
+		return types.BlockRewardInfo{}, err
+	}
+	return reward, nil
+}
+
 func (b *BeaconGwClient) GetSlotRoot(slot int64) (string, error) {
 	response, err := b.doGet(fmt.Sprintf("http://%s/eth/v1/beacon/states/%d/root", b.endpoint, slot))
 	var rootInfo = types.SlotStateRoot{}

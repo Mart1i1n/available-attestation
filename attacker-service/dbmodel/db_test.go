@@ -1,11 +1,12 @@
 package dbmodel
 
 import (
+	"github.com/tsinghua-cel/attacker-service/config"
 	"testing"
 )
 
 func init() {
-	DbInit(DbConfig{
+	DbInit(config.MysqlConfig{
 		Host:   "127.0.0.1",
 		Port:   3306,
 		User:   "root",

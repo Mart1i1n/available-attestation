@@ -43,11 +43,7 @@ func GetFunctionSlot(backend types.ServiceBackend, name string) (SlotCalc, error
 		}, nil
 	case "attackerSlot":
 		return func(slot int64) int64 {
-			slotsPerEpoch := backend.SlotsPerEpoch()
-			tool := common.SlotTool{
-				SlotsPerEpoch: slotsPerEpoch,
-			}
-			epoch := tool.SlotToEpoch(slot)
+			epoch := common.SlotToEpoch(slot)
 			duties, err := backend.GetProposeDuties(int(epoch))
 			if err != nil {
 				return slot + 1
@@ -62,51 +58,30 @@ func GetFunctionSlot(backend types.ServiceBackend, name string) (SlotCalc, error
 			}
 			return slot + 1
 		}, nil
-
 	case "lastSlotInCurrentEpoch":
-		slotsPerEpoch := backend.SlotsPerEpoch()
-		tool := common.SlotTool{
-			SlotsPerEpoch: slotsPerEpoch,
-		}
 		return func(slot int64) int64 {
-			epoch := tool.SlotToEpoch(slot)
-			return tool.EpochEnd(epoch)
+			epoch := common.SlotToEpoch(slot)
+			return common.EpochEnd(epoch)
 		}, nil
 	case "lastSlotInNextEpoch":
-		slotsPerEpoch := backend.SlotsPerEpoch()
-		tool := common.SlotTool{
-			SlotsPerEpoch: slotsPerEpoch,
-		}
 		return func(slot int64) int64 {
-			epoch := tool.SlotToEpoch(slot)
-			return tool.EpochEnd(epoch + 1)
+			epoch := common.SlotToEpoch(slot)
+			return common.EpochEnd(epoch + 1)
 		}, nil
 
 	case "firstSlotInCurrentEpoch":
-		slotsPerEpoch := backend.SlotsPerEpoch()
-		tool := common.SlotTool{
-			SlotsPerEpoch: slotsPerEpoch,
-		}
 		return func(slot int64) int64 {
-			epoch := tool.SlotToEpoch(slot)
-			return tool.EpochStart(epoch)
+			epoch := common.SlotToEpoch(slot)
+			return common.EpochStart(epoch)
 		}, nil
 	case "firstSlotInNextEpoch":
-		slotsPerEpoch := backend.SlotsPerEpoch()
-		tool := common.SlotTool{
-			SlotsPerEpoch: slotsPerEpoch,
-		}
 		return func(slot int64) int64 {
-			epoch := tool.SlotToEpoch(slot)
-			return tool.EpochStart(epoch + 1)
+			epoch := common.SlotToEpoch(slot)
+			return common.EpochStart(epoch + 1)
 		}, nil
 	case "lastAttackerSlotInCurrentEpoch":
 		return func(slot int64) int64 {
-			slotsPerEpoch := backend.SlotsPerEpoch()
-			tool := common.SlotTool{
-				SlotsPerEpoch: slotsPerEpoch,
-			}
-			epoch := tool.SlotToEpoch(slot)
+			epoch := common.SlotToEpoch(slot)
 			latestSlotWithAttacker := int64(-1)
 			duties, err := backend.GetProposeDuties(int(epoch))
 			if err != nil {
@@ -124,11 +99,7 @@ func GetFunctionSlot(backend types.ServiceBackend, name string) (SlotCalc, error
 		}, nil
 	case "lastAttackerSlotInNextEpoch":
 		return func(slot int64) int64 {
-			slotsPerEpoch := backend.SlotsPerEpoch()
-			tool := common.SlotTool{
-				SlotsPerEpoch: slotsPerEpoch,
-			}
-			epoch := tool.SlotToEpoch(slot)
+			epoch := common.SlotToEpoch(slot)
 			latestSlotWithAttacker := int64(-1)
 			duties, err := backend.GetProposeDuties(int(epoch + 1))
 			if err != nil {

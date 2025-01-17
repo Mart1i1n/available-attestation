@@ -14,6 +14,7 @@ import (
 	"github.com/tsinghua-cel/attacker-service/common"
 	"github.com/tsinghua-cel/attacker-service/config"
 	"github.com/tsinghua-cel/attacker-service/dbmodel"
+	"github.com/tsinghua-cel/attacker-service/feedback"
 	"github.com/tsinghua-cel/attacker-service/openapi"
 	"github.com/tsinghua-cel/attacker-service/plugins"
 	"github.com/tsinghua-cel/attacker-service/rpc"
@@ -35,6 +36,7 @@ type Server struct {
 	internal     []*slotstrategy.InternalSlotStrategy
 	execClient   *ethclient.Client
 	beaconClient *beaconapi.BeaconGwClient
+	honestBeacon *beaconapi.BeaconGwClient
 
 	validatorSetInfo *types.ValidatorDataSet
 	mux              sync.Mutex
@@ -42,6 +44,10 @@ type Server struct {
 	openApi          *openapi.OpenAPI
 	cache            *lru.Cache
 	hotdata          map[string]interface{}
+
+	feedBacker      *feedback.Feedback
+	historyStrategy *lru.Cache
+	maxMaliciousIdx int
 }
 
 func (n *Server) GetBlockBySlot(slot uint64) (interface{}, error) {
@@ -52,9 +58,11 @@ func (n *Server) GetLatestBeaconHeader() (types.BeaconHeaderInfo, error) {
 	return n.beaconClient.GetLatestBeaconHeader()
 }
 
-func NewServer(conf *config.Config, plugin plugins.AttackerPlugin) *Server {
+func NewServer(conf *config.Config, plugin plugins.AttackerPlugin, maxMaliciousIdx int) *Server {
 	s := &Server{}
+	s.maxMaliciousIdx = maxMaliciousIdx
 	s.cache = lru.New(10000)
+	s.historyStrategy = lru.New(10000)
 	s.config = conf
 	s.rpcAPIs = apis.GetAPIs(s, plugin)
 	client, err := ethclient.Dial(conf.ExecuteRpc)
@@ -63,12 +71,14 @@ func NewServer(conf *config.Config, plugin plugins.AttackerPlugin) *Server {
 	}
 	s.execClient = client
 	s.beaconClient = beaconapi.NewBeaconGwClient(conf.BeaconRpc)
+	s.honestBeacon = beaconapi.NewBeaconGwClient(conf.HonestBeaconRpc)
 	s.http = newHTTPServer(log.WithField("module", "server"), rpc.DefaultHTTPTimeouts)
 	s.strategy = strategy.ParseStrategy(s, conf.Strategy)
 	s.validatorSetInfo = types.NewValidatorSet()
 	s.attestpool = make(map[uint64]map[string]*ethpb.Attestation)
 	s.openApi = openapi.NewOpenAPI(s, conf)
 	s.hotdata = make(map[string]interface{})
+	s.feedBacker = feedback.NewFeedback(s)
 	return s
 }
 
@@ -121,14 +131,18 @@ func (n *Server) startRPC() error {
 func (s *Server) monitorEvent() {
 	ticker := time.NewTicker(time.Minute * 2)
 	defer ticker.Stop()
+	totalReorgDepth := uint64(0)
 
 	handler := func(ch chan *apiv1.ChainReorgEvent) {
 		for {
 			select {
 			case reorg := <-ch:
 				log.WithFields(log.Fields{
-					"slot": reorg.Slot,
+					"slot":            reorg.Slot,
+					"depth":           reorg.Depth,
+					"totalReorgDepth": totalReorgDepth,
 				}).Info("reorg event")
+				totalReorgDepth += reorg.Depth
 				ev := types.ReorgEvent{
 					Epoch:        int64(reorg.Epoch),
 					Slot:         int64(reorg.Slot),
@@ -136,11 +150,11 @@ func (s *Server) monitorEvent() {
 					OldHeadState: reorg.OldHeadState.String(),
 					NewHeadState: reorg.NewHeadState.String(),
 				}
-				if oldHeader, err := s.beaconClient.GetBlockHeaderById(reorg.OldHeadBlock.String()); err == nil {
+				if oldHeader, err := s.honestBeacon.GetBlockHeaderById(reorg.OldHeadBlock.String()); err == nil {
 					ev.OldBlockSlot = int64(oldHeader.Header.Message.Slot)
 					ev.OldBlockProposerIndex = int64(oldHeader.Header.Message.ProposerIndex)
 				}
-				if newHeader, err := s.beaconClient.GetBlockHeaderById(reorg.NewHeadBlock.String()); err == nil {
+				if newHeader, err := s.honestBeacon.GetBlockHeaderById(reorg.NewHeadBlock.String()); err == nil {
 					ev.NewBlockSlot = int64(newHeader.Header.Message.Slot)
 					ev.NewBlockProposerIndex = int64(newHeader.Header.Message.ProposerIndex)
 				}
@@ -152,7 +166,7 @@ func (s *Server) monitorEvent() {
 	for {
 		select {
 		case <-ticker.C:
-			eventCh := s.beaconClient.MonitorReorgEvent()
+			eventCh := s.honestBeacon.MonitorReorgEvent()
 			if eventCh != nil {
 				go handler(eventCh)
 				ticker.Reset(time.Hour * 256)
@@ -178,7 +192,7 @@ func (s *Server) monitorDuties() {
 		select {
 
 		case <-dutyTicker.C:
-			header, err := s.beaconClient.GetLatestBeaconHeader()
+			header, err := s.honestBeacon.GetLatestBeaconHeader()
 			if err != nil {
 				log.WithError(err).Debug("duty ticker get latest beacon header failed")
 				continue
@@ -199,7 +213,7 @@ func (s *Server) monitorDuties() {
 			}
 
 		case <-ticker.C:
-			curDuties, err := s.beaconClient.GetCurrentEpochAttestDuties()
+			curDuties, err := s.honestBeacon.GetCurrentEpochAttestDuties()
 			if err != nil {
 				continue
 			}
@@ -208,7 +222,7 @@ func (s *Server) monitorDuties() {
 					s.validatorSetInfo.AddValidator(idx, duty.Pubkey)
 				}
 			}
-			nextDuties, _ := s.beaconClient.GetNextEpochAttestDuties()
+			nextDuties, _ := s.honestBeacon.GetNextEpochAttestDuties()
 			for _, duty := range nextDuties {
 				if idx, err := strconv.Atoi(duty.ValidatorIndex); err == nil {
 					s.validatorSetInfo.AddValidator(idx, duty.Pubkey)
@@ -222,6 +236,7 @@ func (s *Server) monitorDuties() {
 }
 
 func (s *Server) Start() {
+	s.initTools()
 	// start RPC endpoints
 	err := s.startRPC()
 	if err != nil {
@@ -231,19 +246,24 @@ func (s *Server) Start() {
 	// start collect duties info.
 	go s.monitorDuties()
 	go s.monitorEvent()
-	go s.initTools()
+	go s.HandleEndStrategy()
+	s.feedBacker.Start()
 }
 
 func (s *Server) initTools() {
 	init := false
 	for !init {
-		genesis, err := s.beaconClient.GetGenesis()
-		if err != nil {
-			log.WithError(err).Error("get genesis failed")
+		slotPerEpoch, _ := s.honestBeacon.GetIntConfig(beaconapi.SLOTS_PER_EPOCH)
+		interval, _ := s.honestBeacon.GetIntConfig(beaconapi.SECONDS_PER_SLOT)
+		genesis, err := s.honestBeacon.GetGenesis()
+		if slotPerEpoch == 0 || interval == 0 || err != nil {
+			log.WithError(err).Error("initTools get genesis failed, retry")
 			time.Sleep(time.Second)
 			continue
 		} else {
-			common.InitSlotTime(6, genesis.GenesisTime.Unix())
+			common.InitSlotTool(interval, int64(slotPerEpoch), genesis.GenesisTime.Unix())
+			init = true
+			log.WithField("interval", interval).Info("init tool finished")
 		}
 	}
 }
@@ -282,15 +302,15 @@ func (s *Server) GetValidatorRoleByPubkey(slot int, pubkey string) types.RoleTyp
 }
 
 func (s *Server) GetCurrentEpochProposeDuties() ([]types.ProposerDuty, error) {
-	return s.beaconClient.GetCurrentEpochProposerDuties()
+	return s.honestBeacon.GetCurrentEpochProposerDuties()
 }
 
 func (s *Server) GetCurrentEpochAttestDuties() ([]types.AttestDuty, error) {
-	return s.beaconClient.GetCurrentEpochAttestDuties()
+	return s.honestBeacon.GetCurrentEpochAttestDuties()
 }
 
 func (s *Server) GetSlotsPerEpoch() int {
-	count, err := s.beaconClient.GetIntConfig(beaconapi.SLOTS_PER_EPOCH)
+	count, err := s.honestBeacon.GetIntConfig(beaconapi.SLOTS_PER_EPOCH)
 	if err != nil {
 		return 6
 	}
@@ -298,10 +318,7 @@ func (s *Server) GetSlotsPerEpoch() int {
 }
 
 func (s *Server) GetIntervalPerSlot() int {
-	interval, err := s.beaconClient.GetIntConfig(beaconapi.SECONDS_PER_SLOT)
-	if err != nil {
-		return 12
-	}
+	interval, _ := s.honestBeacon.GetIntConfig(beaconapi.SECONDS_PER_SLOT)
 	return interval
 }
 
@@ -357,7 +374,7 @@ func (s *Server) GetValidatorDataSet() *types.ValidatorDataSet {
 func (s *Server) GetValidatorByProposeSlot(slot uint64) (int, error) {
 	epochPerSlot := uint64(s.GetSlotsPerEpoch())
 	epoch := slot / epochPerSlot
-	duties, err := s.beaconClient.GetProposerDuties(int(epoch))
+	duties, err := s.honestBeacon.GetProposerDuties(int(epoch))
 	if err != nil {
 		return 0, err
 	}
@@ -372,7 +389,7 @@ func (s *Server) GetValidatorByProposeSlot(slot uint64) (int, error) {
 }
 
 func (s *Server) GetProposeDuties(epoch int) ([]types.ProposerDuty, error) {
-	return s.beaconClient.GetProposerDuties(epoch)
+	return s.honestBeacon.GetProposerDuties(epoch)
 }
 
 func (s *Server) SlotsPerEpoch() int {
@@ -420,15 +437,30 @@ func (s *Server) dumpDuties(epoch int64) error {
 	return nil
 }
 
+// UpdateStrategy only update strategy slots and actions, not update validators.
 func (s *Server) UpdateStrategy(strategy *types.Strategy) error {
+	check := false
+	if strategy.Uid != "" {
+		check = true
+	}
+	log.WithField("uid", strategy.Uid).Debug("goto parse and update strategy")
+
+	if check {
+		if st := dbmodel.GetStrategyByUUID(strategy.Uid); st != nil {
+			log.WithError(errors.New("strategy already exist")).Error("strategy already exist")
+			return errors.New("strategy already exist")
+		}
+	}
+
 	parsed, err := slotstrategy.ParseToInternalSlotStrategy(s, strategy.Slots)
 	if err != nil {
+		log.WithError(err).Error("parse strategy failed")
 		return err
 	}
 	for _, v := range parsed {
 		replaced := false
 		for _, vi := range s.internal {
-			if vi.Slot.StrValue() == v.Slot.StrValue() && vi.Level == v.Level {
+			if vi.Slot.StrValue() == v.Slot.StrValue() && vi.Level <= v.Level {
 				// replace actions
 				vi.Actions = v.Actions
 				replaced = true
@@ -444,23 +476,22 @@ func (s *Server) UpdateStrategy(strategy *types.Strategy) error {
 		log.WithFields(log.Fields{
 			"slot":  v.Slot.StrValue(),
 			"level": v.Level,
-		}).Info("internal strategy slot")
+		}).Debug("internal strategy slot")
 		for k, action := range v.Actions {
 			log.WithFields(log.Fields{
 				"slot":       v.Slot.StrValue(),
 				"level":      v.Level,
 				"checkpoint": k,
 				"action":     action.Name(),
-			}).Info("internal strategy action")
+			}).Debug("internal strategy action")
 
 		}
-
 	}
 
 	for _, v := range strategy.Slots {
 		replaced := false
 		for _, vi := range s.strategy.Slots {
-			if v.Slot == vi.Slot && vi.Level == v.Level {
+			if v.Slot == vi.Slot && vi.Level <= v.Level {
 				vi.Actions = v.Actions
 				replaced = true
 				break
@@ -470,8 +501,24 @@ func (s *Server) UpdateStrategy(strategy *types.Strategy) error {
 			s.strategy.Slots = append(s.strategy.Slots, v)
 		}
 	}
-	// luxq add : not update validators, you can set it at initial time.
+	s.mux.Lock()
+	defer s.mux.Unlock()
+	// not update validators, you can set it at initial time.
 	//s.strategy.Validators = strategy.Validators
+	log.WithFields(log.Fields{
+		"strategy": s.strategy,
+		"check":    check,
+	}).Debug("goto check strategy")
+
+	dbmodel.InsertNewStrategy(strategy)
+
+	if check {
+		s.historyStrategy.Add(strategy.Uid, HistoryStrategy{
+			Strategy: strategy,
+		})
+		s.feedBacker.AddNewStrategy(strategy.Uid, strategy, parsed)
+	}
+
 	return nil
 }
 
@@ -511,4 +558,117 @@ func (s *Server) SetCurSlot(slot int64) {
 			s.hotdata[key] = slot
 		}
 	}
+}
+
+func (s *Server) HandleEndStrategy() {
+	ch := make(chan feedback.StrategyEndEvent, 10)
+	sub := s.feedBacker.SubscribeStrategyEndEvent(ch)
+	if sub == nil {
+		log.Error("subscribe strategy end event failed")
+		return
+	}
+	defer sub.Unsubscribe()
+	for {
+		select {
+		case ev := <-ch:
+			log.WithFields(log.Fields{
+				"uid": ev.Uid,
+			}).Debug("got strategy end event")
+			uid := ev.Uid
+			if v, exist := s.historyStrategy.Get(uid); exist {
+				storeStrategy := dbmodel.GetStrategyByUUID(uid)
+				historyInfo := v.(HistoryStrategy)
+				// get reorg event count.
+				totalReorgCount := 0
+				totalImpactCount := 0
+				normalTargetAmount := int64(290680)
+				//normalHeadAmount := int64(156520)
+				finalHonestLoseRate := float64(0.0)
+				finalAttackerLoseRate := float64(0.0)
+				for i := ev.MinEpoch; i <= ev.MaxEpoch; i++ {
+					reorgCount := dbmodel.GetReorgCountByEpoch(i)
+					impactCount := dbmodel.GetImpactValidatorCount(s.maxMaliciousIdx, normalTargetAmount, i)
+					log.WithFields(log.Fields{
+						"epoch":  i,
+						"reorg":  reorgCount,
+						"impact": impactCount,
+					}).Debug("strategy feedback")
+					honestLoseRate, attackerLoseRate := calcLoseRate(dbmodel.GetRewardListByEpoch(i), normalTargetAmount, s.maxMaliciousIdx)
+					finalHonestLoseRate += honestLoseRate
+					finalAttackerLoseRate += attackerLoseRate
+					totalReorgCount += reorgCount
+					totalImpactCount += impactCount
+				}
+				historyInfo.FeedBackInfo = &types.FeedBackInfo{
+					ReorgCount:           totalReorgCount,
+					ImpactValidatorCount: totalImpactCount,
+				}
+				storeStrategy.MinEpoch = ev.MinEpoch
+				storeStrategy.MaxEpoch = ev.MaxEpoch
+				storeStrategy.ReorgCount = totalReorgCount
+				storeStrategy.ImpactValidatorCount = totalImpactCount
+				storeStrategy.IsEnd = true
+				storeStrategy.HonestLoseRateAvg = finalHonestLoseRate / float64(ev.MaxEpoch-ev.MinEpoch+1)
+				storeStrategy.AttackerLoseRateAvg = finalAttackerLoseRate / float64(ev.MaxEpoch-ev.MinEpoch+1)
+				dbmodel.StrategyUpdate(storeStrategy)
+
+				s.historyStrategy.Add(uid, historyInfo)
+				log.WithFields(log.Fields{
+					"uid":  uid,
+					"info": historyInfo,
+				}).Debug("update strategy feedback info")
+			}
+		}
+
+	}
+}
+
+func (s *Server) GetFeedBack(uid string) (types.FeedBackInfo, error) {
+	v, exist := s.historyStrategy.Get(uid)
+	if exist {
+		historyInfo := v.(HistoryStrategy)
+		if historyInfo.FeedBackInfo != nil {
+			return *historyInfo.FeedBackInfo, nil
+		} else {
+			return types.FeedBackInfo{}, errors.New("strategy feedback not generated")
+		}
+	}
+	if st := dbmodel.GetStrategyByUUID(uid); st != nil && st.IsEnd {
+		return types.FeedBackInfo{
+			st.ReorgCount,
+			st.ImpactValidatorCount,
+		}, nil
+
+	} else {
+		return types.FeedBackInfo{}, errors.New("strategy not found or not finished")
+	}
+
+}
+
+// calcLoseRate return honestLoseRate and attackerLoseRate.
+func calcLoseRate(rewards []*dbmodel.AttestReward, normalTargetAmount int64, maxMaliciousIdx int) (float64, float64) {
+	honestLoseRate := float64(0.0)
+	honestCount := 0
+	attackerLoseRate := float64(0.0)
+	attackerCount := 0
+	// calc every validator loseRate and get average.
+	// loseRate := (normalTargetAmount - reward.TargetAmount)/normalTargetAmount
+	// and if rewards.ValidatorIndex <= maxMaliciousIdx, it is attacker.
+	for _, reward := range rewards {
+		loseRate := float64(normalTargetAmount-reward.TargetAmount) / float64(normalTargetAmount)
+		if reward.ValidatorIndex <= maxMaliciousIdx {
+			attackerLoseRate += loseRate
+			attackerCount++
+		} else {
+			honestLoseRate += loseRate
+			honestCount++
+		}
+	}
+	if honestCount > 0 {
+		honestLoseRate = honestLoseRate / float64(honestCount)
+	}
+	if attackerCount > 0 {
+		attackerLoseRate = attackerLoseRate / float64(attackerCount)
+	}
+	return honestLoseRate, attackerLoseRate
 }

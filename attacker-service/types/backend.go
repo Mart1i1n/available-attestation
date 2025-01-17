@@ -47,6 +47,7 @@ type StrategyBackend interface {
 	// update strategy
 	GetStrategy() *Strategy
 	UpdateStrategy(*Strategy) error
+	GetFeedBack(uid string) (FeedBackInfo, error)
 }
 
 // ServiceBackend interface provides the common API services (that are provided by

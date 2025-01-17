@@ -38,7 +38,9 @@ func (s *BlockAPI) GetNewParentRoot(slot uint64, pubkey string, parentRoot strin
 			r := action.RunAction(s.b, int64(slot), pubkey, parentRoot)
 			result.Cmd = r.Cmd
 			if r.Result != nil {
-				result.Result = r.Result.(string)
+				if v, ok := r.Result.(string); ok {
+					result.Result = v
+				}
 			}
 		}
 	}
@@ -46,7 +48,7 @@ func (s *BlockAPI) GetNewParentRoot(slot uint64, pubkey string, parentRoot strin
 		"cmd":    result.Cmd,
 		"slot":   slot,
 		"action": "BlockGetNewParentRoot",
-	}).Info("exit GetNewParentRoot")
+	}).Debug("exit GetNewParentRoot")
 
 	return result
 }
@@ -95,21 +97,21 @@ func (s *BlockAPI) todoActionsWithSlot(slot uint64, name string) types.AttackerR
 			log.WithFields(log.Fields{
 				"slot":       slot,
 				"checkpoint": name,
-			}).Info("find slot and action")
+			}).Debug("find slot and action")
 			r := action.RunAction(s.b, int64(slot), "")
 			result.Cmd = r.Cmd
 		} else {
 			log.WithFields(log.Fields{
 				"slot":       slot,
 				"checkpoint": name,
-			}).Info("find slot but not find action")
+			}).Debug("find slot but not find action")
 		}
 	}
 	log.WithFields(log.Fields{
 		"cmd":    result.Cmd,
 		"slot":   slot,
 		"action": name,
-	}).Info("exit todoActionsWithSlot")
+	}).Debug("exit todoActionsWithSlot")
 
 	return result
 }
@@ -131,13 +133,13 @@ func (s *BlockAPI) todoActionsWithSignedBlock(slot uint64, pubkey string, signed
 		log.WithFields(log.Fields{
 			"slot":  slot,
 			"point": name,
-		}).Info("find strategy")
+		}).Debug("find strategy")
 		action := t.Actions[name]
 		if action != nil {
 			log.WithFields(log.Fields{
 				"slot":  slot,
 				"point": name,
-			}).Info("find action")
+			}).Debug("find action")
 			//block, err := common.GetDenebBlockFromGenericSignedBlock()
 			//if err != nil {
 			//	log.WithError(err).WithField("slot", slot).Error("get block instance failed")
@@ -157,14 +159,14 @@ func (s *BlockAPI) todoActionsWithSignedBlock(slot uint64, pubkey string, signed
 			log.WithFields(log.Fields{
 				"slot":  slot,
 				"point": name,
-			}).Info("no action found")
+			}).Debug("no action found")
 		}
 	}
 	log.WithFields(log.Fields{
 		"cmd":    result.Cmd,
 		"slot":   slot,
 		"action": name,
-	}).Info("exit todoActionsWithBlock")
+	}).Debug("exit todoActionsWithBlock")
 
 	return result
 }

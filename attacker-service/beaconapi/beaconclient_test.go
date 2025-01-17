@@ -97,3 +97,14 @@ func TestGetSignedBlockById(t *testing.T) {
 	d, _ := json.MarshalIndent(data, "", "  ")
 	fmt.Printf("get block :%s\n", d)
 }
+
+func TestGetBlockReward(t *testing.T) {
+	endpoint := "13.41.176.56:14000" // grpc gateway endpoint
+	client := NewBeaconGwClient(endpoint)
+	data, err := client.GetBlockReward(2)
+	if err != nil {
+		t.Fatalf("get block failed err:%s", err)
+	}
+	d, _ := json.MarshalIndent(data, "", "  ")
+	fmt.Printf("get block :%s\n", d)
+}

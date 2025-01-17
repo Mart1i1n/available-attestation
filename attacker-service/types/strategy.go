@@ -13,6 +13,7 @@ type ValidatorStrategy struct {
 }
 
 type Strategy struct {
+	Uid        string              `json:"uid"`
 	Slots      []SlotStrategy      `json:"slots"`
 	Validators []ValidatorStrategy `json:"validator"`
 }
@@ -26,4 +27,9 @@ func (s *Strategy) GetValidatorRole(valIdx int, slot int64) RoleType {
 		}
 	}
 	return NormalRole
+}
+
+type FeedBackInfo struct {
+	ReorgCount           int
+	ImpactValidatorCount int
 }

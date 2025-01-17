@@ -145,6 +145,9 @@ func (c *PluginCaseV1) BlockDelayForReceiveBlock(ctx plugins.PluginContext, slot
 
 	epochSlots := backend.GetSlotsPerEpoch()
 	seconds := backend.GetIntervalPerSlot()
+	if seconds == 0 {
+		seconds = 12 // default 12 seconds
+	}
 	delay := (epochSlots - int(slot%uint64(epochSlots))) * seconds
 	time.Sleep(time.Second * time.Duration(delay))
 	key := fmt.Sprintf("delay_%d_%d", slot, valIdx)

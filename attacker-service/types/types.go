@@ -21,3 +21,9 @@ func ToClientInfo(cliInfo string) ClientInfo {
 type SlotStateRoot struct {
 	Root string `json:"root"`
 }
+
+type ChainBaseInfo struct {
+	SecondsPerSlot int   `json:"secondsPerSlot"`
+	SlotsPerEpoch  int   `json:"slotsPerEpoch"`
+	GenesisTime    int64 `json:"genesisTime"`
+}

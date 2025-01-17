@@ -21,6 +21,7 @@ import (
 
 var logLevel string
 var logPath string
+var maxHackValIdx int
 var configPath string
 
 // RootCmd represents the base command when called without any subcommands
@@ -49,6 +50,7 @@ func init() {
 	RootCmd.PersistentFlags().StringVar(&logLevel, "loglevel", "debug", "log level")
 	RootCmd.PersistentFlags().StringVar(&logPath, "logpath", "", "log path")
 	RootCmd.PersistentFlags().StringVar(&configPath, "config", "", "config file path")
+	RootCmd.PersistentFlags().IntVar(&maxHackValIdx, "max-hack-idx", -1, "max malicious validator index")
 }
 
 // initConfig reads in config file and ENV variables if set.
@@ -87,7 +89,7 @@ func initConfig() {
 
 func runNode() {
 	dbmodel.DbInit(config.GetConfig().DbConfig)
-	rpcServer := server.NewServer(config.GetConfig(), testcases.NewCaseV1())
+	rpcServer := server.NewServer(config.GetConfig(), testcases.NewCaseV1(), maxHackValIdx)
 	rpcServer.Start()
 
 	go getRewardBackgroud()

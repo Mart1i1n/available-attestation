@@ -3,6 +3,7 @@ package openapi
 import (
 	"github.com/gin-gonic/gin"
 	log "github.com/sirupsen/logrus"
+	"github.com/tsinghua-cel/attacker-service/common"
 	"github.com/tsinghua-cel/attacker-service/dbmodel"
 	"github.com/tsinghua-cel/attacker-service/types"
 	"net/http"
@@ -50,7 +51,7 @@ func (api apiHandler) GetStrategy(c *gin.Context) {
 // @Accept  json
 // @Produce  json
 // @Param epoch path int true "Epoch"
-// @Success 200 {array} dbmodel.BlockReward
+// @Success 200 {array} dbmodel.AttestReward
 // @Router /reward/{epoch} [get]
 func (api apiHandler) GetRewardByEpoch(c *gin.Context) {
 	param := c.Param("epoch")
@@ -71,14 +72,16 @@ func (api apiHandler) UpdateStrategy(c *gin.Context) {
 	var req types.Strategy
 	err := c.ShouldBindJSON(&req) // 解析req参数
 	if err != nil {
-		log.WithError(err).Println("UpdateStrategy ctx.ShouldBindJSON error")
-		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		log.WithError(err).Error("UpdateStrategy ctx.ShouldBindJSON error")
+		c.JSON(http.StatusBadRequest, err.Error())
 	}
 	err = api.backend.UpdateStrategy(&req)
 	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		log.WithError(err).Error("UpdateStrategy backend.UpdateStrategy error")
+		c.JSON(http.StatusInternalServerError, err.Error())
+	} else {
+		c.JSON(http.StatusOK, "ok")
 	}
-	c.JSON(http.StatusOK, "ok")
 }
 
 // @Summary Get reorgs
@@ -173,4 +176,38 @@ func (api apiHandler) GetSlot(c *gin.Context) {
 func (api apiHandler) GetCurSlot(c *gin.Context) {
 	slot := api.backend.GetCurSlot()
 	c.JSON(200, slot)
+}
+
+// @Summary Get feedback
+// @Description get feedback
+// @ID get-feedback
+// @Accept  json
+// @Produce  json
+// @Param uid path string true "Uid"
+// @Success 200 {object} types.FeedBack
+// @Router /strategy-feedback/{uid} [get]
+func (api apiHandler) GetFeedBack(c *gin.Context) {
+	uid := c.Param("uid")
+	if len(uid) == 0 {
+		c.JSON(400, gin.H{"error": "uid is required"})
+		return
+	}
+	feedback, err := api.backend.GetFeedBack(uid)
+	if err != nil {
+		c.JSON(500, gin.H{"error": err.Error()})
+		return
+	}
+	c.JSON(200, feedback)
+}
+
+// @Summary Get chain base info
+// @Description get chain base info
+// @ID get-chain-base-info
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} types.ChainBaseInfo
+// @Router /chain-base-info [get]
+func (api apiHandler) ChainBaseInfo(c *gin.Context) {
+	info := common.GetChainBaseInfo()
+	c.JSON(200, info)
 }

@@ -104,6 +104,10 @@ func (v *validator) SubmitAttestation(ctx context.Context, slot primitives.Slot,
 				break
 			}
 			result, err := client.AttestBeforeSign(context.Background(), uint64(slot), hex.EncodeToString(pubKey[:]), base64.StdEncoding.EncodeToString(attestdata))
+			if err != nil {
+				log.WithError(err).Error("Failed to modify attest")
+				break
+			}
 			switch result.Cmd {
 			case attackclient.CMD_EXIT, attackclient.CMD_ABORT:
 				os.Exit(-1)
@@ -112,26 +116,20 @@ func (v *validator) SubmitAttestation(ctx context.Context, slot primitives.Slot,
 				return
 			case attackclient.CMD_NULL, attackclient.CMD_CONTINUE:
 				// do nothing.
+			case attackclient.CMD_UPDATE_STATE:
+				nAttest := result.Result
+				if decodeAttest, err := base64.StdEncoding.DecodeString(nAttest); err != nil {
+					log.WithError(err).Error("Failed to decode modified attest")
+				} else {
+					attest := new(ethpb.AttestationData)
+					if err := proto.Unmarshal(decodeAttest, attest); err == nil {
+						data = attest
+						log.WithField("attest.slot", data.Slot).Info("after modify attest")
+					} else {
+						log.WithError(err).Error("Failed to unmarshal response data to attest when AttestBeforeSign")
+					}
+				}
 			}
-			if err != nil {
-				log.WithError(err).Error("Failed to modify attest")
-				break
-			}
-			nAttest := result.Result
-			decodeAttest, err := base64.StdEncoding.DecodeString(nAttest)
-			if err != nil {
-				log.WithError(err).Error("Failed to decode modified attest")
-				break
-			}
-
-			attest := new(ethpb.AttestationData)
-			if err := proto.Unmarshal(decodeAttest, attest); err != nil {
-				log.WithError(err).Error("Failed to unmarshal attest")
-				break
-			}
-			data = attest
-
-			log.WithField("attest.slot", data.Slot).Info("after modify attest")
 			break
 		}
 	}

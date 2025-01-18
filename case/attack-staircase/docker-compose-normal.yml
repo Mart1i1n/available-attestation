@@ -117,7 +117,7 @@ services:
   attacker-1:
     image: attacker:latest
     container_name: attacker-1
-    entrypoint: /usr/local/bin/attacker.sh
+    entrypoint: attacker --logpath /root/attackerdata/d.log --max-hack-idx 5460
     environment:
       - NAME=attacker-1
 

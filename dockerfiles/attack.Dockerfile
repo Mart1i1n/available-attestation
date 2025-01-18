@@ -27,7 +27,6 @@ RUN apk update && \
 WORKDIR /root
 
 COPY  --from=build /build/attacker-service/build/bin/attacker /usr/bin/attacker
-COPY ./entrypoint/attacker.sh /usr/local/bin/attacker.sh
-RUN chmod u+x /usr/local/bin/attacker.sh
+RUN chmod u+x /usr/bin/attacker
 
-ENTRYPOINT [ "/usr/local/bin/attacker.sh" ]
+ENTRYPOINT [ "attacker" ]

@@ -267,6 +267,7 @@ func (s *Store) updateBestDescendant(ctx context.Context, justifiedEpoch, finali
 			"currentEpoch":   currentEpoch,
 			"viableForHead":  node.viableForHead(justifiedEpoch, currentEpoch),
 			"stabled":        node.stabled,
+			"root":           fmt.Sprintf("0x%x", node.root),
 		}).Info("Debug ForkChoice tips")
 		if node != nil && node.viableForHead(justifiedEpoch, currentEpoch) && node.stabled {
 			filters = append(filters, node)

@@ -112,6 +112,7 @@ func (s *Store) insert(ctx context.Context,
 		if s.treeRootNode == nil {
 			s.treeRootNode = n
 			s.headNode = n
+			n.stabled = true
 		} else {
 			return n, errInvalidParentRoot
 		}
@@ -128,20 +129,23 @@ func (s *Store) insert(ctx context.Context,
 		// Update best descendants
 		jEpoch := s.justifiedCheckpoint.Epoch
 		fEpoch := s.finalizedCheckpoint.Epoch
+
+		{
+			if count, exist := s.cacheAttCount[parentRoot]; exist {
+				if count >= ValidatorPerSlot/2 {
+					n.stabled = true
+				}
+			} else {
+				if parent.slot == 0 {
+					n.stabled = true
+				}
+			}
+		}
+
 		if err := s.updateBestDescendant(ctx, jEpoch, fEpoch, slots.ToEpoch(currentSlot)); err != nil {
 			return n, err
 		}
 	}
-	lastSlot := slot - 1
-	s.mux.Lock()
-	if stabledBlks, ok := s.votedSlotBlock[uint64(lastSlot)]; ok {
-		for _, blk := range stabledBlks {
-			if blk.root == parentRoot {
-				blk.stabled = true
-			}
-		}
-	}
-	s.mux.Unlock()
 
 	// Update metrics.
 	processedBlockCount.Inc()
@@ -288,11 +292,26 @@ func (s *Store) updateBestDescendant(ctx context.Context, justifiedEpoch, finali
 				"maxNode": fmt.Sprintf("0x%x-depth:%d", maxNode.root, maxNode.depth()),
 				"node":    fmt.Sprintf("0x%x-depth:%d", node.root, node.depth()),
 			}).Info("Debug ForkChoice tips after filter")
+		} else if node.depth() == maxNode.depth() {
+			if node.slot > maxNode.slot {
+				maxNode = node
+				log.WithFields(logrus.Fields{
+					"maxNode": fmt.Sprintf("0x%x-depth:%d", maxNode.root, maxNode.depth()),
+					"node":    fmt.Sprintf("0x%x-depth:%d", node.root, node.depth()),
+				}).Info("Debug ForkChoice tips after filter when depth equal")
+			}
 		}
 	}
 	s.headNode = maxNode
 
 	return nil
+}
+
+func (s *Store) UpdateVoted(slot uint64, root [fieldparams.RootLength]byte, count int) {
+	if slot != s.cacheSlot || s.cacheAttCount == nil {
+		s.cacheAttCount = make(map[[fieldparams.RootLength]byte]int)
+	}
+	s.cacheAttCount[root] += count
 }
 
 // HighestReceivedBlockSlot returns the highest slot received by the forkchoice

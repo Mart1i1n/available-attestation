@@ -35,6 +35,8 @@ type Store struct {
 	allTipsAreInvalid       bool                                              // tracks if all tips are not viable for head
 	votedSlotBlock          map[uint64]map[[fieldparams.RootLength]byte]*Node // attest slot => (block root => ChainNode)
 	mux                     sync.Mutex
+	cacheSlot               uint64                               // the slot of the current cache.
+	cacheAttCount           map[[fieldparams.RootLength]byte]int // the number of attestations in the cache for cacheSlot.
 }
 
 // Node defines the individual block which includes its block parent, ancestor and how much weight accounted for it.

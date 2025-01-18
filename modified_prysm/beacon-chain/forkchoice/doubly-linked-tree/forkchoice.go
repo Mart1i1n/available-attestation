@@ -76,7 +76,9 @@ func (f *ForkChoice) ProcessAttestation(ctx context.Context, validatorIndices []
 		node.validatorIndices = make([]uint64, 0)
 	}
 	node.validatorIndices = append(node.validatorIndices, validatorIndices...)
-	node.UpdateVoted(f.store, uint64(attestSlot))
+	root := blockRoot
+	count := len(validatorIndices)
+	f.store.UpdateVoted(uint64(attestSlot), root, count)
 	log.WithFields(logrus.Fields{
 		"blockRoot":             fmt.Sprintf("%#x", bytesutil.Trunc(blockRoot[:])),
 		"attestSlot":            attestSlot,

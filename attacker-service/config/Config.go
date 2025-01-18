@@ -19,7 +19,7 @@ type Config struct {
 	HttpHost        string      `json:"http_host" toml:"http_host"`
 	ExecuteRpc      string      `json:"execute_rpc" toml:"execute_rpc"`
 	BeaconRpc       string      `json:"beacon_rpc" toml:"beacon_rpc"`
-	HonestBeaconRpc string      `json:"honest_beacon_rpc" toml:"honset_beacon_rpc"`
+	HonestBeaconRpc string      `json:"honest_beacon_rpc" toml:"honest_beacon_rpc"`
 	MetricsPort     int         `json:"metrics_port" toml:"metrics_port"`
 	Strategy        string      `json:"strategy" toml:"strategy"`
 	DbConfig        MysqlConfig `json:"mysql" toml:"mysql"`

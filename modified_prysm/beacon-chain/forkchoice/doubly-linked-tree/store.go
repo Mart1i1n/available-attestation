@@ -259,8 +259,15 @@ func (s *Store) updateBestDescendant(ctx context.Context, justifiedEpoch, finali
 		"leaf count": len(leaves),
 		"slots":      fmt.Sprintf("0x%v", slots),
 	}).Info("Debug ForkChoice tips")
-	for _, root := range leaves {
+	for i, root := range leaves {
 		node := s.nodeByRoot[root]
+		log.WithFields(logrus.Fields{
+			"slot":           slots[i],
+			"justifiedEpoch": justifiedEpoch,
+			"currentEpoch":   currentEpoch,
+			"viableForHead":  node.viableForHead(justifiedEpoch, currentEpoch),
+			"stabled":        node.stabled,
+		}).Info("Debug ForkChoice tips")
 		if node != nil && node.viableForHead(justifiedEpoch, currentEpoch) && node.stabled {
 			filters = append(filters, node)
 		}

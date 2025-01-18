@@ -169,7 +169,6 @@ services:
       - VALIDATORS_NUM=3276
       - VALIDATORS_INDEX=0
       - BEACONRPC=beacon-1:4000
-      - ATTACKER_SERVICE_URL=http://172.17.0.1:12000
 
     deploy:
       restart_policy:

@@ -1,7 +1,9 @@
 package two
 
 import (
+	"context"
 	log "github.com/sirupsen/logrus"
+	"github.com/tsinghua-cel/strategy-gen/globalinfo"
 	"github.com/tsinghua-cel/strategy-gen/types"
 	"github.com/tsinghua-cel/strategy-gen/utils"
 	"strconv"
@@ -11,18 +13,25 @@ import (
 type Two struct {
 }
 
+func (o *Two) Name() string {
+	return "two"
+}
+
 func (o *Two) Description() string {
 	desc_eng := `Staircase attack`
 	return desc_eng
 }
 
-func (o *Two) Run(params types.LibraryParams) {
-	log.WithField("name", "two").Info("start to run strategy")
+func (o *Two) Run(ctx context.Context, params types.LibraryParams) {
+	log.WithField("name", o.Name()).Info("start to run strategy")
 	var latestEpoch int64 = -1
 	ticker := time.NewTicker(time.Second * 3)
-	slotTool := utils.SlotTool{SlotsPerEpoch: 32}
+	slotTool := utils.SlotTool{SlotsPerEpoch: globalinfo.ChainBaseInfo().SlotsPerEpoch}
 	for {
 		select {
+		case <-ctx.Done():
+			log.WithField("name", o.Name()).Info("stop to run strategy")
+			return
 		case <-ticker.C:
 			slot, err := utils.GetCurSlot(params.Attacker)
 			if err != nil {
@@ -77,7 +86,7 @@ func (o *Two) Run(params types.LibraryParams) {
 	}
 }
 
-func getLatestHackerSlot(duties []utils.ProposerDuty, maxValidatorIndex int) int {
+func getLatestHackerSlot(duties []types.ProposerDuty, maxValidatorIndex int) int {
 	latest, _ := strconv.Atoi(duties[0].Slot)
 	for _, duty := range duties {
 		idx, _ := strconv.Atoi(duty.ValidatorIndex)
@@ -93,7 +102,7 @@ func getLatestHackerSlot(duties []utils.ProposerDuty, maxValidatorIndex int) int
 
 }
 
-func checkFirstByzSlot(duties []utils.ProposerDuty, maxValidatorIndex int) bool {
+func checkFirstByzSlot(duties []types.ProposerDuty, maxValidatorIndex int) bool {
 	firstproposerindex, _ := strconv.Atoi(duties[0].ValidatorIndex)
 	if firstproposerindex > maxValidatorIndex {
 		return false

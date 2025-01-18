@@ -1,4 +1,4 @@
-package versioning
+package version
 
 var (
 	// Version is the main version at the moment.

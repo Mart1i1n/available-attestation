@@ -2,22 +2,22 @@ package one
 
 import (
 	"fmt"
+	"github.com/tsinghua-cel/strategy-gen/globalinfo"
 	"github.com/tsinghua-cel/strategy-gen/pointset"
 	"github.com/tsinghua-cel/strategy-gen/types"
-	"github.com/tsinghua-cel/strategy-gen/utils"
 	"strconv"
 )
 
 func BlockStrategy(cur, end int, actions map[string]string) {
+	secondPerSlot := globalinfo.ChainBaseInfo().SecondsPerSlot
 	point := pointset.GetPointByName("BlockBeforeBroadCast")
-	actions[point] = fmt.Sprintf("%s:%d", "delayWithSecond", (end+1-cur)*12)
+	actions[point] = fmt.Sprintf("%s:%d", "delayWithSecond", (end+1-cur)*secondPerSlot)
 }
-
 
 func GenSlotStrategy(allHacks []interface{}) []types.SlotStrategy {
 	strategys := make([]types.SlotStrategy, 0)
 	for _, subduties := range allHacks {
-		duties := subduties.([]utils.ProposerDuty)
+		duties := subduties.([]types.ProposerDuty)
 		//begin, _ := strconv.Atoi(duties[0].Slot)
 		end, _ := strconv.Atoi(duties[len(duties)-1].Slot)
 

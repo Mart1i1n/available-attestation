@@ -6,7 +6,7 @@ import (
 	"github.com/spf13/cobra"
 	"github.com/tsinghua-cel/strategy-gen/command"
 	"github.com/tsinghua-cel/strategy-gen/command/helper"
-	"github.com/tsinghua-cel/strategy-gen/versioning"
+	"github.com/tsinghua-cel/strategy-gen/version"
 )
 
 type VersionResult struct {
@@ -41,8 +41,8 @@ func runCommand(cmd *cobra.Command, _ []string) {
 
 	outputter.SetCommandResult(
 		&VersionResult{
-			Version: versioning.Version,
-			Build:   versioning.Build,
+			Version: version.Version,
+			Build:   version.Build,
 		},
 	)
 }

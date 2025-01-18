@@ -1,7 +1,9 @@
 package four
 
 import (
+	"context"
 	log "github.com/sirupsen/logrus"
+	"github.com/tsinghua-cel/strategy-gen/globalinfo"
 	"github.com/tsinghua-cel/strategy-gen/types"
 	"github.com/tsinghua-cel/strategy-gen/utils"
 	"time"
@@ -15,13 +17,20 @@ func (o *Four) Description() string {
 	return desc_eng
 }
 
-func (o *Four) Run(params types.LibraryParams) {
-	log.WithField("name", "three").Info("start to run strategy")
+func (o *Four) Name() string {
+	return "four"
+}
+
+func (o *Four) Run(ctx context.Context, params types.LibraryParams) {
+	log.WithField("name", o.Name()).Info("start to run strategy")
 	var latestEpoch int64 = -1
 	ticker := time.NewTicker(time.Second * 3)
-	slotTool := utils.SlotTool{SlotsPerEpoch: 32}
+	slotTool := utils.SlotTool{SlotsPerEpoch: globalinfo.ChainBaseInfo().SlotsPerEpoch}
 	for {
 		select {
+		case <-ctx.Done():
+			log.WithField("name", o.Name()).Info("stop to run strategy")
+			return
 		case <-ticker.C:
 			slot, err := utils.GetCurSlot(params.Attacker)
 			if err != nil {

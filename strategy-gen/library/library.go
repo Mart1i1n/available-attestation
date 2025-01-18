@@ -1,6 +1,7 @@
 package library
 
 import (
+	"context"
 	"github.com/tsinghua-cel/strategy-gen/library/five"
 	"github.com/tsinghua-cel/strategy-gen/library/four"
 	"github.com/tsinghua-cel/strategy-gen/library/one"
@@ -11,8 +12,9 @@ import (
 )
 
 type Strategy interface {
-	Run(param types.LibraryParams)
+	Run(ctx context.Context, param types.LibraryParams)
 	Description() string
+	Name() string
 }
 
 var (

@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"github.com/tsinghua-cel/strategy-gen/pointset"
 	"github.com/tsinghua-cel/strategy-gen/types"
-	"github.com/tsinghua-cel/strategy-gen/utils"
 	"strconv"
 )
 
@@ -16,7 +15,7 @@ func BlockStrategy(cur, end int, actions map[string]string) {
 func GenSlotStrategy(allHacks []interface{}) []types.SlotStrategy {
 	strategys := make([]types.SlotStrategy, 0)
 	for _, subduties := range allHacks {
-		duties := subduties.([]utils.ProposerDuty)
+		duties := subduties.([]types.ProposerDuty)
 		//begin, _ := strconv.Atoi(duties[0].Slot)
 		end, _ := strconv.Atoi(duties[len(duties)-1].Slot)
 

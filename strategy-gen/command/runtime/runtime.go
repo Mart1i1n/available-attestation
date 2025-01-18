@@ -1,12 +1,17 @@
 package runtime
 
 import (
+	"context"
 	"fmt"
 	log "github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
+	"github.com/tsinghua-cel/strategy-gen/globalinfo"
 	"github.com/tsinghua-cel/strategy-gen/library"
 	"github.com/tsinghua-cel/strategy-gen/types"
+	"github.com/tsinghua-cel/strategy-gen/utils"
 	"os"
+	"strings"
+	"time"
 )
 
 func GetCommand() *cobra.Command {
@@ -56,6 +61,13 @@ func setFlags(cmd *cobra.Command) {
 		"the max hack validator index",
 	)
 
+	cmd.Flags().IntVar(
+		&params.minValidatorIndex,
+		minValidatorIndexFlag,
+		0,
+		"the min hack validator index",
+	)
+
 	cmd.Flags().StringVar(
 		&params.attacker,
 		attackerFlag,
@@ -76,6 +88,12 @@ func setFlags(cmd *cobra.Command) {
 		false,
 		"list all library strategies",
 	)
+	cmd.Flags().IntVar(
+		&params.duration,
+		durationFlag,
+		60,
+		"duration to run for each strategy when strategy is all",
+	)
 }
 
 func runCommand(cmd *cobra.Command, _ []string) {
@@ -92,20 +110,44 @@ func runCommand(cmd *cobra.Command, _ []string) {
 		listLibrary()
 		return
 	}
+
 	if params.strategy == "" {
 		log.Fatal("strategy is required")
 	}
-
-	strategy, ok := library.GetStrategy(params.strategy)
-	if !ok {
-		log.Fatalf("strategy %s not found", params.strategy)
+	// get second per slot
+	initFinished := false
+	for !initFinished {
+		base, err := utils.GetChainBaseInfo(params.attacker)
+		if err != nil {
+			log.WithError(err).Error("failed to get second per slot")
+			time.Sleep(1 * time.Second)
+			continue
+		} else {
+			log.Infof("get chain base info %s", base)
+			initFinished = true
+			globalinfo.Init(base)
+		}
+	}
+	log.Info("init finished")
+	filters := make(map[string]bool)
+	if splits := strings.Split(params.strategy, ","); len(splits) > 1 {
+		for _, split := range splits {
+			filters[split] = true
+		}
 	}
 
-	strategy.Run(types.LibraryParams{
-		Attacker:          params.attacker,
-		MaxValidatorIndex: params.maxValidatorIndex,
-	})
+	{
+		strategy, ok := library.GetStrategy(params.strategy)
+		if !ok {
+			log.Fatalf("strategy %s not found", params.strategy)
+		}
 
+		strategy.Run(context.Background(), types.LibraryParams{
+			Attacker:          params.attacker,
+			MaxValidatorIndex: params.maxValidatorIndex,
+			MinValidatorIndex: params.minValidatorIndex,
+		})
+	}
 }
 
 func listLibrary() {

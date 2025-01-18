@@ -3,13 +3,12 @@ package three
 import (
 	"fmt"
 	"github.com/tsinghua-cel/strategy-gen/types"
-	"github.com/tsinghua-cel/strategy-gen/utils"
 	"strconv"
 )
 
 func GenSlotStrategy(duties []interface{}) []types.SlotStrategy {
 	strategys := make([]types.SlotStrategy, 0)
-	duty := duties[0].([]utils.ProposerDuty)
+	duty := duties[0].([]types.ProposerDuty)
 	slotStrategy := types.SlotStrategy{
 		Slot:    fmt.Sprintf("%d", duty[0].Slot),
 		Level:   1,

@@ -3,7 +3,6 @@ package five
 import (
 	"fmt"
 	"github.com/tsinghua-cel/strategy-gen/types"
-	"github.com/tsinghua-cel/strategy-gen/utils"
 )
 
 /*
@@ -13,7 +12,7 @@ sandwich reorg attack
 func GenSlotStrategy(duties []interface{}) []types.SlotStrategy {
 	strategys := make([]types.SlotStrategy, 0)
 	for i := 0; i < len(duties); i++ {
-		duty := duties[i].([]utils.ProposerDuty)
+		duty := duties[i].([]types.ProposerDuty)
 		if len(duty) != 3 {
 			continue
 		}

@@ -1,14 +1,14 @@
 package four
 
 import (
-	"github.com/tsinghua-cel/strategy-gen/utils"
+	"github.com/tsinghua-cel/strategy-gen/types"
 	"strconv"
 )
 
-func CheckDuties(maxValidatorIndex int, duties []utils.ProposerDuty) ([]interface{}, bool) {
+func CheckDuties(maxValidatorIndex int, duties []types.ProposerDuty) ([]interface{}, bool) {
 	result := make([]interface{}, 0)
 
-	tmpsub := make([]utils.ProposerDuty, 0)
+	tmpsub := make([]types.ProposerDuty, 0)
 	for _, duty := range duties {
 		valIdx, _ := strconv.Atoi(duty.ValidatorIndex)
 
@@ -18,7 +18,7 @@ func CheckDuties(maxValidatorIndex int, duties []utils.ProposerDuty) ([]interfac
 			if len(tmpsub) > 9 {
 				result = append(result, tmpsub)
 			}
-			tmpsub = make([]utils.ProposerDuty, 0)
+			tmpsub = make([]types.ProposerDuty, 0)
 		}
 	}
 	if len(tmpsub) > 9 {

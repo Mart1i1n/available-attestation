@@ -2,6 +2,8 @@ package doublylinkedtree
 
 import (
 	"context"
+	"fmt"
+	"github.com/sirupsen/logrus"
 	"time"
 
 	"github.com/pkg/errors"
@@ -75,6 +77,12 @@ func (f *ForkChoice) ProcessAttestation(ctx context.Context, validatorIndices []
 	}
 	node.validatorIndices = append(node.validatorIndices, validatorIndices...)
 	node.UpdateVoted(f.store, uint64(attestSlot))
+	log.WithFields(logrus.Fields{
+		"blockRoot":             fmt.Sprintf("%#x", bytesutil.Trunc(blockRoot[:])),
+		"attestSlot":            attestSlot,
+		"newValidatorIndices":   len(validatorIndices),
+		"totalValidatorIndices": len(node.validatorIndices),
+	}).Info("Debug ForkChoice ProcessAttestation")
 
 	processedAttestationCount.Inc()
 }

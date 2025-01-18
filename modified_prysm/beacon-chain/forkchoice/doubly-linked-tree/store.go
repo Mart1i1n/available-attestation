@@ -3,6 +3,7 @@ package doublylinkedtree
 import (
 	"context"
 	"fmt"
+	"github.com/sirupsen/logrus"
 	"time"
 
 	"github.com/pkg/errors"
@@ -252,14 +253,21 @@ func (s *Store) updateBestDescendant(ctx context.Context, justifiedEpoch, finali
 	// 1. get all leaf nodes. tips
 	// 2. filter by viableForHead on tips
 	// 3. get max depth by depth.
-	leaves, _ := s.tips()
+	leaves, slots := s.tips()
 	filters := make([]*Node, 0)
+	log.WithFields(logrus.Fields{
+		"leaf count": len(leaves),
+		"slots":      fmt.Sprintf("0x%v", slots),
+	}).Info("Debug ForkChoice tips")
 	for _, root := range leaves {
 		node := s.nodeByRoot[root]
 		if node != nil && node.viableForHead(justifiedEpoch, currentEpoch) && node.stabled {
 			filters = append(filters, node)
 		}
 	}
+	log.WithFields(logrus.Fields{
+		"filter": len(filters),
+	}).Info("Debug ForkChoice tips after filter")
 	if len(filters) == 0 {
 		s.headNode = nil
 		return nil
@@ -268,6 +276,10 @@ func (s *Store) updateBestDescendant(ctx context.Context, justifiedEpoch, finali
 	for _, node := range filters {
 		if node.depth() > maxNode.depth() {
 			maxNode = node
+			log.WithFields(logrus.Fields{
+				"maxNode": fmt.Sprintf("0x%x-depth:%d", maxNode.root, maxNode.depth()),
+				"node":    fmt.Sprintf("0x%x-depth:%d", node.root, node.depth()),
+			}).Info("Debug ForkChoice tips after filter")
 		}
 	}
 	s.headNode = maxNode

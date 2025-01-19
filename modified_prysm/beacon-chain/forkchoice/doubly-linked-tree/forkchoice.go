@@ -84,7 +84,7 @@ func (f *ForkChoice) ProcessAttestation(ctx context.Context, validatorIndices []
 		"attestSlot":            attestSlot,
 		"newValidatorIndices":   len(validatorIndices),
 		"totalValidatorIndices": len(node.validatorIndices),
-	}).Info("Debug ForkChoice ProcessAttestation")
+	}).Debug("Debug ForkChoice ProcessAttestation")
 
 	processedAttestationCount.Inc()
 }

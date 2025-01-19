@@ -322,7 +322,7 @@ func (s *Store) updateBestDescendant(ctx context.Context, justifiedEpoch, finali
 }
 
 func (s *Store) UpdateVoted(slot uint64, root [fieldparams.RootLength]byte, count int) {
-	if slot != s.cacheSlot || s.cacheAttCount == nil {
+	if slot > s.cacheSlot || s.cacheAttCount == nil {
 		log.WithFields(logrus.Fields{
 			"slot": slot,
 			"root": fmt.Sprintf("0x%x", root),

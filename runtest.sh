@@ -12,7 +12,7 @@ updategenesis() {
 		testnet \
 		generate-genesis \
 		--fork=deneb \
-		--num-validators=${VAL_NUM}\
+		--num-validators=16384\
 		--genesis-time-delay=15 \
 		--output-ssz=/root/config/genesis.ssz \
 		--chain-config-file=/root/config/config.yml \

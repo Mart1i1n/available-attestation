@@ -262,7 +262,7 @@ func (s *Store) updateBestDescendant(ctx context.Context, justifiedEpoch, finali
 	log.WithFields(logrus.Fields{
 		"leaf count": len(leaves),
 		"slots":      fmt.Sprintf("0x%v", slots),
-	}).Debug("Debug ForkChoice tips")
+	}).Info("Debug ForkChoice tips")
 	for i, root := range leaves {
 		node := s.nodeByRoot[root]
 		log.WithFields(logrus.Fields{
@@ -272,14 +272,14 @@ func (s *Store) updateBestDescendant(ctx context.Context, justifiedEpoch, finali
 			"viableForHead":  node.viableForHead(justifiedEpoch, currentEpoch),
 			"stabled":        node.stabled,
 			"root":           fmt.Sprintf("0x%x", node.root),
-		}).Debug("Debug ForkChoice tips")
+		}).Info("Debug ForkChoice tips")
 		if node != nil && node.viableForHead(justifiedEpoch, currentEpoch) && node.stabled {
 			filters = append(filters, node)
 		}
 	}
 	log.WithFields(logrus.Fields{
 		"filter": len(filters),
-	}).Debug("Debug ForkChoice tips after filter")
+	}).Info("Debug ForkChoice tips after filter")
 	if len(filters) == 0 {
 		s.headNode = nil
 		return nil
@@ -291,14 +291,14 @@ func (s *Store) updateBestDescendant(ctx context.Context, justifiedEpoch, finali
 			log.WithFields(logrus.Fields{
 				"maxNode": fmt.Sprintf("0x%x-depth:%d", maxNode.root, maxNode.depth()),
 				"node":    fmt.Sprintf("0x%x-depth:%d", node.root, node.depth()),
-			}).Debug("Debug ForkChoice tips after filter")
+			}).Info("Debug ForkChoice tips after filter")
 		} else if node.depth() == maxNode.depth() {
 			if node.slot > maxNode.slot {
 				maxNode = node
 				log.WithFields(logrus.Fields{
 					"maxNode": fmt.Sprintf("0x%x-depth:%d", maxNode.root, maxNode.depth()),
 					"node":    fmt.Sprintf("0x%x-depth:%d", node.root, node.depth()),
-				}).Debug("Debug ForkChoice tips after filter when depth equal")
+				}).Info("Debug ForkChoice tips after filter when depth equal")
 			}
 		}
 	}

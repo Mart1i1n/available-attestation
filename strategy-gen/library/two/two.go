@@ -68,7 +68,7 @@ func (o *Two) Run(ctx context.Context, params types.LibraryParams) {
 					continue
 				}
 				strategy := types.Strategy{}
-				strategy.Validators = ValidatorStrategy(params.MaxValidatorIndex, nextEpoch)
+				//strategy.Validators = ValidatorStrategy(params.MaxValidatorIndex, nextEpoch)
 				if checkFirstByzSlot(pduties, params.MaxValidatorIndex) && checkFirstByzSlot(cduties, params.MaxValidatorIndex) && !checkFirstByzSlot(duties, params.MaxValidatorIndex) {
 					cas = 1
 				}

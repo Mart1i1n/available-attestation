@@ -21,6 +21,11 @@ import (
 	"go.opencensus.io/trace"
 )
 
+const (
+	TotalValidatorCount = 16384
+	ValidatorPerSlot    = TotalValidatorCount / 32
+)
+
 // New initializes a new fork choice store.
 func New() *ForkChoice {
 	s := &Store{
@@ -90,7 +95,7 @@ func (f *ForkChoice) ProcessAttestation(ctx context.Context, validatorIndices []
 		"validatorIndices":      fmt.Sprintf("%v", validatorIndices),
 		"newValidatorIndices":   len(newIndex),
 		"totalValidatorIndices": len(node.validatorIndices),
-	}).Info("Debug ForkChoice ProcessAttestation")
+	}).Debug("Debug ForkChoice ProcessAttestation")
 
 	processedAttestationCount.Inc()
 }

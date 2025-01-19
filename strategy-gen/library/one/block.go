@@ -12,6 +12,7 @@ func BlockStrategy(cur, end int, actions map[string]string) {
 	secondPerSlot := globalinfo.ChainBaseInfo().SecondsPerSlot
 	point := pointset.GetPointByName("BlockBeforeBroadCast")
 	actions[point] = fmt.Sprintf("%s:%d", "delayWithSecond", (end+1-cur)*secondPerSlot)
+	actions["AttestBeforeBroadCast"] = fmt.Sprintf("%s:%d", "delayWithSecond", (end+1-cur)*secondPerSlot)
 }
 
 func GenSlotStrategy(allHacks []interface{}) []types.SlotStrategy {

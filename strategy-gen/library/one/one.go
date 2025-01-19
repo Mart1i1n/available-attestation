@@ -2,7 +2,6 @@ package one
 
 import (
 	"context"
-	"github.com/google/uuid"
 	log "github.com/sirupsen/logrus"
 	"github.com/tsinghua-cel/strategy-gen/globalinfo"
 	"github.com/tsinghua-cel/strategy-gen/types"
@@ -46,7 +45,7 @@ func (o *One) Run(ctx context.Context, params types.LibraryParams) {
 				continue
 			}
 			if int64(slot) < slotTool.EpochEnd(epoch) {
-				//continue
+				continue
 			}
 			latestEpoch = epoch
 			// get next epoch duties
@@ -61,7 +60,6 @@ func (o *One) Run(ctx context.Context, params types.LibraryParams) {
 			}
 			if hackDuties, happen := CheckDuties(params, duties); happen {
 				strategy := types.Strategy{}
-				strategy.Uid = uuid.NewString()
 				strategy.Slots = GenSlotStrategy(hackDuties)
 				if err = utils.UpdateStrategy(params.Attacker, strategy); err != nil {
 					log.WithField("error", err).Error("failed to update strategy")

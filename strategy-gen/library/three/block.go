@@ -10,7 +10,7 @@ func GenSlotStrategy(duties []interface{}) []types.SlotStrategy {
 	strategys := make([]types.SlotStrategy, 0)
 	duty := duties[0].([]types.ProposerDuty)
 	slotStrategy := types.SlotStrategy{
-		Slot:    fmt.Sprintf("%d", duty[0].Slot),
+		Slot:    fmt.Sprintf("%s", duty[0].Slot),
 		Level:   1,
 		Actions: make(map[string]string),
 	}

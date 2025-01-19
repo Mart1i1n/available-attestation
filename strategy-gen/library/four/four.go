@@ -42,7 +42,7 @@ func (o *Four) Run(ctx context.Context, params types.LibraryParams) {
 				continue
 			}
 			if int64(slot) < slotTool.EpochEnd(epoch) {
-				//continue
+				continue
 			}
 			latestEpoch = epoch
 			// get next epoch duties

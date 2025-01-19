@@ -41,16 +41,16 @@ testLatency() {
 	cd $resultdir/data-normal
 	sudo find . -name GetBeaconBlock.csv | xargs cat > /tmp/_b.csv
 	sort -t "," -k 1n,1 /tmp/_b.csv > /tmp/normal_getblockcost.csv
-	awk -F, '{sum+=$2}END{print "Vanilla version block generate cost avg =", sum/NR, "ms"}' /tmp/normal_getblockcost.csv > $reportfile
+	awk -F, '{sum+=$2}END{print "Vanilla version block generation cost avg =", sum/NR, "ms"}' /tmp/normal_getblockcost.csv > $reportfile
 	sudo find . -name VerifyAttest.csv | xargs cat > /tmp/_b.csv
 	sort -t "," -k 1n,1 /tmp/_b.csv > /tmp/normal_verifyatt.csv
-	awk -F, '{sum+=$2}END{print "Vanilla version attestation verify cost avg =", sum/NR, "us" }' /tmp/normal_verifyatt.csv >> $reportfile
+	awk -F, '{sum+=$2}END{print "Vanilla version attestation verification cost avg =", sum/NR, "us" }' /tmp/normal_verifyatt.csv >> $reportfile
 	sudo find . -name VerifyBeaconBlock.csv | xargs cat > /tmp/_b.csv
 	sort -t "," -k 1n,1 /tmp/_b.csv > /tmp/normal_verifyblk.csv
-	awk -F, '{sum+=$2}END{print "Vanilla version block verify cost avg =", sum/NR, "ms" }' /tmp/normal_verifyblk.csv >> $reportfile
+	awk -F, '{sum+=$2}END{print "Vanilla version block verification cost avg =", sum/NR, "ms" }' /tmp/normal_verifyblk.csv >> $reportfile
 	sudo find . -name GetAttest.csv | xargs cat > /tmp/_b.csv
 	sort -t "," -k 1n,1 /tmp/_b.csv > /tmp/normal_getatt.csv
-	awk -F, '{sum+=$2}END{print "Vanilla version attestation generate cost avg =", sum/NR, "ms" }' /tmp/normal_getatt.csv >> $reportfile
+	awk -F, '{sum+=$2}END{print "Vanilla version attestation generation cost avg =", sum/NR, "ms" }' /tmp/normal_getatt.csv >> $reportfile
 	cd $basedir
 
 	echo "second test with modified version"
@@ -62,16 +62,16 @@ testLatency() {
 	cd $resultdir/data-reorg
 	sudo find . -name GetBeaconBlock.csv | xargs cat > /tmp/_b.csv
 	sort -t "," -k 1n,1 /tmp/_b.csv > /tmp/normal_getblockcost.csv
-	awk -F, '{sum+=$2}END{print "Modified version block generate cost avg=", sum/NR, "ms" }' /tmp/normal_getblockcost.csv >> $reportfile
+	awk -F, '{sum+=$2}END{print "Modified version block generation cost avg=", sum/NR, "ms" }' /tmp/normal_getblockcost.csv >> $reportfile
 	sudo find . -name VerifyAttest.csv | xargs cat > /tmp/_b.csv
 	sort -t "," -k 1n,1 /tmp/_b.csv > /tmp/normal_verifyatt.csv
-	awk -F, '{sum+=$2}END{print "Modified version attestation verify cost avg=", sum/NR, "us" }' /tmp/normal_verifyatt.csv >> $reportfile
+	awk -F, '{sum+=$2}END{print "Modified version attestation verification cost avg=", sum/NR, "us" }' /tmp/normal_verifyatt.csv >> $reportfile
 	sudo find . -name VerifyBeaconBlock.csv | xargs cat > /tmp/_b.csv
 	sort -t "," -k 1n,1 /tmp/_b.csv > /tmp/normal_verifyblk.csv
-	awk -F, '{sum+=$2}END{print "Modified version block verify cost avg=", sum/NR, "ms" }' /tmp/normal_verifyblk.csv >> $reportfile
+	awk -F, '{sum+=$2}END{print "Modified version block verification cost avg=", sum/NR, "ms" }' /tmp/normal_verifyblk.csv >> $reportfile
 	sudo find . -name GetAttest.csv | xargs cat > /tmp/_b.csv
 	sort -t "," -k 1n,1 /tmp/_b.csv > /tmp/normal_getatt.csv
-	awk -F, '{sum+=$2}END{print "Modified version attestation generate cost avg=", sum/NR, "ms" }' /tmp/normal_getatt.csv >> $reportfile
+	awk -F, '{sum+=$2}END{print "Modified version attestation generation cost avg=", sum/NR, "ms" }' /tmp/normal_getatt.csv >> $reportfile
 	cd $basedir
 	echo "test done and all data in $resultdir, report as bellow"
 	cat $reportfile

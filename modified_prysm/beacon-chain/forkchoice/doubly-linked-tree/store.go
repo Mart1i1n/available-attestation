@@ -323,9 +323,19 @@ func (s *Store) updateBestDescendant(ctx context.Context, justifiedEpoch, finali
 
 func (s *Store) UpdateVoted(slot uint64, root [fieldparams.RootLength]byte, count int) {
 	if slot != s.cacheSlot || s.cacheAttCount == nil {
+		log.WithFields(logrus.Fields{
+			"slot": slot,
+			"root": fmt.Sprintf("0x%x", root),
+		}).Info("Debug ForkChoice UpdateVoted Cache")
 		s.cacheAttCount = make(map[[fieldparams.RootLength]byte]int)
 	}
 	s.cacheAttCount[root] += count
+	log.WithFields(logrus.Fields{
+		"slot":       slot,
+		"root":       fmt.Sprintf("0x%x", root),
+		"new count":  count,
+		"vote count": s.cacheAttCount[root],
+	}).Info("Debug ForkChoice UpdateVoted")
 }
 
 // HighestReceivedBlockSlot returns the highest slot received by the forkchoice

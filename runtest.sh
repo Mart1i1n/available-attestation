@@ -122,6 +122,7 @@ testcase3() {
 	subdir="tps-normal"
 	targetdir="${casedir}/${subdir}"
 	resultdir="${basedir}/results/${subdir}"
+	reportfile="${basedir}/results/report.txt"
 	# if resultdir exist, delete it.
 	if [ -d $resultdir ]; then
 		rm -rf $resultdir
@@ -135,6 +136,8 @@ testcase3() {
 	echo "wait $caseduration seconds" && sleep $caseduration
 	docker compose -f $targetdir/docker-compose-normal.yml down
 	sudo mv data $resultdir/data-normal
+	echo "Vanilla version tps detail info: " > $reportfile
+	grep "test history" $resultdir/data-normal/txpress/press.log >> $reportfile
 
 	echo "second test with modified version"
 	updategenesis
@@ -142,7 +145,12 @@ testcase3() {
 	echo "wait $caseduration seconds" && sleep $caseduration
 	docker compose -f $targetdir/docker-compose-reorg.yml down
 	sudo mv data $resultdir/data-reorg
-	echo "test done and result in $resultdir"
+	echo "Modified version tps detail info: " >> $reportfile
+  grep "test history" $resultdir/data-reorg/txpress/press.log >> $reportfile
+	echo "test done and all data in $resultdir, report as bellow"
+  cat $reportfile
+  echo ""
+  echo ""
 }
 
 testcase4() {

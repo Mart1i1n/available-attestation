@@ -9,7 +9,8 @@ RUN apk update && \
 
 WORKDIR /build
 
-RUN git clone -b v1.13.5 --single-branch https://github.com/ethereum/go-ethereum
+RUN git clone -b v1.13.5 --single-branch https://github.com/ethereum/go-ethereum && \
+    sed -i '/Submitted transaction/ s/log.Info/log.Debug/' ./go-ethereum/internal/ethapi/api.go
 
 RUN --mount=type=cache,target=/go/pkg/mod \
     --mount=type=cache,target=/root/.cache/go-build \

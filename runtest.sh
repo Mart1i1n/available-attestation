@@ -91,13 +91,11 @@ testReorg1() {
 	fi
 	mkdir -p $resultdir
 
-	epochsToWait=24
-
 	echo "Running testcase $subdir"
 	echo "first test with vanilla version"
 	updategenesis
 	docker compose -f $targetdir/docker-compose-normal.yml up -d 
-	echo "wait $epochsToWait epochs" && sleep $(($epochsToWait * 12 * 32))
+	echo "wait $caseduration seconds" && sleep $caseduration
 	docker compose -f $targetdir/docker-compose-normal.yml down
 	sudo mv data $resultdir/data-normal
 	echo "Vanilla version reorg event info: " >> $reportfile
@@ -106,7 +104,7 @@ testReorg1() {
 	echo "second test with modified version"
 	updategenesis
 	docker compose -f $targetdir/docker-compose-reorg.yml up -d
-	echo "wait $epochsToWait epochs" && sleep $(($epochsToWait * 12 * 32))
+	echo "wait $caseduration seconds" && sleep $caseduration
 	docker compose -f $targetdir/docker-compose-reorg.yml down
 	sudo mv data $resultdir/data-reorg
 	echo "Modified version reorg event info: " >> $reportfile
@@ -165,13 +163,11 @@ testReorg2() {
 	fi
 	mkdir -p $resultdir
 
-	epochsToWait=24
-
 	echo "Running testcase $subdir"
 	echo "first test with vanilla version"
 	updategenesis
 	docker compose -f $targetdir/docker-compose-normal.yml up -d 
-	echo "wait $epochsToWait epochs" && sleep $(($epochsToWait * 12 * 32))
+	echo "wait $caseduration seconds" && sleep $caseduration
 	docker compose -f $targetdir/docker-compose-normal.yml down
 	sudo mv data $resultdir/data-normal
 	echo "Vanilla version reorg event info: " >> $reportfile
@@ -180,7 +176,7 @@ testReorg2() {
 	echo "second test with modified version"
 	updategenesis
 	docker compose -f $targetdir/docker-compose-reorg.yml up -d
-	echo "wait $epochsToWait epochs" && sleep $(($epochsToWait * 12 * 32))
+	echo "wait $caseduration seconds" && sleep $caseduration
 	docker compose -f $targetdir/docker-compose-reorg.yml down
 	sudo mv data $resultdir/data-reorg
 
@@ -204,13 +200,11 @@ testReorg3() {
 	fi
 	mkdir -p $resultdir
 
-	epochsToWait=24
-
 	echo "Running testcase $subdir"
 	echo "first test with vanilla version"
 	updategenesis
 	docker compose -f $targetdir/docker-compose-normal.yml up -d 
-	echo "wait $epochsToWait epochs" && sleep $(($epochsToWait * 12 * 32))
+	echo "wait $caseduration seconds" && sleep $caseduration
 	docker compose -f $targetdir/docker-compose-normal.yml down
 	sudo mv data $resultdir/data-normal
 	echo "Vanilla version reorg event info: " >> $reportfile
@@ -219,7 +213,7 @@ testReorg3() {
 	echo "second test with modified version"
 	updategenesis
 	docker compose -f $targetdir/docker-compose-reorg.yml up -d
-	echo "wait $epochsToWait epochs" && sleep $(($epochsToWait * 12 * 32))
+	echo "wait $caseduration seconds" && sleep $caseduration
 	docker compose -f $targetdir/docker-compose-reorg.yml down
 	sudo mv data $resultdir/data-reorg
 
@@ -243,13 +237,11 @@ testReorg4() {
 	fi
 	mkdir -p $resultdir
 
-	epochsToWait=24
-
 	echo "Running testcase $subdir"
 	echo "first test with vanilla version"
 	updategenesis
 	docker compose -f $targetdir/docker-compose-normal.yml up -d 
-	echo "wait $epochsToWait epochs" && sleep $(($epochsToWait * 12 * 32))
+	echo "wait $caseduration seconds" && sleep $caseduration
 	docker compose -f $targetdir/docker-compose-normal.yml down
 	sudo mv data $resultdir/data-normal
 	echo "Vanilla version reorg event info: " >> $reportfile
@@ -258,7 +250,7 @@ testReorg4() {
 	echo "second test with modified version"
 	updategenesis
 	docker compose -f $targetdir/docker-compose-reorg.yml up -d
-	echo "wait $epochsToWait epochs" && sleep $(($epochsToWait * 12 * 32))
+	echo "wait $caseduration seconds" && sleep $caseduration
 	docker compose -f $targetdir/docker-compose-reorg.yml down
 	sudo mv data $resultdir/data-reorg
 
@@ -282,13 +274,11 @@ testReorg5() {
 	fi
 	mkdir -p $resultdir
 
-	epochsToWait=24
-
 	echo "Running testcase $subdir"
 	echo "first test with vanilla version"
 	updategenesis
 	docker compose -f $targetdir/docker-compose-normal.yml up -d 
-	echo "wait $epochsToWait epochs" && sleep $(($epochsToWait * 12 * 32))
+	echo "wait $caseduration seconds" && sleep $caseduration
 	docker compose -f $targetdir/docker-compose-normal.yml down
 	sudo mv data $resultdir/data-normal
 	grep "reorg event" $resultdir/data-normal/att
@@ -298,7 +288,7 @@ testReorg5() {
 	echo "second test with modified version"
 	updategenesis
 	docker compose -f $targetdir/docker-compose-reorg.yml up -d
-	echo "wait $epochsToWait epochs" && sleep $(($epochsToWait * 12 * 32))
+	echo "wait $caseduration seconds" && sleep $caseduration
 	docker compose -f $targetdir/docker-compose-reorg.yml down
 	sudo mv data $resultdir/data-reorg
 

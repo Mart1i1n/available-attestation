@@ -28,11 +28,11 @@ updategenesis() {
 		--geth-genesis-json-out=/root/config/genesis.json
 }
 
-testcase1() {
+testLatency() {
 	subdir="blockcost"
 	targetdir="${casedir}/${subdir}"
 	resultdir="${basedir}/results/${subdir}"
-	reportfile="${basedir}/results/report.txt"
+	reportfile="${resultdir}/report.txt"
 	# if resultdir exist, delete it.
 	if [ -d $resultdir ]; then
 		rm -rf $resultdir
@@ -88,10 +88,11 @@ testcase1() {
 
 }
 
-testcase2() {
+testReorg1() {
 	subdir="attack-exante"
 	targetdir="${casedir}/${subdir}"
 	resultdir="${basedir}/results/${subdir}"
+	reportfile="${resultdir}/report.txt"
 	# if resultdir exist, delete it.
 	if [ -d $resultdir ]; then
 		rm -rf $resultdir
@@ -107,6 +108,8 @@ testcase2() {
 	echo "wait $epochsToWait epochs" && sleep $(($epochsToWait * 12 * 32))
 	docker compose -f $targetdir/docker-compose-normal.yml down
 	sudo mv data $resultdir/data-normal
+	echo "Vanilla version reorg event info: " >> $reportfile
+	grep "reorg event" $resultdir/data-normal/attacker-1/d.log >> $reportfile
 
 	echo "second test with modified version"
 	updategenesis
@@ -114,15 +117,21 @@ testcase2() {
 	echo "wait $epochsToWait epochs" && sleep $(($epochsToWait * 12 * 32))
 	docker compose -f $targetdir/docker-compose-reorg.yml down
 	sudo mv data $resultdir/data-reorg
+	echo "Modified version reorg event info: " >> $reportfile
+  grep "reorg event" $resultdir/data-reorg/attacker-1/d.log >> $reportfile
 
-	echo "test done and result in $resultdir"
+	echo "test done and all data in $resultdir, report as bellow"
+  cat $reportfile
+  echo ""
+  echo ""
+
 }
 
-testcase3() {
+testTps() {
 	subdir="tps-normal"
 	targetdir="${casedir}/${subdir}"
 	resultdir="${basedir}/results/${subdir}"
-	reportfile="${basedir}/results/report.txt"
+	reportfile="${resultdir}/report.txt"
 	# if resultdir exist, delete it.
 	if [ -d $resultdir ]; then
 		rm -rf $resultdir
@@ -153,10 +162,11 @@ testcase3() {
   echo ""
 }
 
-testcase4() {
+testReorg2() {
 	subdir="attack-sandwich"
 	targetdir="${casedir}/${subdir}"
 	resultdir="${basedir}/results/${subdir}"
+	reportfile="${resultdir}/report.txt"
 	# if resultdir exist, delete it.
 	if [ -d $resultdir ]; then
 		rm -rf $resultdir
@@ -172,6 +182,8 @@ testcase4() {
 	echo "wait $epochsToWait epochs" && sleep $(($epochsToWait * 12 * 32))
 	docker compose -f $targetdir/docker-compose-normal.yml down
 	sudo mv data $resultdir/data-normal
+	echo "Vanilla version reorg event info: " >> $reportfile
+  grep "reorg event" $resultdir/data-normal/attacker-1/d.log >> $reportfile
 
 	echo "second test with modified version"
 	updategenesis
@@ -180,13 +192,20 @@ testcase4() {
 	docker compose -f $targetdir/docker-compose-reorg.yml down
 	sudo mv data $resultdir/data-reorg
 
-	echo "test done and result in $resultdir"
+	echo "Modified version reorg event info: " >> $reportfile
+  grep "reorg event" $resultdir/data-reorg/attacker-1/d.log >> $reportfile
+
+  echo "test done and all data in $resultdir, report as bellow"
+  cat $reportfile
+  echo ""
+  echo ""
 }
 
-testcase5() {
+testReorg3() {
 	subdir="attack-unrealized"
 	targetdir="${casedir}/${subdir}"
 	resultdir="${basedir}/results/${subdir}"
+	reportfile="${resultdir}/report.txt"
 	# if resultdir exist, delete it.
 	if [ -d $resultdir ]; then
 		rm -rf $resultdir
@@ -202,6 +221,8 @@ testcase5() {
 	echo "wait $epochsToWait epochs" && sleep $(($epochsToWait * 12 * 32))
 	docker compose -f $targetdir/docker-compose-normal.yml down
 	sudo mv data $resultdir/data-normal
+	echo "Vanilla version reorg event info: " >> $reportfile
+  grep "reorg event" $resultdir/data-normal/attacker-1/d.log >> $reportfile
 
 	echo "second test with modified version"
 	updategenesis
@@ -210,13 +231,20 @@ testcase5() {
 	docker compose -f $targetdir/docker-compose-reorg.yml down
 	sudo mv data $resultdir/data-reorg
 
-	echo "test done and result in $resultdir"
+	echo "Modified version reorg event info: " >> $reportfile
+  grep "reorg event" $resultdir/data-reorg/attacker-1/d.log >> $reportfile
+
+  echo "test done and all data in $resultdir, report as bellow"
+  cat $reportfile
+  echo ""
+  echo ""
 }
 
-testcase6() {
+testReorg4() {
 	subdir="attack-withholding"
 	targetdir="${casedir}/${subdir}"
 	resultdir="${basedir}/results/${subdir}"
+	reportfile="${resultdir}/report.txt"
 	# if resultdir exist, delete it.
 	if [ -d $resultdir ]; then
 		rm -rf $resultdir
@@ -232,6 +260,8 @@ testcase6() {
 	echo "wait $epochsToWait epochs" && sleep $(($epochsToWait * 12 * 32))
 	docker compose -f $targetdir/docker-compose-normal.yml down
 	sudo mv data $resultdir/data-normal
+	echo "Vanilla version reorg event info: " >> $reportfile
+  grep "reorg event" $resultdir/data-normal/attacker-1/d.log >> $reportfile
 
 	echo "second test with modified version"
 	updategenesis
@@ -240,13 +270,20 @@ testcase6() {
 	docker compose -f $targetdir/docker-compose-reorg.yml down
 	sudo mv data $resultdir/data-reorg
 
-	echo "test done and result in $resultdir"
+	echo "Modified version reorg event info: " >> $reportfile
+  grep "reorg event" $resultdir/data-reorg/attacker-1/d.log >> $reportfile
+
+  echo "test done and all data in $resultdir, report as bellow"
+  cat $reportfile
+  echo ""
+  echo ""
 }
 
-testcase7() {
+testReorg5() {
 	subdir="attack-staircase"
 	targetdir="${casedir}/${subdir}"
 	resultdir="${basedir}/results/${subdir}"
+	reportfile="${resultdir}/report.txt"
 	# if resultdir exist, delete it.
 	if [ -d $resultdir ]; then
 		rm -rf $resultdir
@@ -262,6 +299,9 @@ testcase7() {
 	echo "wait $epochsToWait epochs" && sleep $(($epochsToWait * 12 * 32))
 	docker compose -f $targetdir/docker-compose-normal.yml down
 	sudo mv data $resultdir/data-normal
+	grep "reorg event" $resultdir/data-normal/att
+	echo "Vanilla version reorg event info: " >> $reportfile
+  grep "reorg event" $resultdir/data-normal/attacker-1/d.log >> $reportfile
 
 	echo "second test with modified version"
 	updategenesis
@@ -270,31 +310,40 @@ testcase7() {
 	docker compose -f $targetdir/docker-compose-reorg.yml down
 	sudo mv data $resultdir/data-reorg
 
-	echo "test done and result in $resultdir"
+	echo "Modified version reorg event info: " >> $reportfile
+  grep "reorg event" $resultdir/data-reorg/attacker-1/d.log >> $reportfile
+
+  echo "test done and all data in $resultdir, report as bellow"
+  cat $reportfile
+  echo ""
+  echo ""
 }
 
 echo "casetype is $casetype"
 case $casetype in
 	1)
-		testcase2
+		testReorg1
 		;;
 	2)
-		testcase4
+		testReorg2
 		;;
 	3)
-		testcase5
+		testReorg3
 		;;
 	4)
-		testcase6
+		testReorg4
 		;;
 	5)
-		testcase7
+		testReorg5
 		;;
-	6)
-		testcase3
+	"tps")
+		testTps
 		;;
-	7)
-		testcase1
+  "reorg")
+    testcase3
+    ;;
+	"latency")
+		testLatency
 		;;
 	*)
 		echo "Invalid case type"

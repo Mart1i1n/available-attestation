@@ -54,6 +54,7 @@ type ChainConfig struct {
 type Record struct {
 	Begin     int
 	End       int
+	Rate      int
 	TotalTime int
 	TotalTx   int
 	Tps       int

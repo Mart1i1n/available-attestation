@@ -103,7 +103,8 @@ func (w *Workflow) Start() {
 		log.Info("test one round end")
 
 		// calculate tps
-		record := w.calculateTps(w.chains[0], int(begin.Number)+1, int(end.Number), endTime.Sub(beginTime))
+		rate := float64(baseTxCount) / w.conf.Interval.Seconds()
+		record := w.calculateTps(rate, w.chains[0], int(begin.Number)+1, int(end.Number), endTime.Sub(beginTime))
 		if record.Tps > 0 && record.Tps >= lastTps || w.conf.ForceIncrease {
 			incs := baseTxCount * w.conf.IncRate / 100
 			baseTxCount += incs
@@ -137,12 +138,13 @@ func (w *Workflow) Start() {
 			"totaltime": record.TotalTime,
 			"totaltx":   record.TotalTx,
 			"tps":       record.Tps,
+			"tx rate":   record.Rate,
 		}).Info("test history")
 	}
 }
 
-func (w *Workflow) calculateTps(chain types.ChainPlugin, minBlock, maxBlock int, duration time.Duration) types.Record {
-	return chains.CalcTps(chain, minBlock, maxBlock, duration)
+func (w *Workflow) calculateTps(rate float64, chain types.ChainPlugin, minBlock, maxBlock int, duration time.Duration) types.Record {
+	return chains.CalcTps(rate, chain, minBlock, maxBlock, duration)
 }
 
 func (w *Workflow) makeTx(chain types.ChainPlugin, baseCount int, batch int, checkNonce bool) [][]types.ChainTx {

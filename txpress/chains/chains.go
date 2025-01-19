@@ -30,7 +30,7 @@ func NewChains(config types.ChainConfig) []types.ChainPlugin {
 	return chains
 }
 
-func CalcTps(chain types.ChainPlugin, minBlock, maxBlock int, duration time.Duration) types.Record {
+func CalcTps(rate float64, chain types.ChainPlugin, minBlock, maxBlock int, duration time.Duration) types.Record {
 	txCount := int64(0)
 	for i := minBlock; i <= maxBlock; i++ {
 		block, err := chain.GetBlockInfo(int64(i))
@@ -43,6 +43,7 @@ func CalcTps(chain types.ChainPlugin, minBlock, maxBlock int, duration time.Dura
 	record := types.Record{
 		Begin:     int(minBlock),
 		End:       int(maxBlock),
+		Rate:      int(rate),
 		TotalTime: int(duration.Seconds()),
 		TotalTx:   int(txCount),
 	}

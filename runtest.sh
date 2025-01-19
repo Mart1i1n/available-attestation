@@ -32,6 +32,7 @@ testcase1() {
 	subdir="blockcost"
 	targetdir="${casedir}/${subdir}"
 	resultdir="${basedir}/results/${subdir}"
+	reportfile="${basedir}/results/report.txt"
 	# if resultdir exist, delete it.
 	if [ -d $resultdir ]; then
 		rm -rf $resultdir
@@ -44,21 +45,20 @@ testcase1() {
 	docker compose -f $targetdir/docker-compose-normal.yml up -d 
 	echo "wait $caseduration seconds" && sleep $caseduration
 	docker compose -f $targetdir/docker-compose-normal.yml down
-	echo "result collect"
 	sudo mv data $resultdir/data-normal
 	cd $resultdir/data-normal
 	sudo find . -name GetBeaconBlock.csv | xargs cat > /tmp/_b.csv
 	sort -t "," -k 1n,1 /tmp/_b.csv > /tmp/normal_getblockcost.csv
-	awk -F, '{sum+=$2}END{print "Generate block cost avg=", sum/NR}' /tmp/normal_getblockcost.csv
+	awk -F, '{sum+=$2}END{print "Vanilla version block generate cost avg =", sum/NR, "ms"}' /tmp/normal_getblockcost.csv > $reportfile
 	sudo find . -name VerifyAttest.csv | xargs cat > /tmp/_b.csv
 	sort -t "," -k 1n,1 /tmp/_b.csv > /tmp/normal_verifyatt.csv
-	awk -F, '{sum+=$2}END{print "Verify attestation cost avg=", sum/NR}' /tmp/normal_verifyatt.csv
+	awk -F, '{sum+=$2}END{print "Vanilla version attestation verify cost avg =", sum/NR, "us" }' /tmp/normal_verifyatt.csv >> $reportfile
 	sudo find . -name VerifyBeaconBlock.csv | xargs cat > /tmp/_b.csv
 	sort -t "," -k 1n,1 /tmp/_b.csv > /tmp/normal_verifyblk.csv
-	awk -F, '{sum+=$2}END{print "Verify block cost avg=", sum/NR}' /tmp/normal_verifyblk.csv
+	awk -F, '{sum+=$2}END{print "Vanilla version block verify cost avg =", sum/NR, "ms" }' /tmp/normal_verifyblk.csv >> $reportfile
 	sudo find . -name GetAttest.csv | xargs cat > /tmp/_b.csv
 	sort -t "," -k 1n,1 /tmp/_b.csv > /tmp/normal_getatt.csv
-	awk -F, '{sum+=$2}END{print "Generate attestation cost avg=", sum/NR}' /tmp/normal_getatt.csv
+	awk -F, '{sum+=$2}END{print "Vanilla version attestation generate cost avg =", sum/NR, "ms" }' /tmp/normal_getatt.csv >> $reportfile
 	cd $basedir
 
 	echo "second test with modified version"
@@ -66,23 +66,26 @@ testcase1() {
 	docker compose -f $targetdir/docker-compose-reorg.yml up -d
 	echo "wait $caseduration seconds" && sleep $caseduration
 	docker compose -f $targetdir/docker-compose-reorg.yml down
-	echo "result collect"
 	sudo mv data $resultdir/data-reorg
 	cd $resultdir/data-reorg
 	sudo find . -name GetBeaconBlock.csv | xargs cat > /tmp/_b.csv
 	sort -t "," -k 1n,1 /tmp/_b.csv > /tmp/normal_getblockcost.csv
-	awk -F, '{sum+=$2}END{print "Generate block cost avg=", sum/NR}' /tmp/normal_getblockcost.csv
+	awk -F, '{sum+=$2}END{print "Modified version block generate cost avg=", sum/NR, "ms" }' /tmp/normal_getblockcost.csv >> $reportfile
 	sudo find . -name VerifyAttest.csv | xargs cat > /tmp/_b.csv
 	sort -t "," -k 1n,1 /tmp/_b.csv > /tmp/normal_verifyatt.csv
-	awk -F, '{sum+=$2}END{print "Verify attestation cost avg=", sum/NR}' /tmp/normal_verifyatt.csv
+	awk -F, '{sum+=$2}END{print "Modified version attestation verify cost avg=", sum/NR, "us" }' /tmp/normal_verifyatt.csv >> $reportfile
 	sudo find . -name VerifyBeaconBlock.csv | xargs cat > /tmp/_b.csv
 	sort -t "," -k 1n,1 /tmp/_b.csv > /tmp/normal_verifyblk.csv
-	awk -F, '{sum+=$2}END{print "Verify block cost avg=", sum/NR}' /tmp/normal_verifyblk.csv
+	awk -F, '{sum+=$2}END{print "Modified version block verify cost avg=", sum/NR, "ms" }' /tmp/normal_verifyblk.csv >> $reportfile
 	sudo find . -name GetAttest.csv | xargs cat > /tmp/_b.csv
 	sort -t "," -k 1n,1 /tmp/_b.csv > /tmp/normal_getatt.csv
-	awk -F, '{sum+=$2}END{print "Generate attestation cost avg=", sum/NR}' /tmp/normal_getatt.csv
+	awk -F, '{sum+=$2}END{print "Modified version attestation generate cost avg=", sum/NR, "ms" }' /tmp/normal_getatt.csv >> $reportfile
 	cd $basedir
-	echo "test done and result in $resultdir"
+	echo "test done and all data in $resultdir, report as bellow"
+	cat $reportfile
+	echo ""
+	echo ""
+
 }
 
 testcase2() {

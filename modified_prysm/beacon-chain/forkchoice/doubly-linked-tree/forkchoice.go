@@ -73,16 +73,22 @@ func (f *ForkChoice) ProcessAttestation(ctx context.Context, validatorIndices []
 		return
 	}
 	if node.validatorIndices == nil {
-		node.validatorIndices = make([]uint64, 0)
+		node.validatorIndices = make(map[uint64]bool)
 	}
-	node.validatorIndices = append(node.validatorIndices, validatorIndices...)
+	newIndex := make([]uint64, 0)
+	for _, index := range validatorIndices {
+		if !node.validatorIndices[index] {
+			node.validatorIndices[index] = true
+			newIndex = append(newIndex, index)
+		}
+	}
 	root := blockRoot
-	count := len(validatorIndices)
-	f.store.UpdateVoted(uint64(attestSlot), root, count)
+	f.store.UpdateVoted(uint64(attestSlot), root, len(newIndex))
 	log.WithFields(logrus.Fields{
 		"blockRoot":             fmt.Sprintf("%#x", bytesutil.Trunc(blockRoot[:])),
 		"attestSlot":            attestSlot,
-		"newValidatorIndices":   len(validatorIndices),
+		"validatorIndices":      fmt.Sprintf("%v", validatorIndices),
+		"newValidatorIndices":   len(newIndex),
 		"totalValidatorIndices": len(node.validatorIndices),
 	}).Info("Debug ForkChoice ProcessAttestation")
 

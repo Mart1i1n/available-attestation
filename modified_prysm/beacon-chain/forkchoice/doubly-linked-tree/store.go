@@ -135,10 +135,24 @@ func (s *Store) insert(ctx context.Context,
 				if count >= ValidatorPerSlot/2 {
 					n.stabled = true
 				}
+				log.WithFields(logrus.Fields{
+					"slot":             slot,
+					"root":             fmt.Sprintf("0x%x", root),
+					"parent":           fmt.Sprintf("0x%x", parentRoot),
+					"parent slot":      parent.slot,
+					"parent att count": count,
+					"stable":           n.stabled,
+				}).Info("Debug ForkChoice insert")
 			} else {
 				if parent.slot == 0 {
 					n.stabled = true
 				}
+				log.WithFields(logrus.Fields{
+					"slot":        slot,
+					"root":        fmt.Sprintf("0x%x", root),
+					"parent slot": parent.slot,
+					"stable":      n.stabled,
+				}).Info("Debug ForkChoice insert")
 			}
 		}
 

@@ -56,7 +56,7 @@ type Node struct {
 	optimistic       bool   // whether the block has been fully validated or not
 	timestamp        uint64 // The timestamp when the node was inserted.
 	stabled          bool
-	validatorIndices []uint64 // all validator index vote for current block.
+	validatorIndices map[uint64]bool // all validator index vote for current block.
 }
 
 // Vote defines an individual validator's vote.

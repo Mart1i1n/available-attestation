@@ -6,14 +6,6 @@ basedir=$(pwd)
 casedir="${basedir}/case"
 export BASEDIR="$basedir/"
 
-if [ -f ".env.sh" ]; then
-    source .env.sh
-    echo "validator num is $VAL_NUM"
-else
-    echo ".env.sh is not found, please execute ./build.sh first"
-    exit -1
-fi
-
 
 updategenesis() {
 	docker run -it --rm -v "${basedir}/config:/root/config" --name generate --entrypoint /usr/bin/prysmctl tscel/ethnettools:0627 \

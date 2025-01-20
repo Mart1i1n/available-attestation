@@ -432,7 +432,7 @@ func (s *Server) dumpDuties(epoch int64) error {
 			"epoch":     epoch,
 			"slot":      duty.Slot,
 			"validator": duty.ValidatorIndex,
-		}).Info("epoch duty")
+		}).Debug("epoch duty")
 	}
 	return nil
 }

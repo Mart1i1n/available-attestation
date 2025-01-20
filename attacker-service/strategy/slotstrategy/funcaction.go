@@ -78,7 +78,7 @@ func GetFunctionAction(backend types.ServiceBackend, action string) (ActionDo, e
 			log.WithFields(log.Fields{
 				"slot":   slot,
 				"action": name,
-			}).Info("do action ")
+			}).Debug("do action ")
 			r := plugins.PluginResponse{
 				Cmd: cmd,
 			}
@@ -96,7 +96,7 @@ func GetFunctionAction(backend types.ServiceBackend, action string) (ActionDo, e
 			log.WithFields(log.Fields{
 				"slot":   slot,
 				"action": name,
-			}).Info("do action ")
+			}).Debug("do action ")
 
 			if len(params) > 0 {
 				attestation = params[0].(*ethpb.Attestation)
@@ -115,7 +115,7 @@ func GetFunctionAction(backend types.ServiceBackend, action string) (ActionDo, e
 			log.WithFields(log.Fields{
 				"slot":   slot,
 				"action": name,
-			}).Info("do action ")
+			}).Debug("do action ")
 
 			if len(params) > 0 {
 				attestation = params[0].(*ethpb.Attestation)
@@ -140,7 +140,7 @@ func GetFunctionAction(backend types.ServiceBackend, action string) (ActionDo, e
 			log.WithFields(log.Fields{
 				"slot":   slot,
 				"action": name,
-			}).Info("do action ")
+			}).Debug("do action ")
 
 			log.WithFields(log.Fields{
 				"slot":    slot,
@@ -157,7 +157,7 @@ func GetFunctionAction(backend types.ServiceBackend, action string) (ActionDo, e
 			log.WithFields(log.Fields{
 				"slot":   slot,
 				"action": name,
-			}).Info("do action ")
+			}).Debug("do action ")
 			targetTime := common.TimeToSlot(slot + 1)
 			total := targetTime - time.Now().Unix()
 			log.WithFields(log.Fields{
@@ -199,7 +199,7 @@ func GetFunctionAction(backend types.ServiceBackend, action string) (ActionDo, e
 			log.WithFields(log.Fields{
 				"slot":   slot,
 				"action": name,
-			}).Info("do action ")
+			}).Debug("do action ")
 			epoch := common.SlotToEpoch(slot)
 			start := common.EpochStart(epoch + int64(n))
 			targetTime := common.TimeToSlot(start)
@@ -226,7 +226,7 @@ func GetFunctionAction(backend types.ServiceBackend, action string) (ActionDo, e
 			log.WithFields(log.Fields{
 				"slot":   slot,
 				"action": name,
-			}).Info("do action ")
+			}).Debug("do action ")
 			epoch := common.SlotToEpoch(slot)
 			end := common.EpochEnd(epoch + int64(n))
 			targetTime := common.TimeToSlot(end)
@@ -255,7 +255,7 @@ func GetFunctionAction(backend types.ServiceBackend, action string) (ActionDo, e
 			log.WithFields(log.Fields{
 				"slot":   slot,
 				"action": name,
-			}).Info("do action ")
+			}).Debug("do action ")
 			epoch := common.SlotToEpoch(slot)
 			start := common.EpochStart(epoch + int64(n))
 			start += int64(slotsPerEpoch) / 2
@@ -279,7 +279,7 @@ func GetFunctionAction(backend types.ServiceBackend, action string) (ActionDo, e
 			log.WithFields(log.Fields{
 				"slot":   slot,
 				"action": name,
-			}).Info("do action ")
+			}).Debug("do action ")
 
 			epoch := common.SlotToEpoch(slot)
 			end := common.EpochEnd(epoch)
@@ -305,7 +305,7 @@ func GetFunctionAction(backend types.ServiceBackend, action string) (ActionDo, e
 			log.WithFields(log.Fields{
 				"slot":   slot,
 				"action": name,
-			}).Info("do action ")
+			}).Debug("do action ")
 
 			seconds := backend.GetIntervalPerSlot()
 			if seconds == 0 {
@@ -340,7 +340,7 @@ func GetFunctionAction(backend types.ServiceBackend, action string) (ActionDo, e
 			log.WithFields(log.Fields{
 				"slot":   slot,
 				"action": name,
-			}).Info("do action ")
+			}).Debug("do action ")
 
 			if len(params) == 0 {
 				return r
@@ -419,7 +419,7 @@ func GetFunctionAction(backend types.ServiceBackend, action string) (ActionDo, e
 			log.WithFields(log.Fields{
 				"slot":   slot,
 				"action": name,
-			}).Info("do action ")
+			}).Debug("do action ")
 
 			if len(params) > 0 {
 				attestation = params[0].(*ethpb.AttestationData)
@@ -448,7 +448,7 @@ func GetFunctionAction(backend types.ServiceBackend, action string) (ActionDo, e
 			log.WithFields(log.Fields{
 				"slot":   slot,
 				"action": name,
-			}).Info("do action ")
+			}).Debug("do action ")
 
 			if len(params) > 0 {
 				attestation = params[0].(*ethpb.AttestationData)
@@ -477,7 +477,7 @@ func GetFunctionAction(backend types.ServiceBackend, action string) (ActionDo, e
 			log.WithFields(log.Fields{
 				"slot":   slot,
 				"action": name,
-			}).Info("do action ")
+			}).Debug("do action ")
 
 			if len(params) > 0 {
 				attestation = params[0].(*ethpb.AttestationData)
@@ -506,7 +506,7 @@ func GetFunctionAction(backend types.ServiceBackend, action string) (ActionDo, e
 			log.WithFields(log.Fields{
 				"slot":   slot,
 				"action": name,
-			}).Info("do action ")
+			}).Debug("do action ")
 			// get parent root by newSlot.
 			newRoot, err := backend.GetSlotRoot(int64(newSlot))
 			if err != nil {
@@ -525,7 +525,7 @@ func GetFunctionAction(backend types.ServiceBackend, action string) (ActionDo, e
 			log.WithFields(log.Fields{
 				"slot":   slot,
 				"action": name,
-			}).Info("do action ")
+			}).Debug("do action ")
 
 			if len(params) == 0 {
 				return r
@@ -538,7 +538,7 @@ func GetFunctionAction(backend types.ServiceBackend, action string) (ActionDo, e
 			validatorSet := backend.GetValidatorDataSet()
 			log.WithFields(log.Fields{
 				"slot": slot,
-			}).Info("rePackAttestation")
+			}).Debug("rePackAttestation")
 			for i := startEpoch; i <= endEpoch; i++ {
 				allSlotAttest := backend.GetAttestSet(uint64(i))
 				if allSlotAttest == nil {

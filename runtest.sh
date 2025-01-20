@@ -121,7 +121,7 @@ testTps() {
   # if PYTHON is not empty, then run the following script
   if [ -n "$PYTHON" ]; then
     $PYTHON ./collect/CollectTps.py $reportfile
-    echo "test done and all data in $resultdir, report in xxx.png"
+    echo "test done and all data in $resultdir, report in $basedir/tps.png"
   else
     echo "test done and all data in $resultdir, report as bellow"
     cat $reportfile
@@ -167,11 +167,11 @@ testReorgs() {
     echo "$testcase test done and all data in $resultdir"
   done
 
-  echo "all test done and all data in $reorgs_result_dir, report as bellow"
   if [ -n "$PYTHON" ]; then
     $PYTHON ./collect/CollectReorg.py $reorgs_result_dir
-    echo "report in xxx.png"
+    echo "test done and all data in $resultdir, report in $basedir/reorgs.png"
   else
+    echo "all test done and all data in $reorgs_result_dir, report as bellow"
     cat $reportfile
   fi
   echo ""
@@ -179,191 +179,61 @@ testReorgs() {
 
 }
 
-testReorg1() {
-	subdir="attack-exante"
-	targetdir="${casedir}/${subdir}"
-	resultdir="${basedir}/results/${subdir}"
-	reportfile="${resultdir}/report.txt"
-	# if resultdir exist, delete it.
-	if [ -d $resultdir ]; then
-		rm -rf $resultdir
-	fi
-	mkdir -p $resultdir
+testOneReorg() {
+  testcase=${1}
+  targetdir="${casedir}/${testcase}"
+  resultdir="${basedir}/results/${testcase}"
+  reportfile="${resultdir}/report.txt"
+  # if resultdir exist, delete it.
+  if [ -d $resultdir ]; then
+    rm -rf $resultdir
+  fi
+  mkdir -p $resultdir
 
-	echo "Running testcase $subdir"
-	echo "first test with vanilla version"
-	updategenesis
-	docker compose -f $targetdir/docker-compose-normal.yml up -d 
-	echo "wait $caseduration seconds" && sleep $caseduration
-	docker compose -f $targetdir/docker-compose-normal.yml down
-	sudo mv data $resultdir/data-normal
-	echo "Vanilla version reorg event info: " >> $reportfile
-	grep "reorg event" $resultdir/data-normal/attacker-1/d.log >> $reportfile
+  echo "Running testcase ${testcase}"
+  echo "first test with vanilla version"
+  updategenesis
+  docker compose -f $targetdir/docker-compose-normal.yml up -d
+  echo "wait $caseduration seconds" && sleep $caseduration
+  docker compose -f $targetdir/docker-compose-normal.yml down
+  sudo mv data $resultdir/data-normal
+  echo "$testcase Vanilla version reorg event info: " >> $reportfile
+  grep "reorg event" $resultdir/data-normal/attacker-1/d.log >> $reportfile
 
-	echo "second test with modified version"
-	updategenesis
-	docker compose -f $targetdir/docker-compose-reorg.yml up -d
-	echo "wait $caseduration seconds" && sleep $caseduration
-	docker compose -f $targetdir/docker-compose-reorg.yml down
-	sudo mv data $resultdir/data-reorg
-	echo "Modified version reorg event info: " >> $reportfile
+  echo "second test with modified version"
+  updategenesis
+  docker compose -f $targetdir/docker-compose-reorg.yml up -d
+  echo "wait $caseduration seconds" && sleep $caseduration
+  docker compose -f $targetdir/docker-compose-reorg.yml down
+  sudo mv data $resultdir/data-reorg
+  echo "$testcase Modified version reorg event info: " >> $reportfile
   grep "reorg event" $resultdir/data-reorg/attacker-1/d.log >> $reportfile
 
-	echo "test done and all data in $resultdir, report as bellow"
+  echo "test done and all data in $resultdir, report as bellow"
   cat $reportfile
   echo ""
   echo ""
+}
 
+testReorg1() {
+  testOneReorg "attack-exante"
 }
 
 
 testReorg2() {
-	subdir="attack-sandwich"
-	targetdir="${casedir}/${subdir}"
-	resultdir="${basedir}/results/${subdir}"
-	reportfile="${resultdir}/report.txt"
-	# if resultdir exist, delete it.
-	if [ -d $resultdir ]; then
-		rm -rf $resultdir
-	fi
-	mkdir -p $resultdir
-
-	echo "Running testcase $subdir"
-	echo "first test with vanilla version"
-	updategenesis
-	docker compose -f $targetdir/docker-compose-normal.yml up -d 
-	echo "wait $caseduration seconds" && sleep $caseduration
-	docker compose -f $targetdir/docker-compose-normal.yml down
-	sudo mv data $resultdir/data-normal
-	echo "Vanilla version reorg event info: " >> $reportfile
-  grep "reorg event" $resultdir/data-normal/attacker-1/d.log >> $reportfile
-
-	echo "second test with modified version"
-	updategenesis
-	docker compose -f $targetdir/docker-compose-reorg.yml up -d
-	echo "wait $caseduration seconds" && sleep $caseduration
-	docker compose -f $targetdir/docker-compose-reorg.yml down
-	sudo mv data $resultdir/data-reorg
-
-	echo "Modified version reorg event info: " >> $reportfile
-  grep "reorg event" $resultdir/data-reorg/attacker-1/d.log >> $reportfile
-
-  echo "test done and all data in $resultdir, report as bellow"
-  cat $reportfile
-  echo ""
-  echo ""
+  testOneReorg "attack-sandwich"
 }
 
 testReorg3() {
-	subdir="attack-unrealized"
-	targetdir="${casedir}/${subdir}"
-	resultdir="${basedir}/results/${subdir}"
-	reportfile="${resultdir}/report.txt"
-	# if resultdir exist, delete it.
-	if [ -d $resultdir ]; then
-		rm -rf $resultdir
-	fi
-	mkdir -p $resultdir
-
-	echo "Running testcase $subdir"
-	echo "first test with vanilla version"
-	updategenesis
-	docker compose -f $targetdir/docker-compose-normal.yml up -d 
-	echo "wait $caseduration seconds" && sleep $caseduration
-	docker compose -f $targetdir/docker-compose-normal.yml down
-	sudo mv data $resultdir/data-normal
-	echo "Vanilla version reorg event info: " >> $reportfile
-  grep "reorg event" $resultdir/data-normal/attacker-1/d.log >> $reportfile
-
-	echo "second test with modified version"
-	updategenesis
-	docker compose -f $targetdir/docker-compose-reorg.yml up -d
-	echo "wait $caseduration seconds" && sleep $caseduration
-	docker compose -f $targetdir/docker-compose-reorg.yml down
-	sudo mv data $resultdir/data-reorg
-
-	echo "Modified version reorg event info: " >> $reportfile
-  grep "reorg event" $resultdir/data-reorg/attacker-1/d.log >> $reportfile
-
-  echo "test done and all data in $resultdir, report as bellow"
-  cat $reportfile
-  echo ""
-  echo ""
+  testOneReorg "attack-unrealized"
 }
 
 testReorg4() {
-	subdir="attack-withholding"
-	targetdir="${casedir}/${subdir}"
-	resultdir="${basedir}/results/${subdir}"
-	reportfile="${resultdir}/report.txt"
-	# if resultdir exist, delete it.
-	if [ -d $resultdir ]; then
-		rm -rf $resultdir
-	fi
-	mkdir -p $resultdir
-
-	echo "Running testcase $subdir"
-	echo "first test with vanilla version"
-	updategenesis
-	docker compose -f $targetdir/docker-compose-normal.yml up -d 
-	echo "wait $caseduration seconds" && sleep $caseduration
-	docker compose -f $targetdir/docker-compose-normal.yml down
-	sudo mv data $resultdir/data-normal
-	echo "Vanilla version reorg event info: " >> $reportfile
-  grep "reorg event" $resultdir/data-normal/attacker-1/d.log >> $reportfile
-
-	echo "second test with modified version"
-	updategenesis
-	docker compose -f $targetdir/docker-compose-reorg.yml up -d
-	echo "wait $caseduration seconds" && sleep $caseduration
-	docker compose -f $targetdir/docker-compose-reorg.yml down
-	sudo mv data $resultdir/data-reorg
-
-	echo "Modified version reorg event info: " >> $reportfile
-  grep "reorg event" $resultdir/data-reorg/attacker-1/d.log >> $reportfile
-
-  echo "test done and all data in $resultdir, report as bellow"
-  cat $reportfile
-  echo ""
-  echo ""
+  testOneReorg "attack-withholding"
 }
 
 testReorg5() {
-	subdir="attack-staircase"
-	targetdir="${casedir}/${subdir}"
-	resultdir="${basedir}/results/${subdir}"
-	reportfile="${resultdir}/report.txt"
-	# if resultdir exist, delete it.
-	if [ -d $resultdir ]; then
-		rm -rf $resultdir
-	fi
-	mkdir -p $resultdir
-
-	echo "Running testcase $subdir"
-	echo "first test with vanilla version"
-	updategenesis
-	docker compose -f $targetdir/docker-compose-normal.yml up -d 
-	echo "wait $caseduration seconds" && sleep $caseduration
-	docker compose -f $targetdir/docker-compose-normal.yml down
-	sudo mv data $resultdir/data-normal
-	grep "reorg event" $resultdir/data-normal/att
-	echo "Vanilla version reorg event info: " >> $reportfile
-  grep "reorg event" $resultdir/data-normal/attacker-1/d.log >> $reportfile
-
-	echo "second test with modified version"
-	updategenesis
-	docker compose -f $targetdir/docker-compose-reorg.yml up -d
-	echo "wait $caseduration seconds" && sleep $caseduration
-	docker compose -f $targetdir/docker-compose-reorg.yml down
-	sudo mv data $resultdir/data-reorg
-
-	echo "Modified version reorg event info: " >> $reportfile
-  grep "reorg event" $resultdir/data-reorg/attacker-1/d.log >> $reportfile
-
-  echo "test done and all data in $resultdir, report as bellow"
-  cat $reportfile
-  echo ""
-  echo ""
+  testOneReorg "attack-staircase"
 }
 
 echo "casetype is $casetype"

@@ -21,6 +21,13 @@ The experiments do not require particular hardware. The configuration of our com
 
 We ran our experiments using Docker, which can be installed following the instructions of [Docker](https://docs.docker.com/engine/install/). The version of the Docker Engine is at least version 24. 
 
+## Python requirements
+
+Python version `Python 3.10.12`, and install the required packages by running the following command:
+
+```shell
+pip3 install -r requirements.txt
+```
 
 ## Run the Experiments Step by Step
 

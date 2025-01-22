@@ -18,12 +18,14 @@ The experiments do not require particular hardware. The configuration of our com
 
 ## Software dependencies
 
+### Docker
+
 
 We ran our experiments using Docker, which can be installed following the instructions of [Docker](https://docs.docker.com/engine/install/). The version of the Docker Engine is at least version 24. 
 
-## Python requirements
+### Python requirements
 
-Python version `Python 3.10.12`, and install the required packages by running the following command:
+We use Python to process data and plot. The Python version is at least `Python 3.10.12`, and install the required packages by running the following command:
 
 ```shell
 pip3 install -r requirements.txt
@@ -49,34 +51,44 @@ In each case, we establish 16,384 validators in the testnet of both protocols.
 
 ### Reorg resilience experiments 
 
+#### Run all attacks once
+
+To conduct five attacks in one time, run the command:
+
+```shell
+./runtest.sh testReorgs
+```
+
+The experiments will run each attack 9000 seconds for two protocols. The experiments will run for about 25 hours. If one does not want to wait for experiments so long, run the following commands to conduct each attack seperately. Each attack will 
+
 Run the modified exante reorg attack
 
 ```shell
-./runtest.sh 1 
+./runtest.sh testReorg1
 ```
 
 Run the sandwich reorg attack
 
 ```shell
-./runtest.sh 2
+./runtest.sh testReorg2
 ```
 
 Run the unrealized justification reorg attack
 
 ```shell
-./runtest.sh 3
+./runtest.sh testReorg3
 ```
 
 Run the justification withholding reorg attack
 
 ```shell
-./runtest.sh 4
+./runtest.sh testReorg4
 ```
 
 Run the staircase attack
 
 ```shell
-./runtest.sh 5
+./runtest.sh testReorg5
 ```
 
 Note that each attack will run for five hours to test for two protocols. 
@@ -85,7 +97,7 @@ Note that each attack will run for five hours to test for two protocols.
 
 
 ```shell
-./runtest.sh 6
+./runtest.sh testTps
 ```
 
 The experiments will last for five hours to test for two protocols.
@@ -94,7 +106,7 @@ The experiments will last for five hours to test for two protocols.
 
 
 ```shell
-./runtest.sh 7
+./runtest.sh testLatency
 ```
 
 The experiments will last for ten minutes to test for two protocols.

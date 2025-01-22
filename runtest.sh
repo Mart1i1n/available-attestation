@@ -239,27 +239,35 @@ testReorg5() {
 echo "casetype is $casetype"
 case $casetype in
 	1)
+	  caseduration=9000
 		testReorg1
 		;;
 	2)
+	  caseduration=9000
 		testReorg2
 		;;
 	3)
+	  caseduration=9000
 		testReorg3
 		;;
 	4)
+	  caseduration=9000
 		testReorg4
 		;;
 	5)
+	  caseduration=9000
 		testReorg5
 		;;
 	"tps")
+	  caseduration=2400
 		testTps
 		;;
   "reorg")
+    caseduration=9000
     testReorgs
     ;;
 	"latency")
+	  caseduration=600
 		testLatency
 		;;
 	*)

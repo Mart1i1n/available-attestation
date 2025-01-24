@@ -1,5 +1,5 @@
 # Available Attestation Repository
-This is the repository of the paper "Available Attestation: Towards a Reorg-Resilient Solution for Ethereum Proof-of-Stake" (). The repository implements the modified Ethereum PoS protocol and attacks shown in the paper. 
+This is the repository of the paper "Available Attestation: Towards a Reorg-Resilient Solution for Ethereum Proof-of-Stake" ([eprint](https://eprint.iacr.org/2025/097.pdf)). The repository implements the modified Ethereum PoS protocol and attacks shown in the paper. 
 
 
 This repository estabilishes two local testnets with 16,384 validators hard-coded each. 

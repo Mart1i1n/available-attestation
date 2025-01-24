@@ -1,5 +1,5 @@
 # Available Attestation Repository
-This is the repository of the paper "Available Attestation: Towards a Reorg-Resilient Solution for Ethereum Proof-of-Stake". The repository implements the modified Ethereum PoS protocol and attacks shown in the paper. 
+This is the repository of the paper "Available Attestation: Towards a Reorg-Resilient Solution for Ethereum Proof-of-Stake" (). The repository implements the modified Ethereum PoS protocol and attacks shown in the paper. 
 
 
 This repository estabilishes two local testnets with 16,384 validators hard-coded each. 
@@ -59,7 +59,10 @@ To conduct five attacks in one time, run the command:
 ./runtest.sh testReorgs
 ```
 
-The experiments will run each attack 9000 seconds for two protocols. The experiments will run for about 25 hours. If one does not want to wait for experiments so long, run the following commands to conduct each attack seperately. Each attack will 
+The experiments will run each attack 9000 seconds for two protocols. The experiments will run for about 25 hours. After all attacks are conducted, the result can be seen in ``$HOME``. The number of reorg blocks in the modified protocol is the same as Figure. 13 in the paper.
+
+
+If one does not want to wait for experiments so long, run the following commands to conduct each attack seperately. Each attack will lasts five hours. 
 
 Run the modified exante reorg attack
 
@@ -100,7 +103,8 @@ Note that each attack will run for five hours to test for two protocols.
 ./runtest.sh testTps
 ```
 
-The experiments will last for five hours to test for two protocols.
+The experiment will run for about two hours. After all attacks are conducted, the result can be seen in ``$HOME``. The throughput of the modified protocol is the same as Figure. 14 in the paper.
+
 
 ### Latancy experiments
 
@@ -109,7 +113,7 @@ The experiments will last for five hours to test for two protocols.
 ./runtest.sh testLatency
 ```
 
-The experiments will last for ten minutes to test for two protocols.
+The experiment will run for about ten minutes. After all attacks are conducted, the result can be seen in ``$HOME``. The latency the modified protocol is the same as Figure. 14 in the paper.
 
 ### Expected Output
 

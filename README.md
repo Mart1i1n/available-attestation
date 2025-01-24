@@ -56,7 +56,7 @@ In each case, we establish 16,384 validators in the testnet of both protocols.
 To conduct five attacks in one time, run the command:
 
 ```shell
-./runtest.sh testReorgs
+./runtest.sh reorg
 ```
 
 The experiments will run each attack 9000 seconds for two protocols. The experiments will run for about 25 hours. After all attacks are conducted, the result can be seen in ``$HOME``. The number of reorg blocks in the modified protocol is the same as Figure. 13 in the paper.
@@ -67,31 +67,31 @@ If one does not want to wait for experiments so long, run the following commands
 Run the modified exante reorg attack
 
 ```shell
-./runtest.sh testReorg1
+./runtest.sh 1
 ```
 
 Run the sandwich reorg attack
 
 ```shell
-./runtest.sh testReorg2
+./runtest.sh 2
 ```
 
 Run the unrealized justification reorg attack
 
 ```shell
-./runtest.sh testReorg3
+./runtest.sh 3
 ```
 
 Run the justification withholding reorg attack
 
 ```shell
-./runtest.sh testReorg4
+./runtest.sh 4
 ```
 
 Run the staircase attack
 
 ```shell
-./runtest.sh testReorg5
+./runtest.sh 5
 ```
 
 Note that each attack will run for five hours to test for two protocols. 
@@ -100,7 +100,7 @@ Note that each attack will run for five hours to test for two protocols.
 
 
 ```shell
-./runtest.sh testTps
+./runtest.sh tps
 ```
 
 The experiment will run for about two hours. After all attacks are conducted, the result can be seen in ``$HOME``. The throughput of the modified protocol is the same as Figure. 14 in the paper.
@@ -110,7 +110,7 @@ The experiment will run for about two hours. After all attacks are conducted, th
 
 
 ```shell
-./runtest.sh testLatency
+./runtest.sh latency
 ```
 
 The experiment will run for about ten minutes. After all attacks are conducted, the result can be seen in ``$HOME``. The latency the modified protocol is the same as Figure. 14 in the paper.

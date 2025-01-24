@@ -33,7 +33,7 @@ We used Docker to run our experiments. You can install Docker by following the i
 
 #### 2.2.2. Python Requirements
 
-Python is used for data processing and plotting. Ensure that your Python version is at least **3.10.12**. Install the required Python packages by running the following command:
+Python is used for data processing and plotting. Ensure that your Python version is at least **3.10**. Install the required Python packages by running the following command:
 
 ```shell
 pip3 install -r requirements.txt

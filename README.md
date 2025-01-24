@@ -1,123 +1,143 @@
 # Available Attestation Repository
-This is the repository of the paper "Available Attestation: Towards a Reorg-Resilient Solution for Ethereum Proof-of-Stake" ([eprint](https://eprint.iacr.org/2025/097.pdf)). The repository implements the modified Ethereum PoS protocol and attacks shown in the paper. 
 
+This repository contains the implementation for the paper "Available Attestation: Towards a Reorg-Resilient Solution for Ethereum Proof-of-Stake" ([eprint](https://eprint.iacr.org/2025/097.pdf)). It includes a modified Ethereum PoS protocol and the attacks analyzed in the paper.
 
-This repository estabilishes two local testnets with 16,384 validators hard-coded each. 
-* The vanilla client is compiled from Prysm [v5.0](https://github.com/prysmaticlabs/prysm/releases/tag/v5.0.0) (see `normal_prysm` for the implementation of the vanilla Ethereum PoS protocol). 
-* The modified client is modified from Prysm [v5.0](https://github.com/prysmaticlabs/prysm/releases/tag/v5.0.0) (see `modified_prysm` for the implementation of the modified Ethereum PoS protocol). 
+The repository establishes two local testnets, each pre-configured with 16,384 validators:
+- The **vanilla client** is compiled from Prysm [v5.0](https://github.com/prysmaticlabs/prysm/releases/tag/v5.0.0) (see `normal_prysm` for the vanilla Ethereum PoS protocol implementation).  
+- The **modified client** is based on a modified version of Prysm [v5.0](https://github.com/prysmaticlabs/prysm/releases/tag/v5.0.0) (see `modified_prysm` for the modified Ethereum PoS protocol implementation).  
 
+---
 
-## Ethical Considerations
+## 1. Ethical Considerations
 
-Our experiments are launched using local testnet (using one local machine). No experiments are conducted on the live Ethereum network. Our repository does not uncover new vulnerabilities but analyzes known malicious reorganization attacks. We will not provide additional exploit information.
+All experiments are conducted on a local testnet (running on a single local machine). No experiments is conducted on the live Ethereum network. This repository does not uncover new vulnerabilities but instead analyzes known malicious reorganization attacks. We will not provide any additional exploit information.
 
+---
+## 2. Requirements
 
-## Hardware dependencies
+### 2.1. Hardware Dependencies
 
-The experiments do not require particular hardware. The configuration of our computer is as follows: 4-core CPU, 16GB RAM, 100GB ROM, and a 100 Mbps bandwidth.
+These experiments do not require any specialized hardware. The computer used in our setup is configured as follows:
+- **CPU:** 4-core
+- **RAM:** 16 GB
+- **Storage:** 100 GB
+- **Network Bandwidth:** 100 Mbps
 
-## Software dependencies
+---
 
-### Docker
+### 2.2. Software Dependencies
 
+#### 2.2.1. Docker
 
-We ran our experiments using Docker, which can be installed following the instructions of [Docker](https://docs.docker.com/engine/install/). The version of the Docker Engine is at least version 24. 
+We used Docker to run our experiments. You can install Docker by following the instructions provided in the [official Docker documentation](https://docs.docker.com/engine/install/). Ensure that your Docker Engine version is at least **Docker 24**.
 
-### Python requirements
+#### 2.2.2. Python Requirements
 
-We use Python to process data and plot. The Python version is at least `Python 3.10.12`, and install the required packages by running the following command:
+Python is used for data processing and plotting. Ensure that your Python version is at least **3.10.12**. Install the required Python packages by running the following command:
 
 ```shell
 pip3 install -r requirements.txt
 ```
 
-## Run the Experiments Step by Step
+---
 
-We establish three kinds of experiments for both vanilla Ethereum PoS protocol and modified Ethereum PoS protocol. 
+## 3. Run the Experiments Step by Step
+
+We establish three experiments for both vanilla Ethereum PoS protocol and modified Ethereum PoS protocol. 
 
 * Reorg resilience experiments
 * Throughput experiments
 * Latency experiments
 
+---
 
-In each case, we establish 16,384 validators in the testnet of both protocols. 
 
-### Build the image
+### 3.1. Build the Docker Image
+
+After entering the repository directory (denoted as ``$HOME``), run the following script to build the Docker image:
 
 ```shell
 ./build.sh
 ```
 
+---
 
-### Reorg resilience experiments 
 
-#### Run all attacks once
+### 3.2. Reorg resilience experiments 
 
-To conduct five attacks in one time, run the command:
+#### 3.2.1 Run All Attacks at Once
+
+To conduct five attacks (i.e., exante reorg attack, sandwich reorg attack, unrealized justification reorg attack, justfication withholding attack, and staircase attack) simultaneously, run the command:
 
 ```shell
 ./runtest.sh reorg
 ```
 
-The experiments will run each attack 9000 seconds for two protocols. The experiments will run for about 25 hours. After all attacks are conducted, the result can be seen in ``$HOME``. The number of reorg blocks in the modified protocol is the same as Figure. 13 in the paper.
+The experiments will run each attack for 9000 seconds (approximately 25 hours in total) across both protocols. After completion, the results can be found in the ``$HOME`` directory. The number of reorg blocks for the modified protocol should match Figure 13 in the paper.
 
+#### 3.2.2. Run Individual Attacks
 
-If one does not want to wait for experiments so long, run the following commands to conduct each attack seperately. Each attack will lasts five hours. 
+If one does not want to wait for experiments so long, run the following commands to conduct each attack separately. Each attack will last five hours. 
 
-Run the modified exante reorg attack
+Run the modified exante reorg attack:
 
 ```shell
 ./runtest.sh 1
 ```
 
-Run the sandwich reorg attack
+Run the sandwich reorg attack:
 
 ```shell
 ./runtest.sh 2
 ```
 
-Run the unrealized justification reorg attack
+Run the unrealized justification reorg attack:
 
 ```shell
 ./runtest.sh 3
 ```
 
-Run the justification withholding reorg attack
+Run the justification withholding reorg attack:
 
 ```shell
 ./runtest.sh 4
 ```
 
-Run the staircase attack
+Run the staircase attack:
 
 ```shell
 ./runtest.sh 5
 ```
 
-Note that each attack will run for five hours to test for two protocols. 
+---
 
-### Throughput experiments
+### 3.3. Throughput experiments
 
+Run the throughput experiment using the following command:
 
 ```shell
 ./runtest.sh tps
 ```
 
-The experiment will run for about two hours. After all attacks are conducted, the result can be seen in ``$HOME``. The throughput of the modified protocol is the same as Figure. 14 in the paper.
+This experiment will take approximately two hours. After completion, the results can be found in the ``$HOME`` directory. The throughput of the modified protocol should match Figure 14 in the paper.
 
+---
 
-### Latancy experiments
+### 3.4. Latancy experiments
 
+Run the latency experiment using the following command:
 
 ```shell
 ./runtest.sh latency
 ```
 
-The experiment will run for about ten minutes. After all attacks are conducted, the result can be seen in ``$HOME``. The latency the modified protocol is the same as Figure. 14 in the paper.
+This experiment will take approximately ten minutes. After completion, the results can be found in the ``$HOME`` directory. The latency of the modified protocol should match Figure 15 in the paper.
 
-### Expected Output
+---
 
-The output of each experiments should looks like:
+### 3.5. xpected Output
+
+The output of each experiment should looks like this:
 
 
 ```

@@ -43,7 +43,7 @@ pip3 install -r requirements.txt
 
 ## 3. Run the Experiments Step by Step
 
-We establish three experiments for both vanilla Ethereum PoS protocol and modified Ethereum PoS protocol. 
+We conduct three experiments for both vanilla Ethereum PoS protocol and modified Ethereum PoS protocol. 
 
 * Reorg resilience experiments
 * Throughput experiments

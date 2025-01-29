@@ -10,7 +10,7 @@ The repository establishes two local testnets, each pre-configured with 16,384 v
 
 ## 1. Ethical Considerations
 
-All experiments are conducted on a local testnet (running on a single local machine). No experiments is conducted on the live Ethereum network. This repository does not uncover new vulnerabilities but instead analyzes known malicious reorganization attacks. We will not provide any additional exploit information.
+All experiments are conducted on a local testnet (running on a single local machine). No experiments are conducted on the live Ethereum network. This repository does not uncover new vulnerabilities but instead analyzes known malicious reorganization attacks. We will not provide any additional exploit information.
 
 ---
 ## 2. Requirements

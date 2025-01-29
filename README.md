@@ -29,7 +29,7 @@ These experiments do not require any specialized hardware. The computer used in 
 
 #### 2.2.1. Docker
 
-We used Docker to run our experiments. You can install Docker by following the instructions provided in the [official Docker documentation](https://docs.docker.com/engine/install/). Ensure that your Docker Engine version is at least **Docker 24**.
+We use Docker to run our experiments. You can install Docker by following the instructions provided in the [official Docker documentation](https://docs.docker.com/engine/install/). Ensure that your Docker Engine version is at least **Docker 24**.
 
 #### 2.2.2. Python Requirements
 
@@ -135,9 +135,9 @@ This experiment will take approximately ten minutes. After completion, the resul
 
 ---
 
-### 3.5. xpected Output
+### 3.5. Expected Output
 
-The output of each experiment should looks like this:
+The output of each experiment should look like this:
 
 
 ```
@@ -357,4 +357,4 @@ start testcase success
 
 ## 4. Data Availability
 
-The raw log files from the experiments presented in the paper are located in the ``data`` folder. The data used to generate the figures in the paper can be found in the ``result`` folder. 
+The raw log files from the experiments presented in the paper are located in the ``data`` folder. The data used to generate the figures in the paper are available at the ``result`` folder. 

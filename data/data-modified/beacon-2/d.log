@@ -1,0 +1,321 @@
+time="2024-08-22 11:02:00" level=info msg="Finished reading JWT secret from /root/config/jwtsecret"
+time="2024-08-22 11:02:00" level=info msg="Attacker service init" url=
+time="2024-08-22 11:02:00" level=warning msg="Running on custom Ethereum network specified in a chain configuration yaml file" prefix=flags
+time="2024-08-22 11:02:00" level=warning msg="Fee recipient 0x123463a4b065722e99115d6c222f267d9cabb524 is not a checksum Ethereum address. The checksummed address is 0x123463a4B065722E99115D6c222f267d9cABb524 and will be used as the fee recipient. We recommend using a mixed-case address (checksum) to prevent spelling mistakes in your fee recipient Ethereum address" prefix=node
+time="2024-08-22 11:02:00" level=info msg="Default fee recipient is set to 0x123463a4B065722E99115D6c222f267d9cABb524, recipient may be overwritten from validator client and persist in db. Default fee recipient will be used as a fall back" prefix=node
+time="2024-08-22 11:02:00" level=info msg="Checking DB" database-path="/root/beacondata/beaconchaindata" prefix=node
+time="2024-08-22 11:02:00" level=info msg="Opening Bolt DB at /root/beacondata/beaconchaindata/beaconchain.db" prefix=db
+time="2024-08-22 11:02:00" level=info msg="Loading genesis state from disk." hash=0xc9a93d03151bd08ee365f6dedf676fe2e9a803148dc45675f177f6da8c112eac prefix=genesis
+time="2024-08-22 11:02:00" level=info msg="Deposit contract: 0x4242424242424242424242424242424242424242" prefix=node
+time="2024-08-22 11:02:00" level=warning msg="No bootstrap addresses supplied" prefix=p2p
+time="2024-08-22 11:02:00" level=info msg="Running node with peer id of 16Uiu2HAmViS3SUn4cBmMGkRx6CBzgSFHu7JJY6oztwvbhzPKrQSQ " prefix=p2p
+time="2024-08-22 11:02:00" level=info msg="gRPC server listening on port" address="0.0.0.0:4000" prefix=rpc
+time="2024-08-22 11:02:00" level=warning msg="You are using an insecure gRPC server. If you are running your beacon node and validator on the same machines, you can ignore this message. If you want to know how to enable secure connections, see: https://docs.prylabs.network/docs/prysm-usage/secure-grpc" prefix=rpc
+time="2024-08-22 11:02:00" level=info msg="Starting beacon node" prefix=node version="Prysm/Unknown/Local build. Built at: Moments ago"
+time="2024-08-22 11:02:00" level=info msg="Blockchain data already exists in DB, initializing..." prefix=blockchain
+time="2024-08-22 11:02:00" level=info msg="Backfill service not enabled."
+time="2024-08-22 11:02:00" level=info msg="Waiting for state to be initialized" prefix=initial-sync
+time="2024-08-22 11:02:00" level=info msg="Starting gRPC gateway" address="0.0.0.0:3500" prefix=gateway
+time="2024-08-22 11:02:00" level=info msg="Enabled debug gRPC endpoints" prefix=rpc
+time="2024-08-22 11:02:00" level=info msg="Received state initialized event" prefix=initial-sync
+time="2024-08-22 11:02:00" level=info msg="Due to number of peers required for sync being set at 0, entering regular sync immediately." genesisTime=2024-08-22 11:01:59 +0000 UTC prefix=initial-sync
+time="2024-08-22 11:02:00" level=info msg="Started discovery v5" ENR="enr:-MK4QNftPRer1qtKpIJSTNjV3JRvChf4Sbh6wXxw6vTEObk8Vc34dons2M8mOLY158n7FEvF4ViF2V-2gXaa64L0XmiGAZSNrSAOh2F0dG5ldHOIAAAAAAAAAACEZXRoMpCSi8bgIAAAk___________gmlkgnY0gmlwhKxjAQOJc2VjcDI1NmsxoQP9eHhyAvg_9nbBtcmiZYYgynvG-YunqyyHW-kxRZhIxYhzeW5jbmV0cwCDdGNwgjLIg3VkcIIu4A" prefix=p2p
+time="2024-08-22 11:02:00" level=info msg="Node started p2p server" multiAddr="/ip4/172.99.1.3/tcp/13000/p2p/16Uiu2HAmViS3SUn4cBmMGkRx6CBzgSFHu7JJY6oztwvbhzPKrQSQ" prefix=p2p
+time="2024-08-22 11:02:00" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_block/ssz_snappy"
+time="2024-08-22 11:02:00" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_aggregate_and_proof/ssz_snappy"
+time="2024-08-22 11:02:00" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/voluntary_exit/ssz_snappy"
+time="2024-08-22 11:02:00" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/proposer_slashing/ssz_snappy"
+time="2024-08-22 11:02:00" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/attester_slashing/ssz_snappy"
+time="2024-08-22 11:02:00" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/sync_committee_contribution_and_proof/ssz_snappy"
+time="2024-08-22 11:02:00" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_36/ssz_snappy"
+time="2024-08-22 11:02:00" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/bls_to_execution_change/ssz_snappy"
+time="2024-08-22 11:02:00" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/blob_sidecar_0/ssz_snappy"
+time="2024-08-22 11:02:00" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_37/ssz_snappy"
+time="2024-08-22 11:02:00" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/blob_sidecar_1/ssz_snappy"
+time="2024-08-22 11:02:00" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/blob_sidecar_2/ssz_snappy"
+time="2024-08-22 11:02:00" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/blob_sidecar_3/ssz_snappy"
+time="2024-08-22 11:02:00" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/blob_sidecar_4/ssz_snappy"
+time="2024-08-22 11:02:00" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/blob_sidecar_5/ssz_snappy"
+time="2024-08-22 11:02:06" level=info msg="gRPC client connected to beacon node" addr="172.99.0.7:33132" prefix=rpc
+time="2024-08-22 11:02:07" level=info msg="Updated fee recipient addresses for validator indices" prefix="rpc/validator" validatorCount=3276
+time="2024-08-22 11:02:07" level=info msg="Updated fee recipient addresses for validator indices" prefix="rpc/validator" validatorCount=3276
+time="2024-08-22 11:02:11" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/sync_committee_2/ssz_snappy"
+time="2024-08-22 11:02:11" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/sync_committee_3/ssz_snappy"
+time="2024-08-22 11:02:11" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_4/ssz_snappy"
+time="2024-08-22 11:02:11" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_7/ssz_snappy"
+time="2024-08-22 11:02:11" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/sync_committee_0/ssz_snappy"
+time="2024-08-22 11:02:11" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_5/ssz_snappy"
+time="2024-08-22 11:02:11" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_6/ssz_snappy"
+time="2024-08-22 11:02:11" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_11/ssz_snappy"
+time="2024-08-22 11:02:11" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/sync_committee_1/ssz_snappy"
+time="2024-08-22 11:02:11" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_9/ssz_snappy"
+time="2024-08-22 11:02:11" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_8/ssz_snappy"
+time="2024-08-22 11:02:11" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_10/ssz_snappy"
+time="2024-08-22 11:02:11" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_14/ssz_snappy"
+time="2024-08-22 11:02:11" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_13/ssz_snappy"
+time="2024-08-22 11:02:11" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_15/ssz_snappy"
+time="2024-08-22 11:02:11" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_12/ssz_snappy"
+time="2024-08-22 11:02:11" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_16/ssz_snappy"
+time="2024-08-22 11:02:11" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_19/ssz_snappy"
+time="2024-08-22 11:02:11" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_17/ssz_snappy"
+time="2024-08-22 11:02:11" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_18/ssz_snappy"
+time="2024-08-22 11:02:11" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_20/ssz_snappy"
+time="2024-08-22 11:02:11" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_22/ssz_snappy"
+time="2024-08-22 11:02:11" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_21/ssz_snappy"
+time="2024-08-22 11:02:11" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_23/ssz_snappy"
+time="2024-08-22 11:02:11" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_26/ssz_snappy"
+time="2024-08-22 11:02:11" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_24/ssz_snappy"
+time="2024-08-22 11:02:11" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_27/ssz_snappy"
+time="2024-08-22 11:02:11" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_25/ssz_snappy"
+time="2024-08-22 11:02:11" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_30/ssz_snappy"
+time="2024-08-22 11:02:11" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_31/ssz_snappy"
+time="2024-08-22 11:02:11" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_29/ssz_snappy"
+time="2024-08-22 11:02:11" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_28/ssz_snappy"
+time="2024-08-22 11:02:11" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_32/ssz_snappy"
+time="2024-08-22 11:02:11" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_33/ssz_snappy"
+time="2024-08-22 11:02:11" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_34/ssz_snappy"
+time="2024-08-22 11:02:11" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_35/ssz_snappy"
+time="2024-08-22 11:02:11" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_39/ssz_snappy"
+time="2024-08-22 11:02:11" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_38/ssz_snappy"
+time="2024-08-22 11:02:11" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_40/ssz_snappy"
+time="2024-08-22 11:02:11" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_41/ssz_snappy"
+time="2024-08-22 11:02:11" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_43/ssz_snappy"
+time="2024-08-22 11:02:11" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_42/ssz_snappy"
+time="2024-08-22 11:02:11" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_44/ssz_snappy"
+time="2024-08-22 11:02:11" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_46/ssz_snappy"
+time="2024-08-22 11:02:11" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_45/ssz_snappy"
+time="2024-08-22 11:02:11" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_50/ssz_snappy"
+time="2024-08-22 11:02:11" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_49/ssz_snappy"
+time="2024-08-22 11:02:11" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_48/ssz_snappy"
+time="2024-08-22 11:02:11" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_51/ssz_snappy"
+time="2024-08-22 11:02:11" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_55/ssz_snappy"
+time="2024-08-22 11:02:11" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_53/ssz_snappy"
+time="2024-08-22 11:02:11" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_54/ssz_snappy"
+time="2024-08-22 11:02:11" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_52/ssz_snappy"
+time="2024-08-22 11:02:11" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_59/ssz_snappy"
+time="2024-08-22 11:02:11" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_58/ssz_snappy"
+time="2024-08-22 11:02:11" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_57/ssz_snappy"
+time="2024-08-22 11:02:11" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_56/ssz_snappy"
+time="2024-08-22 11:02:11" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_62/ssz_snappy"
+time="2024-08-22 11:02:11" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_63/ssz_snappy"
+time="2024-08-22 11:02:11" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_61/ssz_snappy"
+time="2024-08-22 11:02:11" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_60/ssz_snappy"
+time="2024-08-22 11:02:11" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_0/ssz_snappy"
+time="2024-08-22 11:02:11" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_2/ssz_snappy"
+time="2024-08-22 11:02:11" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_3/ssz_snappy"
+time="2024-08-22 11:02:11" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_1/ssz_snappy"
+time="2024-08-22 11:02:11" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_47/ssz_snappy"
+time="2024-08-22 11:02:11" level=info msg="Synced new block" block=0x39da356d... epoch=0 finalizedEpoch=0 finalizedRoot=0x00000000... parent=0x6f1f51076f6fc1485adc4452527a1c0bb3a4e31fe106294e784db920b8b19f39... prefix=blockchain slot=1
+time="2024-08-22 11:02:11" level=info msg="Finished applying state transition" attestations=4 payloadHash=0xdd2ee9ad95a6 prefix=blockchain slot=1 syncBitsCount=96 txCount=0
+time="2024-08-22 11:02:15" level=info msg="Connected to new endpoint: http://execute-1:8551" prefix=execution
+time="2024-08-22 11:02:15" level=error msg="Beacon node is not respecting the follow distance. EL client is syncing." lastBlockNumber=1 prefix=execution
+time="2024-08-22 11:02:23" level=info msg="Synced new block" block=0x11ce9790... epoch=0 finalizedEpoch=0 finalizedRoot=0x00000000... parent=0x39da356dd74d9989ff46a463d98fd91ba338d5f9ebb7c229588b720b9daf190f... prefix=blockchain slot=2
+time="2024-08-22 11:02:23" level=info msg="Finished applying state transition" attestations=8 payloadHash=0x7c2b9a26241a prefix=blockchain slot=2 syncBitsCount=512 txCount=0
+time="2024-08-22 11:02:35" level=info msg="Synced new block" block=0x20890115... epoch=0 finalizedEpoch=0 finalizedRoot=0x00000000... parent=0x11ce97903fcbcd6cd174125c49e702b7c78a4799a0b39334d71d5fd86af00875... prefix=blockchain slot=3
+time="2024-08-22 11:02:35" level=info msg="Finished applying state transition" attestations=8 payloadHash=0xf314b5e13418 prefix=blockchain slot=3 syncBitsCount=512 txCount=0
+time="2024-08-22 11:02:47" level=info msg="Synced new block" block=0x8c934744... epoch=0 finalizedEpoch=0 finalizedRoot=0x00000000... parent=0x208901150410adbdc2fd97eb0418a3100b354a1d19c4824cf8347a3cde4d0918... prefix=blockchain slot=4
+time="2024-08-22 11:02:47" level=info msg="Finished applying state transition" attestations=8 payloadHash=0x02e00005ed93 prefix=blockchain slot=4 syncBitsCount=512 txCount=0
+time="2024-08-22 11:02:59" level=info msg="Synced new block" block=0x6750697c... epoch=0 finalizedEpoch=0 finalizedRoot=0x00000000... parent=0x8c934744fb3e132846ba8e8545301955d4bcc9c65fcdd7eb0a2dfb4bd62c1596... prefix=blockchain slot=5
+time="2024-08-22 11:02:59" level=info msg="Finished applying state transition" attestations=4 payloadHash=0xd239deb75315 prefix=blockchain slot=5 syncBitsCount=512 txCount=0
+time="2024-08-22 11:03:00" level=info msg="Peer summary" activePeers=4 inbound=0 outbound=4 prefix=p2p
+time="2024-08-22 11:03:11" level=info msg="Synced new block" block=0xce485177... epoch=0 finalizedEpoch=0 finalizedRoot=0x00000000... parent=0x6750697c643616dc2aae26e9862daaec79928591f108fbc35f26d1083f92d416... prefix=blockchain slot=6
+time="2024-08-22 11:03:11" level=info msg="Finished applying state transition" attestations=4 payloadHash=0x21c2a5521750 prefix=blockchain slot=6 syncBitsCount=512 txCount=0
+time="2024-08-22 11:03:23" level=info msg="Synced new block" block=0xc7ab2f0f... epoch=0 finalizedEpoch=0 finalizedRoot=0x00000000... parent=0xce485177a532adb839a90167eb26e4e1b14964c54c8274ef143cd5b05fcc9fca... prefix=blockchain slot=7
+time="2024-08-22 11:03:23" level=info msg="Finished applying state transition" attestations=4 payloadHash=0xa5998858704e prefix=blockchain slot=7 syncBitsCount=512 txCount=0
+time="2024-08-22 11:03:35" level=info msg="Synced new block" block=0x2738e5d2... epoch=0 finalizedEpoch=0 finalizedRoot=0x00000000... parent=0xc7ab2f0fe3d653cad6528299d1842e6d04dadf75ccf4ddca8513e7d8b0d0c4f6... prefix=blockchain slot=8
+time="2024-08-22 11:03:35" level=info msg="Finished applying state transition" attestations=4 payloadHash=0xae46a7d1e872 prefix=blockchain slot=8 syncBitsCount=512 txCount=0
+time="2024-08-22 11:03:47" level=info msg="Synced new block" block=0xe6e35862... epoch=0 finalizedEpoch=0 finalizedRoot=0x00000000... parent=0x2738e5d2ab4f8b01c656e90f66493be89dcfd03101074616313cc14b1ea94ec9... prefix=blockchain slot=9
+time="2024-08-22 11:03:47" level=info msg="Finished applying state transition" attestations=4 payloadHash=0xdfcef36775c3 prefix=blockchain slot=9 syncBitsCount=512 txCount=0
+time="2024-08-22 11:03:59" level=info msg="Synced new block" block=0xea06950a... epoch=0 finalizedEpoch=0 finalizedRoot=0x00000000... parent=0xe6e3586280befaf0e7a039cdd4eea3e7ccc2896919b0e6bf1c77cedd490c13db... prefix=blockchain slot=10
+time="2024-08-22 11:03:59" level=info msg="Finished applying state transition" attestations=4 payloadHash=0x84a385dda296 prefix=blockchain slot=10 syncBitsCount=512 txCount=0
+time="2024-08-22 11:03:59" level=info msg="Forkchoice updated with payload attributes for proposal" blockRoot=0xea06950af997 headSlot=10 payloadID=0x04a3aa811cc6 prefix=blockchain
+time="2024-08-22 11:04:00" level=info msg="Peer summary" activePeers=4 inbound=0 outbound=4 prefix=p2p
+time="2024-08-22 11:04:11" level=info msg="Begin building block" prefix="rpc/validator" sinceSlotStartTime=119.839687ms slot=11
+time="2024-08-22 11:04:11" level=warning msg="Beacon Node is no longer connected to an ETH1 chain, so ETH1 data votes are now mocked." prefix="rpc/validator"
+time="2024-08-22 11:04:11" level=info msg="Finished building block" prefix="rpc/validator" sinceSlotStartTime=133.232974ms slot=11 validator=4894
+time="2024-08-22 11:04:11" level=info msg="Synced new block" block=0xd49258eb... epoch=0 finalizedEpoch=0 finalizedRoot=0x00000000... parent=0xea06950af997586fada5087c998df3027f6ed8d5868b50483b88541a84252fdc... prefix=blockchain slot=11
+time="2024-08-22 11:04:11" level=info msg="Finished applying state transition" attestations=8 payloadHash=0xa0ddc43c089e prefix=blockchain slot=11 syncBitsCount=512 txCount=0
+time="2024-08-22 11:04:23" level=info msg="Synced new block" block=0xf311e3ae... epoch=0 finalizedEpoch=0 finalizedRoot=0x00000000... parent=0xd49258eb07aab9f5be5934fdbbed333d22e804ab0ecf274ce960cee45e0686ec... prefix=blockchain slot=12
+time="2024-08-22 11:04:23" level=info msg="Finished applying state transition" attestations=4 payloadHash=0x4626afbdedff prefix=blockchain slot=12 syncBitsCount=512 txCount=0
+time="2024-08-22 11:04:23" level=info msg="Forkchoice updated with payload attributes for proposal" blockRoot=0xf311e3ae84e1 headSlot=12 payloadID=0xe95c8689dee9 prefix=blockchain
+time="2024-08-22 11:04:35" level=info msg="Begin building block" prefix="rpc/validator" sinceSlotStartTime=121.693575ms slot=13
+time="2024-08-22 11:04:35" level=info msg="Finished building block" prefix="rpc/validator" sinceSlotStartTime=134.713101ms slot=13 validator=4929
+time="2024-08-22 11:04:35" level=info msg="Synced new block" block=0x25430240... epoch=0 finalizedEpoch=0 finalizedRoot=0x00000000... parent=0xf311e3ae84e17d82018d824d876b8ed85a8c0e7e43feded54f88b8ac2d0a5397... prefix=blockchain slot=13
+time="2024-08-22 11:04:35" level=info msg="Finished applying state transition" attestations=4 payloadHash=0x22ee27bcc3f0 prefix=blockchain slot=13 syncBitsCount=512 txCount=0
+time="2024-08-22 11:04:35" level=info msg="Forkchoice updated with payload attributes for proposal" blockRoot=0x25430240e27e headSlot=13 payloadID=0xdd9d65c2b88f prefix=blockchain
+time="2024-08-22 11:04:47" level=info msg="Begin building block" prefix="rpc/validator" sinceSlotStartTime=136.213583ms slot=14
+time="2024-08-22 11:04:47" level=info msg="Finished building block" prefix="rpc/validator" sinceSlotStartTime=146.722724ms slot=14 validator=3404
+time="2024-08-22 11:04:47" level=info msg="Synced new block" block=0x12805025... epoch=0 finalizedEpoch=0 finalizedRoot=0x00000000... parent=0x25430240e27ee7825a1f795d6d7347b5cce55cf5e5d5d06c51e9dd624d52371f... prefix=blockchain slot=14
+time="2024-08-22 11:04:47" level=info msg="Finished applying state transition" attestations=4 payloadHash=0x19978008a9fb prefix=blockchain slot=14 syncBitsCount=512 txCount=0
+time="2024-08-22 11:04:59" level=info msg="Synced new block" block=0x866ce641... epoch=0 finalizedEpoch=0 finalizedRoot=0x00000000... parent=0x12805025d132ae2c0524439d967125359b3c394bb7ad278bc37adb419e1a5ad8... prefix=blockchain slot=15
+time="2024-08-22 11:04:59" level=info msg="Finished applying state transition" attestations=4 payloadHash=0xa87ec42502ca prefix=blockchain slot=15 syncBitsCount=512 txCount=0
+time="2024-08-22 11:05:00" level=info msg="Peer summary" activePeers=4 inbound=0 outbound=4 prefix=p2p
+time="2024-08-22 11:05:11" level=info msg="Synced new block" block=0x23961473... epoch=0 finalizedEpoch=0 finalizedRoot=0x00000000... parent=0x866ce6412984e0331b243449011d31dd72fa65c888ddfaeeefc526b72ac3db28... prefix=blockchain slot=16
+time="2024-08-22 11:05:11" level=info msg="Finished applying state transition" attestations=4 payloadHash=0x5f9a05906cd6 prefix=blockchain slot=16 syncBitsCount=512 txCount=0
+time="2024-08-22 11:05:23" level=info msg="Synced new block" block=0xaf7c5122... epoch=0 finalizedEpoch=0 finalizedRoot=0x00000000... parent=0x23961473cade801c62a429678f553a48c2d3b6cf6f150b54225d4607a68b4e8a... prefix=blockchain slot=17
+time="2024-08-22 11:05:23" level=info msg="Finished applying state transition" attestations=4 payloadHash=0x7e2df9bc432c prefix=blockchain slot=17 syncBitsCount=512 txCount=0
+time="2024-08-22 11:05:23" level=info msg="Forkchoice updated with payload attributes for proposal" blockRoot=0xaf7c51228b3a headSlot=17 payloadID=0x861ffaeb5b26 prefix=blockchain
+time="2024-08-22 11:05:35" level=info msg="Begin building block" prefix="rpc/validator" sinceSlotStartTime=135.311631ms slot=18
+time="2024-08-22 11:05:35" level=info msg="Finished building block" prefix="rpc/validator" sinceSlotStartTime=145.948341ms slot=18 validator=6403
+time="2024-08-22 11:05:35" level=info msg="Synced new block" block=0x1d5897f2... epoch=0 finalizedEpoch=0 finalizedRoot=0x00000000... parent=0xaf7c51228b3ace28924dd8092dfd0569f9c657283e022a079ce7accfa9c07e49... prefix=blockchain slot=18
+time="2024-08-22 11:05:35" level=info msg="Finished applying state transition" attestations=4 payloadHash=0x55605d3a2c84 prefix=blockchain slot=18 syncBitsCount=512 txCount=0
+time="2024-08-22 11:05:47" level=info msg="Synced new block" block=0x2a583bd8... epoch=0 finalizedEpoch=0 finalizedRoot=0x00000000... parent=0x1d5897f2c9d812e714bc5362bba3f05b7e4e96a112979868fdea8608cb898cf9... prefix=blockchain slot=19
+time="2024-08-22 11:05:47" level=info msg="Finished applying state transition" attestations=4 payloadHash=0xc2b28b5da6eb prefix=blockchain slot=19 syncBitsCount=512 txCount=0
+time="2024-08-22 11:05:47" level=info msg="Forkchoice updated with payload attributes for proposal" blockRoot=0x2a583bd8a719 headSlot=19 payloadID=0xe69c41f74555 prefix=blockchain
+time="2024-08-22 11:05:59" level=info msg="Begin building block" prefix="rpc/validator" sinceSlotStartTime=119.764828ms slot=20
+time="2024-08-22 11:05:59" level=info msg="Finished building block" prefix="rpc/validator" sinceSlotStartTime=131.14708ms slot=20 validator=5660
+time="2024-08-22 11:05:59" level=info msg="Synced new block" block=0xe23240cc... epoch=0 finalizedEpoch=0 finalizedRoot=0x00000000... parent=0x2a583bd8a719441ae5cccc395d1df4c09fc16d4546944266d6c066b84557132f... prefix=blockchain slot=20
+time="2024-08-22 11:05:59" level=info msg="Finished applying state transition" attestations=4 payloadHash=0x4f23ab30013b prefix=blockchain slot=20 syncBitsCount=512 txCount=0
+time="2024-08-22 11:05:59" level=info msg="Forkchoice updated with payload attributes for proposal" blockRoot=0xe23240cc7620 headSlot=20 payloadID=0xe4902ccf3c5e prefix=blockchain
+time="2024-08-22 11:06:00" level=info msg="Peer summary" activePeers=4 inbound=0 outbound=4 prefix=p2p
+time="2024-08-22 11:06:11" level=info msg="Begin building block" prefix="rpc/validator" sinceSlotStartTime=138.264861ms slot=21
+time="2024-08-22 11:06:11" level=info msg="Finished building block" prefix="rpc/validator" sinceSlotStartTime=148.403394ms slot=21 validator=3976
+time="2024-08-22 11:06:11" level=info msg="Synced new block" block=0xcc1c772f... epoch=0 finalizedEpoch=0 finalizedRoot=0x00000000... parent=0xe23240cc76205c61cf71207e42de8263b204497a2db0bc905300e99702448990... prefix=blockchain slot=21
+time="2024-08-22 11:06:11" level=info msg="Finished applying state transition" attestations=4 payloadHash=0x7b6a56d115c1 prefix=blockchain slot=21 syncBitsCount=512 txCount=0
+time="2024-08-22 11:06:23" level=info msg="Synced new block" block=0xa564b8b9... epoch=0 finalizedEpoch=0 finalizedRoot=0x00000000... parent=0xcc1c772f0ceace99da1b5a65da160dd93174385abed779965381619d7beac188... prefix=blockchain slot=22
+time="2024-08-22 11:06:23" level=info msg="Finished applying state transition" attestations=4 payloadHash=0x28fb1080956c prefix=blockchain slot=22 syncBitsCount=512 txCount=0
+time="2024-08-22 11:06:35" level=info msg="Synced new block" block=0x113db650... epoch=0 finalizedEpoch=0 finalizedRoot=0x00000000... parent=0xa564b8b99635fc5def69a5348a5906452f3b29e9097e4d63ec3492de0300e585... prefix=blockchain slot=23
+time="2024-08-22 11:06:35" level=info msg="Finished applying state transition" attestations=4 payloadHash=0xb3d3b4adfcb5 prefix=blockchain slot=23 syncBitsCount=512 txCount=0
+time="2024-08-22 11:06:47" level=info msg="Synced new block" block=0xafcd0a34... epoch=0 finalizedEpoch=0 finalizedRoot=0x00000000... parent=0x113db6504e21f7a55c99f9be39df012c599ebc84cd8c82a95ea8b8164f95dd35... prefix=blockchain slot=24
+time="2024-08-22 11:06:47" level=info msg="Finished applying state transition" attestations=4 payloadHash=0x2964b5a26b4e prefix=blockchain slot=24 syncBitsCount=512 txCount=0
+time="2024-08-22 11:06:59" level=info msg="Synced new block" block=0x46d79c0a... epoch=0 finalizedEpoch=0 finalizedRoot=0x00000000... parent=0xafcd0a349378299dc15444f9ead67bfc4d93de20e921e0a52801527bf073eafd... prefix=blockchain slot=25
+time="2024-08-22 11:06:59" level=info msg="Finished applying state transition" attestations=4 payloadHash=0x10ca04c5dedb prefix=blockchain slot=25 syncBitsCount=512 txCount=0
+time="2024-08-22 11:07:00" level=info msg="Peer summary" activePeers=4 inbound=0 outbound=4 prefix=p2p
+time="2024-08-22 11:07:11" level=info msg="Synced new block" block=0xdc637f4a... epoch=0 finalizedEpoch=0 finalizedRoot=0x00000000... parent=0x46d79c0ade590885027d452999ee221a523e3b2f900839be633af956c6a91bf6... prefix=blockchain slot=26
+time="2024-08-22 11:07:11" level=info msg="Finished applying state transition" attestations=4 payloadHash=0x6e94dde393d6 prefix=blockchain slot=26 syncBitsCount=512 txCount=0
+time="2024-08-22 11:07:23" level=info msg="Synced new block" block=0xe4f4280b... epoch=0 finalizedEpoch=0 finalizedRoot=0x00000000... parent=0xdc637f4ae695d50ee00993f9b0b467601a480200a184fcd06a31f4fcfc06ffa9... prefix=blockchain slot=27
+time="2024-08-22 11:07:23" level=info msg="Finished applying state transition" attestations=4 payloadHash=0xa66013671902 prefix=blockchain slot=27 syncBitsCount=512 txCount=0
+time="2024-08-22 11:07:35" level=info msg="Synced new block" block=0xcd580cf8... epoch=0 finalizedEpoch=0 finalizedRoot=0x00000000... parent=0xe4f4280bc4b3bf4ee5ff5e6a11447b95294f78234c59f56ceac9dbbeda7d9171... prefix=blockchain slot=28
+time="2024-08-22 11:07:35" level=info msg="Finished applying state transition" attestations=4 payloadHash=0x2e4019d3a497 prefix=blockchain slot=28 syncBitsCount=512 txCount=0
+time="2024-08-22 11:07:47" level=info msg="Synced new block" block=0x555ad6b4... epoch=0 finalizedEpoch=0 finalizedRoot=0x00000000... parent=0xcd580cf8a29ffb3d923b20f027502fb5de9917927b2aafe5930a372fe9fe3fee... prefix=blockchain slot=29
+time="2024-08-22 11:07:47" level=info msg="Finished applying state transition" attestations=4 payloadHash=0x9be243e3e6d0 prefix=blockchain slot=29 syncBitsCount=512 txCount=0
+time="2024-08-22 11:07:47" level=info msg="Forkchoice updated with payload attributes for proposal" blockRoot=0x555ad6b48d19 headSlot=29 payloadID=0xaae15ecef786 prefix=blockchain
+time="2024-08-22 11:07:59" level=info msg="Begin building block" prefix="rpc/validator" sinceSlotStartTime=130.381803ms slot=30
+time="2024-08-22 11:07:59" level=info msg="Finished building block" prefix="rpc/validator" sinceSlotStartTime=143.67645ms slot=30 validator=5403
+time="2024-08-22 11:07:59" level=info msg="Synced new block" block=0x62652833... epoch=0 finalizedEpoch=0 finalizedRoot=0x00000000... parent=0x555ad6b48d19e1da6b8cf15528b0a41b24b487fdfcb28f14c79b78cf7aa49d0a... prefix=blockchain slot=30
+time="2024-08-22 11:07:59" level=info msg="Finished applying state transition" attestations=4 payloadHash=0xf6f3630bfe2e prefix=blockchain slot=30 syncBitsCount=512 txCount=0
+time="2024-08-22 11:08:00" level=info msg="Peer summary" activePeers=4 inbound=0 outbound=4 prefix=p2p
+time="2024-08-22 11:08:11" level=info msg="Synced new block" block=0x4bb06f77... epoch=0 finalizedEpoch=0 finalizedRoot=0x00000000... parent=0x626528332f4bfc310cb58e431eccd8547a84b76e3ad13f5153d7d0b03b4c25b1... prefix=blockchain slot=31
+time="2024-08-22 11:08:11" level=info msg="Finished applying state transition" attestations=4 payloadHash=0x4c56d2a9559b prefix=blockchain slot=31 syncBitsCount=512 txCount=0
+time="2024-08-22 11:08:11" level=info msg="Forkchoice updated with payload attributes for proposal" blockRoot=0x4bb06f77de20 headSlot=31 payloadID=0xb080926277b3 prefix=blockchain
+time="2024-08-22 11:08:23" level=error msg="could not process new slot" error="0x0000000000000000000000000000000000000000000000000000000000000000: unknown finalized root" prefix=blockchain
+time="2024-08-22 11:08:23" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_4/ssz_snappy"
+time="2024-08-22 11:08:23" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_6/ssz_snappy"
+time="2024-08-22 11:08:23" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_7/ssz_snappy"
+time="2024-08-22 11:08:23" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_5/ssz_snappy"
+time="2024-08-22 11:08:23" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_9/ssz_snappy"
+time="2024-08-22 11:08:23" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_11/ssz_snappy"
+time="2024-08-22 11:08:23" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_10/ssz_snappy"
+time="2024-08-22 11:08:23" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_15/ssz_snappy"
+time="2024-08-22 11:08:23" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_14/ssz_snappy"
+time="2024-08-22 11:08:23" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_13/ssz_snappy"
+time="2024-08-22 11:08:23" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_12/ssz_snappy"
+time="2024-08-22 11:08:23" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_18/ssz_snappy"
+time="2024-08-22 11:08:23" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_17/ssz_snappy"
+time="2024-08-22 11:08:23" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_16/ssz_snappy"
+time="2024-08-22 11:08:23" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_19/ssz_snappy"
+time="2024-08-22 11:08:23" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_23/ssz_snappy"
+time="2024-08-22 11:08:23" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_22/ssz_snappy"
+time="2024-08-22 11:08:23" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_21/ssz_snappy"
+time="2024-08-22 11:08:23" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_24/ssz_snappy"
+time="2024-08-22 11:08:23" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_26/ssz_snappy"
+time="2024-08-22 11:08:23" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_27/ssz_snappy"
+time="2024-08-22 11:08:23" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_25/ssz_snappy"
+time="2024-08-22 11:08:23" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_29/ssz_snappy"
+time="2024-08-22 11:08:23" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_28/ssz_snappy"
+time="2024-08-22 11:08:23" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_30/ssz_snappy"
+time="2024-08-22 11:08:23" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_31/ssz_snappy"
+time="2024-08-22 11:08:23" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_32/ssz_snappy"
+time="2024-08-22 11:08:23" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_33/ssz_snappy"
+time="2024-08-22 11:08:23" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_35/ssz_snappy"
+time="2024-08-22 11:08:23" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_34/ssz_snappy"
+time="2024-08-22 11:08:23" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_39/ssz_snappy"
+time="2024-08-22 11:08:23" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_38/ssz_snappy"
+time="2024-08-22 11:08:23" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_41/ssz_snappy"
+time="2024-08-22 11:08:23" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_43/ssz_snappy"
+time="2024-08-22 11:08:23" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_40/ssz_snappy"
+time="2024-08-22 11:08:23" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_42/ssz_snappy"
+time="2024-08-22 11:08:23" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_47/ssz_snappy"
+time="2024-08-22 11:08:23" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_45/ssz_snappy"
+time="2024-08-22 11:08:23" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_44/ssz_snappy"
+time="2024-08-22 11:08:23" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_46/ssz_snappy"
+time="2024-08-22 11:08:23" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_51/ssz_snappy"
+time="2024-08-22 11:08:23" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_48/ssz_snappy"
+time="2024-08-22 11:08:23" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_49/ssz_snappy"
+time="2024-08-22 11:08:23" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_50/ssz_snappy"
+time="2024-08-22 11:08:23" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_55/ssz_snappy"
+time="2024-08-22 11:08:23" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_52/ssz_snappy"
+time="2024-08-22 11:08:23" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_54/ssz_snappy"
+time="2024-08-22 11:08:23" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_53/ssz_snappy"
+time="2024-08-22 11:08:23" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_58/ssz_snappy"
+time="2024-08-22 11:08:23" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_56/ssz_snappy"
+time="2024-08-22 11:08:23" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_57/ssz_snappy"
+time="2024-08-22 11:08:23" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_59/ssz_snappy"
+time="2024-08-22 11:08:23" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_8/ssz_snappy"
+time="2024-08-22 11:08:23" level=info msg="Subscribed to topic" prefix=sync topic="/eth2/928bc6e0/beacon_attestation_20/ssz_snappy"
+time="2024-08-22 11:08:23" level=info msg="Updated fee recipient addresses for validator indices" prefix="rpc/validator" validatorCount=3276
+time="2024-08-22 11:08:23" level=info msg="Begin building block" prefix="rpc/validator" sinceSlotStartTime=219.825264ms slot=32
+time="2024-08-22 11:08:23" level=info msg="Finished building block" prefix="rpc/validator" sinceSlotStartTime=244.134144ms slot=32 validator=5729
+time="2024-08-22 11:08:23" level=info msg="Synced new block" block=0xc5f6c4e0... epoch=1 finalizedEpoch=0 finalizedRoot=0x00000000... parent=0x4bb06f77de206549b27d1b71a5de3a158480f7640bc2d4e1e7b7c4f957d5398a... prefix=blockchain slot=32
+time="2024-08-22 11:08:23" level=info msg="Finished applying state transition" attestations=4 payloadHash=0xa85c2c15c835 prefix=blockchain slot=32 syncBitsCount=512 txCount=0
+time="2024-08-22 11:08:24" level=info msg="SetChainState for peer" chainState=fork_digest:"\x92\x8b\xc6\xe0"  finalized_root:"\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"  head_root:"\xc5\xf6\xc4\xe0\x8c\x9dŎk\x11[\x99}\xbc̖Oyx\x9b\x06m\xf8<9&\xcf-\xf7\xa5\xb7S"  head_slot:32 peer=16Uiu2HAkuVr12eYtMNuxcRcTYj9PYHxVTz8TYkDjGgg8ZtFWi2rP prefix=peers
+time="2024-08-22 11:08:24" level=info msg="SetChainState for peer" chainState=fork_digest:"\x92\x8b\xc6\xe0"  finalized_root:"\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"  head_root:"\xc5\xf6\xc4\xe0\x8c\x9dŎk\x11[\x99}\xbc̖Oyx\x9b\x06m\xf8<9&\xcf-\xf7\xa5\xb7S"  head_slot:32 peer=16Uiu2HAm42EM98s9Feq2VoWP6R78FtHs6T9sWY3HaGFn7assWc87 prefix=peers
+time="2024-08-22 11:08:24" level=info msg="SetChainState for peer" chainState=fork_digest:"\x92\x8b\xc6\xe0"  finalized_root:"\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"  head_root:"\xc5\xf6\xc4\xe0\x8c\x9dŎk\x11[\x99}\xbc̖Oyx\x9b\x06m\xf8<9&\xcf-\xf7\xa5\xb7S"  head_slot:32 peer=16Uiu2HAmNhdZermeUdkQuZeathnkEiWHH8KFJcSsXPeTR3JA6Zue prefix=peers
+time="2024-08-22 11:08:24" level=info msg="SetChainState for peer" chainState=fork_digest:"\x92\x8b\xc6\xe0"  finalized_root:"\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"  head_root:"\xc5\xf6\xc4\xe0\x8c\x9dŎk\x11[\x99}\xbc̖Oyx\x9b\x06m\xf8<9&\xcf-\xf7\xa5\xb7S"  head_slot:32 peer=16Uiu2HAmDashuTodN3KUjWFM3yvcUE5h1qUHYGnEGJ98vFaFVB9W prefix=peers
+time="2024-08-22 11:08:35" level=info msg="Synced new block" block=0xab164b6c... epoch=1 finalizedEpoch=0 finalizedRoot=0x00000000... parent=0xc5f6c4e08c9dc58e6b115b997dbccc964f79789b066df83c3926cf2df7a5b753... prefix=blockchain slot=33
+time="2024-08-22 11:08:35" level=info msg="Finished applying state transition" attestations=4 payloadHash=0xc2450aa8133a prefix=blockchain slot=33 syncBitsCount=512 txCount=0
+time="2024-08-22 11:08:47" level=info msg="Synced new block" block=0x9b5c4233... epoch=1 finalizedEpoch=0 finalizedRoot=0x00000000... parent=0xab164b6c3f43afc28b3deaf0d7215cbfb9702b1c97ab849da66480db1f95eaa6... prefix=blockchain slot=34
+time="2024-08-22 11:08:47" level=info msg="Finished applying state transition" attestations=4 payloadHash=0x4538d4c5f0f3 prefix=blockchain slot=34 syncBitsCount=512 txCount=0
+time="2024-08-22 11:08:59" level=info msg="Synced new block" block=0x641a833c... epoch=1 finalizedEpoch=0 finalizedRoot=0x00000000... parent=0x9b5c42337f4962a50c1443d72cf37d1d11dce3ba6e038332a0225579bf9ffb7d... prefix=blockchain slot=35
+time="2024-08-22 11:08:59" level=info msg="Finished applying state transition" attestations=4 payloadHash=0x9e2ad5b65bd0 prefix=blockchain slot=35 syncBitsCount=512 txCount=0
+time="2024-08-22 11:08:59" level=info msg="Forkchoice updated with payload attributes for proposal" blockRoot=0x641a833cdea0 headSlot=35 payloadID=0xf58168f16ae3 prefix=blockchain
+time="2024-08-22 11:09:00" level=info msg="Peer summary" activePeers=4 inbound=0 outbound=4 prefix=p2p
+time="2024-08-22 11:09:11" level=info msg="Begin building block" prefix="rpc/validator" sinceSlotStartTime=132.914455ms slot=36
+time="2024-08-22 11:09:11" level=info msg="Finished building block" prefix="rpc/validator" sinceSlotStartTime=144.766726ms slot=36 validator=3575
+time="2024-08-22 11:09:11" level=info msg="Synced new block" block=0xb915e0f9... epoch=1 finalizedEpoch=0 finalizedRoot=0x00000000... parent=0x641a833cdea02624deed0be7bb936eec9d1da5d4ee3369f18c9e314e40296d15... prefix=blockchain slot=36
+time="2024-08-22 11:09:11" level=info msg="Finished applying state transition" attestations=4 payloadHash=0x5599bf8642f3 prefix=blockchain slot=36 syncBitsCount=512 txCount=0
+time="2024-08-22 11:09:11" level=info msg="Forkchoice updated with payload attributes for proposal" blockRoot=0xb915e0f99ccd headSlot=36 payloadID=0x6788b22b99ad prefix=blockchain
+time="2024-08-22 11:09:23" level=info msg="Begin building block" prefix="rpc/validator" sinceSlotStartTime=132.142435ms slot=37
+time="2024-08-22 11:09:23" level=info msg="Finished building block" prefix="rpc/validator" sinceSlotStartTime=143.537277ms slot=37 validator=5662
+time="2024-08-22 11:09:23" level=info msg="Synced new block" block=0x6f1972ce... epoch=1 finalizedEpoch=0 finalizedRoot=0x00000000... parent=0xb915e0f99ccd8907433218ecfa238553ef6fa22410fd6f9730581b6bbf208853... prefix=blockchain slot=37
+time="2024-08-22 11:09:23" level=info msg="Finished applying state transition" attestations=4 payloadHash=0x5e2ead2ba540 prefix=blockchain slot=37 syncBitsCount=512 txCount=0
+time="2024-08-22 11:09:35" level=info msg="Synced new block" block=0x693f27c0... epoch=1 finalizedEpoch=0 finalizedRoot=0x00000000... parent=0x6f1972cecce5ba93f3c6a429b75ab9fc1a23a31fa5e4ba4077bdb50218d1faff... prefix=blockchain slot=38
+time="2024-08-22 11:09:35" level=info msg="Finished applying state transition" attestations=4 payloadHash=0x50722f0c9d26 prefix=blockchain slot=38 syncBitsCount=512 txCount=0
+time="2024-08-22 11:09:47" level=info msg="Synced new block" block=0x63888124... epoch=1 finalizedEpoch=0 finalizedRoot=0x00000000... parent=0x693f27c04131ebd01eeb54092dd29f25c8cd54d1040707b8ddf5c4cb71ea70dc... prefix=blockchain slot=39
+time="2024-08-22 11:09:47" level=info msg="Finished applying state transition" attestations=4 payloadHash=0xd7d05e8024c5 prefix=blockchain slot=39 syncBitsCount=512 txCount=0
+time="2024-08-22 11:09:59" level=info msg="Synced new block" block=0xba108909... epoch=1 finalizedEpoch=0 finalizedRoot=0x00000000... parent=0x63888124c326d269cb3e007a75f46bf8efdfb38c09847e0bffa3a430b3e4ab77... prefix=blockchain slot=40
+time="2024-08-22 11:09:59" level=info msg="Finished applying state transition" attestations=4 payloadHash=0xa59540007bd9 prefix=blockchain slot=40 syncBitsCount=512 txCount=0
+time="2024-08-22 11:09:59" level=info msg="Forkchoice updated with payload attributes for proposal" blockRoot=0xba108909ae28 headSlot=40 payloadID=0x1bbe92630243 prefix=blockchain
+time="2024-08-22 11:10:00" level=info msg="Peer summary" activePeers=4 inbound=0 outbound=4 prefix=p2p
+time="2024-08-22 11:10:11" level=info msg="Begin building block" prefix="rpc/validator" sinceSlotStartTime=119.82969ms slot=41
+time="2024-08-22 11:10:11" level=info msg="Finished building block" prefix="rpc/validator" sinceSlotStartTime=132.709088ms slot=41 validator=4781
+time="2024-08-22 11:10:11" level=info msg="Synced new block" block=0xde8d46af... epoch=1 finalizedEpoch=0 finalizedRoot=0x00000000... parent=0xba108909ae28290e80f23a1adcf5ddc1d14bb23671fb87f6288646d7dac56d4a... prefix=blockchain slot=41
+time="2024-08-22 11:10:11" level=info msg="Finished applying state transition" attestations=4 payloadHash=0xb58eb6c88a57 prefix=blockchain slot=41 syncBitsCount=512 txCount=0
+time="2024-08-22 11:10:23" level=info msg="Synced new block" block=0x324819ae... epoch=1 finalizedEpoch=0 finalizedRoot=0x00000000... parent=0xde8d46af27b31adeecf401d4f5093ec9dbe22002ac2e16784bc72578102985cb... prefix=blockchain slot=42
+time="2024-08-22 11:10:23" level=info msg="Finished applying state transition" attestations=4 payloadHash=0x7c771a314886 prefix=blockchain slot=42 syncBitsCount=512 txCount=0
+time="2024-08-22 11:10:23" level=info msg="Forkchoice updated with payload attributes for proposal" blockRoot=0x324819aebf36 headSlot=42 payloadID=0x4aebec820f26 prefix=blockchain
+time="2024-08-22 11:10:35" level=info msg="Begin building block" prefix="rpc/validator" sinceSlotStartTime=126.947717ms slot=43
+time="2024-08-22 11:10:35" level=info msg="Finished building block" prefix="rpc/validator" sinceSlotStartTime=138.664536ms slot=43 validator=4636
+time="2024-08-22 11:10:35" level=info msg="Synced new block" block=0x79502dea... epoch=1 finalizedEpoch=0 finalizedRoot=0x00000000... parent=0x324819aebf361985f9179ffb3b206814588495b01a0de23a908b4b8e782fe05d... prefix=blockchain slot=43
+time="2024-08-22 11:10:35" level=info msg="Finished applying state transition" attestations=4 payloadHash=0xff790b8f4907 prefix=blockchain slot=43 syncBitsCount=512 txCount=0
+time="2024-08-22 11:10:35" level=info msg="Forkchoice updated with payload attributes for proposal" blockRoot=0x79502deac4aa headSlot=43 payloadID=0xfc7205a9ed84 prefix=blockchain
+time="2024-08-22 11:10:47" level=info msg="Begin building block" prefix="rpc/validator" sinceSlotStartTime=125.776419ms slot=44
+time="2024-08-22 11:10:47" level=info msg="Finished building block" prefix="rpc/validator" sinceSlotStartTime=139.137263ms slot=44 validator=5404
+time="2024-08-22 11:10:47" level=info msg="Synced new block" block=0x679437fd... epoch=1 finalizedEpoch=0 finalizedRoot=0x00000000... parent=0x79502deac4aa4de7eecfa3cf766d08d976f6843dc525572add8a49b934ff327c... prefix=blockchain slot=44
+time="2024-08-22 11:10:47" level=info msg="Finished applying state transition" attestations=4 payloadHash=0xea696d2f7d65 prefix=blockchain slot=44 syncBitsCount=512 txCount=0
+time="2024-08-22 11:10:59" level=info msg="Synced new block" block=0x9c044720... epoch=1 finalizedEpoch=0 finalizedRoot=0x00000000... parent=0x679437fd4f442c27c699d11c98499251901368adb6241cfa9f2b4c6c67542278... prefix=blockchain slot=45
+time="2024-08-22 11:10:59" level=info msg="Finished applying state transition" attestations=4 payloadHash=0xab9874d0d37e prefix=blockchain slot=45 syncBitsCount=512 txCount=0
+time="2024-08-22 11:11:00" level=info msg="Peer summary" activePeers=4 inbound=0 outbound=4 prefix=p2p
+time="2024-08-22 11:11:11" level=info msg="Synced new block" block=0xb77ba0ec... epoch=1 finalizedEpoch=0 finalizedRoot=0x00000000... parent=0x9c044720dd147d7709b534a3958e041eacffdab3e6abda70baa2bc391b937644... prefix=blockchain slot=46
+time="2024-08-22 11:11:11" level=info msg="Finished applying state transition" attestations=4 payloadHash=0x91a995ab4083 prefix=blockchain slot=46 syncBitsCount=512 txCount=0
+time="2024-08-22 11:11:23" level=info msg="Synced new block" block=0x373fd8e1... epoch=1 finalizedEpoch=0 finalizedRoot=0x00000000... parent=0xb77ba0ec6da27a5adc3474b6b8198b58c210761fa8028c687db80bbc84e1c3e9... prefix=blockchain slot=47
+time="2024-08-22 11:11:23" level=info msg="Finished applying state transition" attestations=4 payloadHash=0x3d8b05b385d9 prefix=blockchain slot=47 syncBitsCount=512 txCount=0
+time="2024-08-22 11:11:35" level=info msg="Synced new block" block=0x176c1509... epoch=1 finalizedEpoch=0 finalizedRoot=0x00000000... parent=0x373fd8e107fff7bb730deb1877743ef11c49d16f58f42500008d21aba23c126c... prefix=blockchain slot=48
+time="2024-08-22 11:11:35" level=info msg="Finished applying state transition" attestations=4 payloadHash=0xab4708415f91 prefix=blockchain slot=48 syncBitsCount=512 txCount=0
+time="2024-08-22 11:11:36" level=info msg="SetChainState for peer" chainState=fork_digest:"\x92\x8b\xc6\xe0"  finalized_root:"\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"  head_root:"\x17l\x15\tϒ\xd01\xe0B\xa7\xd6v.\x8ej\x87\xaf\x04\x84\x96\x12\x97\xaa\x96\x03:\x07\x04:\xee\x87"  head_slot:48 peer=16Uiu2HAmDashuTodN3KUjWFM3yvcUE5h1qUHYGnEGJ98vFaFVB9W prefix=peers
+time="2024-08-22 11:11:47" level=info msg="Synced new block" block=0xd6a705e6... epoch=1 finalizedEpoch=0 finalizedRoot=0x00000000... parent=0x176c1509cf92d031e042a7d6762e8e6a87af0484961297aa96033a07043aee87... prefix=blockchain slot=49
+time="2024-08-22 11:11:47" level=info msg="Finished applying state transition" attestations=4 payloadHash=0x16e456c2d43e prefix=blockchain slot=49 syncBitsCount=512 txCount=0
+time="2024-08-22 11:11:59" level=info msg="Synced new block" block=0x87d6996d... epoch=1 finalizedEpoch=0 finalizedRoot=0x00000000... parent=0xd6a705e6328cf9112b9c0cd75b8bc1838e35b10d80e393a7d0f9b17fcdc8e28b... prefix=blockchain slot=50
+time="2024-08-22 11:11:59" level=info msg="Finished applying state transition" attestations=4 payloadHash=0x68468d64a0af prefix=blockchain slot=50 syncBitsCount=512 txCount=0
+time="2024-08-22 11:11:59" level=info msg="Forkchoice updated with payload attributes for proposal" blockRoot=0x87d6996db12d headSlot=50 payloadID=0x4a66baa16991 prefix=blockchain
+time="2024-08-22 11:12:00" level=info msg="Peer summary" activePeers=4 inbound=0 outbound=4 prefix=p2p

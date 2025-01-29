@@ -1,0 +1,570 @@
+INFO [08-22|11:01:57.264] Starting Geth on Ethereum mainnet... 
+INFO [08-22|11:01:57.264] Bumping default cache on mainnet         provided=1024 updated=4096
+INFO [08-22|11:01:57.265] Maximum peer count                       ETH=50 LES=0 total=50
+INFO [08-22|11:01:57.266] Smartcard socket not found, disabling    err="stat /run/pcscd/pcscd.comm: no such file or directory"
+INFO [08-22|11:01:57.268] Set global gas cap                       cap=50,000,000
+INFO [08-22|11:01:57.268] Initializing the KZG library             backend=gokzg
+INFO [08-22|11:01:57.287] Allocated trie memory caches             clean=614.00MiB dirty=1024.00MiB
+INFO [08-22|11:01:57.287] Using pebble as the backing database 
+INFO [08-22|11:01:57.287] Allocated cache and file handles         database=/root/gethdata/geth/chaindata cache=2.00GiB handles=524,288
+INFO [08-22|11:01:57.327] Opened ancient database                  database=/root/gethdata/geth/chaindata/ancient/chain readonly=false
+INFO [08-22|11:01:57.327] State scheme set to already existing     scheme=hash
+INFO [08-22|11:01:57.327] Initialising Ethereum protocol           network=32382 dbversion=<nil>
+INFO [08-22|11:01:57.332]  
+INFO [08-22|11:01:57.332] --------------------------------------------------------------------------------------------------------------------------------------------------------- 
+INFO [08-22|11:01:57.332] Chain ID:  32382 (unknown) 
+INFO [08-22|11:01:57.332] Consensus: unknown 
+INFO [08-22|11:01:57.332]  
+INFO [08-22|11:01:57.332] Pre-Merge hard forks (block based): 
+INFO [08-22|11:01:57.332]  - Homestead:                   #0        (https://github.com/ethereum/execution-specs/blob/master/network-upgrades/mainnet-upgrades/homestead.md) 
+INFO [08-22|11:01:57.332]  - Tangerine Whistle (EIP 150): #0        (https://github.com/ethereum/execution-specs/blob/master/network-upgrades/mainnet-upgrades/tangerine-whistle.md) 
+INFO [08-22|11:01:57.332]  - Spurious Dragon/1 (EIP 155): #0        (https://github.com/ethereum/execution-specs/blob/master/network-upgrades/mainnet-upgrades/spurious-dragon.md) 
+INFO [08-22|11:01:57.332]  - Spurious Dragon/2 (EIP 158): #0        (https://github.com/ethereum/execution-specs/blob/master/network-upgrades/mainnet-upgrades/spurious-dragon.md) 
+INFO [08-22|11:01:57.332]  - Byzantium:                   #0        (https://github.com/ethereum/execution-specs/blob/master/network-upgrades/mainnet-upgrades/byzantium.md) 
+INFO [08-22|11:01:57.332]  - Constantinople:              #0        (https://github.com/ethereum/execution-specs/blob/master/network-upgrades/mainnet-upgrades/constantinople.md) 
+INFO [08-22|11:01:57.332]  - Petersburg:                  #0        (https://github.com/ethereum/execution-specs/blob/master/network-upgrades/mainnet-upgrades/petersburg.md) 
+INFO [08-22|11:01:57.332]  - Istanbul:                    #0        (https://github.com/ethereum/execution-specs/blob/master/network-upgrades/mainnet-upgrades/istanbul.md) 
+INFO [08-22|11:01:57.332]  - Muir Glacier:                #0        (https://github.com/ethereum/execution-specs/blob/master/network-upgrades/mainnet-upgrades/muir-glacier.md) 
+INFO [08-22|11:01:57.332]  - Berlin:                      #0        (https://github.com/ethereum/execution-specs/blob/master/network-upgrades/mainnet-upgrades/berlin.md) 
+INFO [08-22|11:01:57.332]  - London:                      #0        (https://github.com/ethereum/execution-specs/blob/master/network-upgrades/mainnet-upgrades/london.md) 
+INFO [08-22|11:01:57.332]  - Arrow Glacier:               #0        (https://github.com/ethereum/execution-specs/blob/master/network-upgrades/mainnet-upgrades/arrow-glacier.md) 
+INFO [08-22|11:01:57.332]  - Gray Glacier:                #0        (https://github.com/ethereum/execution-specs/blob/master/network-upgrades/mainnet-upgrades/gray-glacier.md) 
+INFO [08-22|11:01:57.332]  
+INFO [08-22|11:01:57.332] Merge configured: 
+INFO [08-22|11:01:57.332]  - Hard-fork specification:    https://github.com/ethereum/execution-specs/blob/master/network-upgrades/mainnet-upgrades/paris.md 
+INFO [08-22|11:01:57.332]  - Network known to be merged: true 
+INFO [08-22|11:01:57.332]  - Total terminal difficulty:  0 
+INFO [08-22|11:01:57.332]  
+INFO [08-22|11:01:57.332] Post-Merge hard forks (timestamp based): 
+INFO [08-22|11:01:57.332]  - Shanghai:                    @1737543719 (https://github.com/ethereum/execution-specs/blob/master/network-upgrades/mainnet-upgrades/shanghai.md) 
+INFO [08-22|11:01:57.332]  - Cancun:                      @1737543719 
+INFO [08-22|11:01:57.332]  
+INFO [08-22|11:01:57.332] --------------------------------------------------------------------------------------------------------------------------------------------------------- 
+INFO [08-22|11:01:57.332]  
+INFO [08-22|11:01:57.332] Loaded most recent local block           number=0 hash=2dc91e..c388a0 td=1 age=0
+WARN [08-22|11:01:57.333] Failed to load snapshot                  err="missing or corrupted snapshot"
+INFO [08-22|11:01:57.339] Rebuilding state snapshot 
+INFO [08-22|11:01:57.342] Resuming state snapshot generation       root=b89564..840372 accounts=0 slots=0 storage=0.00B dangling=0 elapsed=3.127ms
+INFO [08-22|11:01:57.342] Initialized transaction indexer          limit=2,350,000
+INFO [08-22|11:01:57.342] Regenerated local transaction journal    transactions=0 accounts=0
+INFO [08-22|11:01:57.356] Chain post-merge, sync via beacon client 
+INFO [08-22|11:01:57.356] Gasprice oracle is ignoring threshold set threshold=2
+WARN [08-22|11:01:57.359] Engine API enabled                       protocol=eth
+INFO [08-22|11:01:57.359] Starting peer-to-peer node               instance=Geth/v1.13.5-stable-916d6a44/linux-amd64/go1.20.14
+INFO [08-22|11:01:57.364] Generated state snapshot                 accounts=1024 slots=0 storage=48.04KiB dangling=0 elapsed=24.963ms
+INFO [08-22|11:01:57.385] New local node record                    seq=1,737,543,717,384 id=2a6d3095a20e8808 ip=127.0.0.1 udp=30303 tcp=30303
+INFO [08-22|11:01:57.385] Started P2P networking                   self=enode://d4733eef7221d0e50b4a0595b3a35e4137b4d924a74c8badf18986fcac989fa5475f30bb5e8e0fa4a23114634ca737a004f0b115e47574ff492165b7dc7f9be4@127.0.0.1:30303
+INFO [08-22|11:01:57.385] IPC endpoint opened                      url=/root/gethdata/geth.ipc
+INFO [08-22|11:01:57.386] Loaded JWT secret file                   path=/root/config/jwtsecret crc32=0xa17c81b6
+INFO [08-22|11:01:57.386] HTTP server started                      endpoint=[::]:8545 auth=false prefix= cors=* vhosts=localhost
+INFO [08-22|11:01:57.386] WebSocket enabled                        url=ws://[::]:8546
+INFO [08-22|11:01:57.386] WebSocket enabled                        url=ws://[::]:8551
+INFO [08-22|11:01:57.386] HTTP server started                      endpoint=[::]:8551 auth=true  prefix= cors=localhost vhosts=*
+INFO [08-22|11:01:58.037] Unlocked account                         address=0x123463a4B065722E99115D6c222f267d9cABb524
+INFO [08-22|11:02:11.178] Starting work on payload                 id=0x6222d8a4136e5f68
+INFO [08-22|11:02:11.178] Updated payload                          id=0x6222d8a4136e5f68 number=1 hash=dd2ee9..6f2496 txs=0 withdrawals=0 gas=0 fees=0 root=b89564..840372 elapsed="109.801µs"
+INFO [08-22|11:02:11.179] Stopping work on payload                 id=0x6222d8a4136e5f68 reason=delivery
+INFO [08-22|11:02:11.222] Imported new potential chain segment     number=1 hash=dd2ee9..6f2496 blocks=1 txs=0 mgas=0.000 elapsed=2.927ms     mgasps=0.000 triedirty=0.00B
+INFO [08-22|11:02:11.224] Left PoW stage 
+INFO [08-22|11:02:11.260] Chain head was updated                   number=1 hash=dd2ee9..6f2496 root=b89564..840372 elapsed=2.642835ms
+ERROR[08-22|11:02:11.260] Nil finalized block cannot evict old blobs 
+WARN [08-22|11:02:11.286] Ignoring already known beacon payload    number=1 hash=dd2ee9..6f2496 age=0
+WARN [08-22|11:02:11.287] Ignoring already known beacon payload    number=1 hash=dd2ee9..6f2496 age=0
+WARN [08-22|11:02:11.291] Ignoring already known beacon payload    number=1 hash=dd2ee9..6f2496 age=0
+WARN [08-22|11:02:11.292] Ignoring already known beacon payload    number=1 hash=dd2ee9..6f2496 age=0
+INFO [08-22|11:02:11.349] Starting work on payload                 id=0x9ddcb88a036c6d65
+INFO [08-22|11:02:11.349] Updated payload                          id=0x9ddcb88a036c6d65 number=2 hash=7c2b9a..cf1247 txs=0 withdrawals=0 gas=0 fees=0 root=b89564..840372 elapsed="61.926µs"
+INFO [08-22|11:02:23.135] Stopping work on payload                 id=0x9ddcb88a036c6d65 reason=delivery
+INFO [08-22|11:02:23.151] Imported new potential chain segment     number=2 hash=7c2b9a..cf1247 blocks=1 txs=0 mgas=0.000 elapsed=1.910ms     mgasps=0.000 triedirty=0.00B
+INFO [08-22|11:02:23.185] Chain head was updated                   number=2 hash=7c2b9a..cf1247 root=b89564..840372 elapsed=1.334601ms
+ERROR[08-22|11:02:23.186] Nil finalized block cannot evict old blobs 
+WARN [08-22|11:02:23.189] Ignoring already known beacon payload    number=2 hash=7c2b9a..cf1247 age=0
+WARN [08-22|11:02:23.189] Ignoring already known beacon payload    number=2 hash=7c2b9a..cf1247 age=0
+WARN [08-22|11:02:23.189] Ignoring already known beacon payload    number=2 hash=7c2b9a..cf1247 age=0
+WARN [08-22|11:02:23.190] Ignoring already known beacon payload    number=2 hash=7c2b9a..cf1247 age=0
+INFO [08-22|11:02:23.226] Starting work on payload                 id=0x7c1d614748ba1b20
+INFO [08-22|11:02:23.226] Updated payload                          id=0x7c1d614748ba1b20 number=3 hash=f314b5..306537 txs=0 withdrawals=0 gas=0 fees=0 root=b89564..840372 elapsed="73.268µs"
+INFO [08-22|11:02:35.136] Stopping work on payload                 id=0x7c1d614748ba1b20 reason=delivery
+INFO [08-22|11:02:35.155] Imported new potential chain segment     number=3 hash=f314b5..306537 blocks=1 txs=0 mgas=0.000 elapsed=1.632ms     mgasps=0.000 triedirty=0.00B
+INFO [08-22|11:02:35.187] Chain head was updated                   number=3 hash=f314b5..306537 root=b89564..840372 elapsed=1.938431ms
+ERROR[08-22|11:02:35.187] Nil finalized block cannot evict old blobs 
+WARN [08-22|11:02:35.192] Ignoring already known beacon payload    number=3 hash=f314b5..306537 age=0
+WARN [08-22|11:02:35.192] Ignoring already known beacon payload    number=3 hash=f314b5..306537 age=0
+WARN [08-22|11:02:35.193] Ignoring already known beacon payload    number=3 hash=f314b5..306537 age=0
+WARN [08-22|11:02:35.193] Ignoring already known beacon payload    number=3 hash=f314b5..306537 age=0
+INFO [08-22|11:02:35.230] Starting work on payload                 id=0x624ac7ccf3c95275
+INFO [08-22|11:02:35.230] Updated payload                          id=0x624ac7ccf3c95275 number=4 hash=02e000..63d60a txs=0 withdrawals=0 gas=0 fees=0 root=b89564..840372 elapsed="69.665µs"
+INFO [08-22|11:02:47.141] Stopping work on payload                 id=0x624ac7ccf3c95275 reason=delivery
+INFO [08-22|11:02:47.158] Imported new potential chain segment     number=4 hash=02e000..63d60a blocks=1 txs=0 mgas=0.000 elapsed=3.105ms     mgasps=0.000 triedirty=0.00B
+INFO [08-22|11:02:47.194] Chain head was updated                   number=4 hash=02e000..63d60a root=b89564..840372 elapsed=2.951479ms
+ERROR[08-22|11:02:47.194] Nil finalized block cannot evict old blobs 
+WARN [08-22|11:02:47.199] Ignoring already known beacon payload    number=4 hash=02e000..63d60a age=0
+WARN [08-22|11:02:47.199] Ignoring already known beacon payload    number=4 hash=02e000..63d60a age=0
+WARN [08-22|11:02:47.200] Ignoring already known beacon payload    number=4 hash=02e000..63d60a age=0
+WARN [08-22|11:02:47.200] Ignoring already known beacon payload    number=4 hash=02e000..63d60a age=0
+INFO [08-22|11:02:47.240] Starting work on payload                 id=0xeb0e9561a1c9d75e
+INFO [08-22|11:02:47.240] Updated payload                          id=0xeb0e9561a1c9d75e number=5 hash=d239de..b3aa6e txs=0 withdrawals=0 gas=0 fees=0 root=b89564..840372 elapsed="80.346µs"
+INFO [08-22|11:02:59.111] Stopping work on payload                 id=0xeb0e9561a1c9d75e reason=delivery
+INFO [08-22|11:02:59.130] Imported new potential chain segment     number=5 hash=d239de..b3aa6e blocks=1 txs=0 mgas=0.000 elapsed=3.618ms     mgasps=0.000 triedirty=0.00B
+INFO [08-22|11:02:59.159] Chain head was updated                   number=5 hash=d239de..b3aa6e root=b89564..840372 elapsed=2.947629ms
+ERROR[08-22|11:02:59.159] Nil finalized block cannot evict old blobs 
+WARN [08-22|11:02:59.164] Ignoring already known beacon payload    number=5 hash=d239de..b3aa6e age=0
+WARN [08-22|11:02:59.164] Ignoring already known beacon payload    number=5 hash=d239de..b3aa6e age=0
+WARN [08-22|11:02:59.164] Ignoring already known beacon payload    number=5 hash=d239de..b3aa6e age=0
+WARN [08-22|11:02:59.164] Ignoring already known beacon payload    number=5 hash=d239de..b3aa6e age=0
+INFO [08-22|11:02:59.192] Starting work on payload                 id=0x6b99c09a6c08b9e4
+INFO [08-22|11:02:59.192] Updated payload                          id=0x6b99c09a6c08b9e4 number=6 hash=21c2a5..8382f6 txs=0 withdrawals=0 gas=0 fees=0 root=b89564..840372 elapsed="71.283µs"
+INFO [08-22|11:03:11.140] Stopping work on payload                 id=0x6b99c09a6c08b9e4 reason=delivery
+INFO [08-22|11:03:11.155] Imported new potential chain segment     number=6 hash=21c2a5..8382f6 blocks=1 txs=0 mgas=0.000 elapsed=3.062ms     mgasps=0.000 triedirty=0.00B
+INFO [08-22|11:03:11.179] Chain head was updated                   number=6 hash=21c2a5..8382f6 root=b89564..840372 elapsed=2.745986ms
+ERROR[08-22|11:03:11.179] Nil finalized block cannot evict old blobs 
+WARN [08-22|11:03:11.184] Ignoring already known beacon payload    number=6 hash=21c2a5..8382f6 age=0
+WARN [08-22|11:03:11.184] Ignoring already known beacon payload    number=6 hash=21c2a5..8382f6 age=0
+WARN [08-22|11:03:11.185] Ignoring already known beacon payload    number=6 hash=21c2a5..8382f6 age=0
+WARN [08-22|11:03:11.185] Ignoring already known beacon payload    number=6 hash=21c2a5..8382f6 age=0
+INFO [08-22|11:03:11.213] Starting work on payload                 id=0xbcf809e05f2c5174
+INFO [08-22|11:03:11.214] Updated payload                          id=0xbcf809e05f2c5174 number=7 hash=a59988..bd60e3 txs=0 withdrawals=0 gas=0 fees=0 root=b89564..840372 elapsed="62.624µs"
+INFO [08-22|11:03:23.142] Stopping work on payload                 id=0xbcf809e05f2c5174 reason=delivery
+INFO [08-22|11:03:23.159] Imported new potential chain segment     number=7 hash=a59988..bd60e3 blocks=1 txs=0 mgas=0.000 elapsed=3.029ms     mgasps=0.000 triedirty=0.00B
+INFO [08-22|11:03:23.185] Chain head was updated                   number=7 hash=a59988..bd60e3 root=b89564..840372 elapsed=2.62562ms
+ERROR[08-22|11:03:23.185] Nil finalized block cannot evict old blobs 
+WARN [08-22|11:03:23.190] Ignoring already known beacon payload    number=7 hash=a59988..bd60e3 age=0
+WARN [08-22|11:03:23.190] Ignoring already known beacon payload    number=7 hash=a59988..bd60e3 age=0
+WARN [08-22|11:03:23.190] Ignoring already known beacon payload    number=7 hash=a59988..bd60e3 age=0
+WARN [08-22|11:03:23.190] Ignoring already known beacon payload    number=7 hash=a59988..bd60e3 age=0
+INFO [08-22|11:03:23.220] Starting work on payload                 id=0xb325c33cd5d583d7
+INFO [08-22|11:03:23.220] Updated payload                          id=0xb325c33cd5d583d7 number=8 hash=ae46a7..9fc88d txs=0 withdrawals=0 gas=0 fees=0 root=b89564..840372 elapsed="70.452µs"
+INFO [08-22|11:03:35.129] Stopping work on payload                 id=0xb325c33cd5d583d7 reason=delivery
+INFO [08-22|11:03:35.148] Imported new potential chain segment     number=8 hash=ae46a7..9fc88d blocks=1 txs=0 mgas=0.000 elapsed=3.304ms     mgasps=0.000 triedirty=0.00B
+INFO [08-22|11:03:35.174] Chain head was updated                   number=8 hash=ae46a7..9fc88d root=b89564..840372 elapsed=2.88774ms
+ERROR[08-22|11:03:35.174] Nil finalized block cannot evict old blobs 
+WARN [08-22|11:03:35.179] Ignoring already known beacon payload    number=8 hash=ae46a7..9fc88d age=0
+WARN [08-22|11:03:35.179] Ignoring already known beacon payload    number=8 hash=ae46a7..9fc88d age=0
+WARN [08-22|11:03:35.179] Ignoring already known beacon payload    number=8 hash=ae46a7..9fc88d age=0
+WARN [08-22|11:03:35.179] Ignoring already known beacon payload    number=8 hash=ae46a7..9fc88d age=0
+INFO [08-22|11:03:35.208] Starting work on payload                 id=0xd17e0473bc2a4c55
+INFO [08-22|11:03:35.208] Updated payload                          id=0xd17e0473bc2a4c55 number=9 hash=dfcef3..a717ee txs=0 withdrawals=0 gas=0 fees=0 root=b89564..840372 elapsed="59.443µs"
+INFO [08-22|11:03:47.139] Stopping work on payload                 id=0xd17e0473bc2a4c55 reason=delivery
+INFO [08-22|11:03:47.157] Imported new potential chain segment     number=9 hash=dfcef3..a717ee blocks=1 txs=0 mgas=0.000 elapsed=3.076ms     mgasps=0.000 triedirty=0.00B
+INFO [08-22|11:03:47.186] Chain head was updated                   number=9 hash=dfcef3..a717ee root=b89564..840372 elapsed=2.785087ms
+ERROR[08-22|11:03:47.187] Nil finalized block cannot evict old blobs 
+WARN [08-22|11:03:47.192] Ignoring already known beacon payload    number=9 hash=dfcef3..a717ee age=0
+WARN [08-22|11:03:47.193] Ignoring already known beacon payload    number=9 hash=dfcef3..a717ee age=0
+WARN [08-22|11:03:47.193] Ignoring already known beacon payload    number=9 hash=dfcef3..a717ee age=0
+WARN [08-22|11:03:47.195] Ignoring already known beacon payload    number=9 hash=dfcef3..a717ee age=0
+INFO [08-22|11:03:47.227] Starting work on payload                 id=0x087a976e5245c974
+INFO [08-22|11:03:47.227] Updated payload                          id=0x087a976e5245c974 number=10 hash=84a385..ee28d2 txs=0 withdrawals=0 gas=0 fees=0 root=b89564..840372 elapsed="89.303µs"
+INFO [08-22|11:03:59.138] Stopping work on payload                 id=0x087a976e5245c974 reason=delivery
+INFO [08-22|11:03:59.156] Imported new potential chain segment     number=10 hash=84a385..ee28d2 blocks=1 txs=0 mgas=0.000 elapsed=3.291ms     mgasps=0.000 triedirty=0.00B
+INFO [08-22|11:03:59.182] Chain head was updated                   number=10 hash=84a385..ee28d2 root=b89564..840372 elapsed=2.815022ms
+ERROR[08-22|11:03:59.182] Nil finalized block cannot evict old blobs 
+WARN [08-22|11:03:59.188] Ignoring already known beacon payload    number=10 hash=84a385..ee28d2 age=0
+WARN [08-22|11:03:59.188] Ignoring already known beacon payload    number=10 hash=84a385..ee28d2 age=0
+WARN [08-22|11:03:59.188] Ignoring already known beacon payload    number=10 hash=84a385..ee28d2 age=0
+WARN [08-22|11:03:59.188] Ignoring already known beacon payload    number=10 hash=84a385..ee28d2 age=0
+INFO [08-22|11:03:59.218] Starting work on payload                 id=0x04a3aa811cc601d5
+INFO [08-22|11:03:59.218] Updated payload                          id=0x04a3aa811cc601d5 number=11 hash=a0ddc4..66fb75 txs=0 withdrawals=0 gas=0 fees=0 root=b89564..840372 elapsed="76.539µs"
+INFO [08-22|11:04:11.120] Stopping work on payload                 id=0x04a3aa811cc601d5 reason=delivery
+INFO [08-22|11:04:11.142] Imported new potential chain segment     number=11 hash=a0ddc4..66fb75 blocks=1 txs=0 mgas=0.000 elapsed=3.206ms     mgasps=0.000 triedirty=0.00B
+INFO [08-22|11:04:11.175] Chain head was updated                   number=11 hash=a0ddc4..66fb75 root=b89564..840372 elapsed=2.924742ms
+ERROR[08-22|11:04:11.175] Nil finalized block cannot evict old blobs 
+WARN [08-22|11:04:11.180] Ignoring already known beacon payload    number=11 hash=a0ddc4..66fb75 age=0
+WARN [08-22|11:04:11.180] Ignoring already known beacon payload    number=11 hash=a0ddc4..66fb75 age=0
+WARN [08-22|11:04:11.180] Ignoring already known beacon payload    number=11 hash=a0ddc4..66fb75 age=0
+WARN [08-22|11:04:11.180] Ignoring already known beacon payload    number=11 hash=a0ddc4..66fb75 age=0
+INFO [08-22|11:04:11.221] Starting work on payload                 id=0xec3cff9203bf74f1
+INFO [08-22|11:04:11.221] Updated payload                          id=0xec3cff9203bf74f1 number=12 hash=4626af..b631e0 txs=0 withdrawals=0 gas=0 fees=0 root=b89564..840372 elapsed="65.017µs"
+INFO [08-22|11:04:23.130] Stopping work on payload                 id=0xec3cff9203bf74f1 reason=delivery
+INFO [08-22|11:04:23.146] Imported new potential chain segment     number=12 hash=4626af..b631e0 blocks=1 txs=0 mgas=0.000 elapsed=2.990ms     mgasps=0.000 triedirty=0.00B
+INFO [08-22|11:04:23.172] Chain head was updated                   number=12 hash=4626af..b631e0 root=b89564..840372 elapsed=2.894468ms
+ERROR[08-22|11:04:23.172] Nil finalized block cannot evict old blobs 
+WARN [08-22|11:04:23.177] Ignoring already known beacon payload    number=12 hash=4626af..b631e0 age=0
+WARN [08-22|11:04:23.178] Ignoring already known beacon payload    number=12 hash=4626af..b631e0 age=0
+WARN [08-22|11:04:23.178] Ignoring already known beacon payload    number=12 hash=4626af..b631e0 age=0
+WARN [08-22|11:04:23.178] Ignoring already known beacon payload    number=12 hash=4626af..b631e0 age=0
+INFO [08-22|11:04:23.208] Starting work on payload                 id=0xe95c8689dee96884
+INFO [08-22|11:04:23.208] Updated payload                          id=0xe95c8689dee96884 number=13 hash=22ee27..371922 txs=0 withdrawals=0 gas=0 fees=0 root=b89564..840372 elapsed="68.776µs"
+INFO [08-22|11:04:35.122] Stopping work on payload                 id=0xe95c8689dee96884 reason=delivery
+INFO [08-22|11:04:35.142] Imported new potential chain segment     number=13 hash=22ee27..371922 blocks=1 txs=0 mgas=0.000 elapsed=2.942ms     mgasps=0.000 triedirty=0.00B
+INFO [08-22|11:04:35.167] Chain head was updated                   number=13 hash=22ee27..371922 root=b89564..840372 elapsed=2.657796ms
+ERROR[08-22|11:04:35.167] Nil finalized block cannot evict old blobs 
+WARN [08-22|11:04:35.172] Ignoring already known beacon payload    number=13 hash=22ee27..371922 age=0
+WARN [08-22|11:04:35.173] Ignoring already known beacon payload    number=13 hash=22ee27..371922 age=0
+WARN [08-22|11:04:35.173] Ignoring already known beacon payload    number=13 hash=22ee27..371922 age=0
+WARN [08-22|11:04:35.173] Ignoring already known beacon payload    number=13 hash=22ee27..371922 age=0
+INFO [08-22|11:04:35.174] Starting work on payload                 id=0xdd9d65c2b88fd6da
+INFO [08-22|11:04:35.174] Updated payload                          id=0xdd9d65c2b88fd6da number=14 hash=199780..28cde6 txs=0 withdrawals=0 gas=0 fees=0 root=b89564..840372 elapsed="79.533µs"
+INFO [08-22|11:04:47.136] Stopping work on payload                 id=0xdd9d65c2b88fd6da reason=delivery
+INFO [08-22|11:04:47.153] Imported new potential chain segment     number=14 hash=199780..28cde6 blocks=1 txs=0 mgas=0.000 elapsed=3.055ms     mgasps=0.000 triedirty=0.00B
+INFO [08-22|11:04:47.177] Chain head was updated                   number=14 hash=199780..28cde6 root=b89564..840372 elapsed=2.897322ms
+ERROR[08-22|11:04:47.178] Nil finalized block cannot evict old blobs 
+WARN [08-22|11:04:47.182] Ignoring already known beacon payload    number=14 hash=199780..28cde6 age=0
+WARN [08-22|11:04:47.182] Ignoring already known beacon payload    number=14 hash=199780..28cde6 age=0
+WARN [08-22|11:04:47.183] Ignoring already known beacon payload    number=14 hash=199780..28cde6 age=0
+WARN [08-22|11:04:47.183] Ignoring already known beacon payload    number=14 hash=199780..28cde6 age=0
+INFO [08-22|11:04:47.212] Starting work on payload                 id=0xa23a33ed60f778e3
+INFO [08-22|11:04:47.212] Updated payload                          id=0xa23a33ed60f778e3 number=15 hash=a87ec4..c5f23f txs=0 withdrawals=0 gas=0 fees=0 root=b89564..840372 elapsed="73.222µs"
+INFO [08-22|11:04:59.116] Stopping work on payload                 id=0xa23a33ed60f778e3 reason=delivery
+INFO [08-22|11:04:59.137] Imported new potential chain segment     number=15 hash=a87ec4..c5f23f blocks=1 txs=0 mgas=0.000 elapsed=4.007ms     mgasps=0.000 triedirty=0.00B
+INFO [08-22|11:04:59.164] Chain head was updated                   number=15 hash=a87ec4..c5f23f root=b89564..840372 elapsed=2.806071ms
+ERROR[08-22|11:04:59.164] Nil finalized block cannot evict old blobs 
+WARN [08-22|11:04:59.169] Ignoring already known beacon payload    number=15 hash=a87ec4..c5f23f age=0
+WARN [08-22|11:04:59.169] Ignoring already known beacon payload    number=15 hash=a87ec4..c5f23f age=0
+WARN [08-22|11:04:59.170] Ignoring already known beacon payload    number=15 hash=a87ec4..c5f23f age=0
+WARN [08-22|11:04:59.170] Ignoring already known beacon payload    number=15 hash=a87ec4..c5f23f age=0
+INFO [08-22|11:04:59.199] Starting work on payload                 id=0x0cfb2eb6f3d33977
+INFO [08-22|11:04:59.199] Updated payload                          id=0x0cfb2eb6f3d33977 number=16 hash=5f9a05..9263b7 txs=0 withdrawals=0 gas=0 fees=0 root=b89564..840372 elapsed="81.506µs"
+INFO [08-22|11:05:11.137] Stopping work on payload                 id=0x0cfb2eb6f3d33977 reason=delivery
+INFO [08-22|11:05:11.155] Imported new potential chain segment     number=16 hash=5f9a05..9263b7 blocks=1 txs=0 mgas=0.000 elapsed=3.142ms     mgasps=0.000 triedirty=0.00B
+INFO [08-22|11:05:11.179] Chain head was updated                   number=16 hash=5f9a05..9263b7 root=b89564..840372 elapsed=2.870979ms
+ERROR[08-22|11:05:11.180] Nil finalized block cannot evict old blobs 
+WARN [08-22|11:05:11.185] Ignoring already known beacon payload    number=16 hash=5f9a05..9263b7 age=0
+WARN [08-22|11:05:11.185] Ignoring already known beacon payload    number=16 hash=5f9a05..9263b7 age=0
+WARN [08-22|11:05:11.186] Ignoring already known beacon payload    number=16 hash=5f9a05..9263b7 age=0
+WARN [08-22|11:05:11.186] Ignoring already known beacon payload    number=16 hash=5f9a05..9263b7 age=0
+INFO [08-22|11:05:11.219] Starting work on payload                 id=0xa267890ebad77df9
+INFO [08-22|11:05:11.219] Updated payload                          id=0xa267890ebad77df9 number=17 hash=7e2df9..93344e txs=0 withdrawals=0 gas=0 fees=0 root=b89564..840372 elapsed="73.915µs"
+INFO [08-22|11:05:23.130] Stopping work on payload                 id=0xa267890ebad77df9 reason=delivery
+INFO [08-22|11:05:23.148] Imported new potential chain segment     number=17 hash=7e2df9..93344e blocks=1 txs=0 mgas=0.000 elapsed=3.559ms     mgasps=0.000 triedirty=0.00B
+INFO [08-22|11:05:23.174] Chain head was updated                   number=17 hash=7e2df9..93344e root=b89564..840372 elapsed=2.924943ms
+ERROR[08-22|11:05:23.174] Nil finalized block cannot evict old blobs 
+WARN [08-22|11:05:23.179] Ignoring already known beacon payload    number=17 hash=7e2df9..93344e age=0
+WARN [08-22|11:05:23.179] Ignoring already known beacon payload    number=17 hash=7e2df9..93344e age=0
+WARN [08-22|11:05:23.179] Ignoring already known beacon payload    number=17 hash=7e2df9..93344e age=0
+WARN [08-22|11:05:23.179] Ignoring already known beacon payload    number=17 hash=7e2df9..93344e age=0
+INFO [08-22|11:05:23.209] Starting work on payload                 id=0x861ffaeb5b26206d
+INFO [08-22|11:05:23.209] Updated payload                          id=0x861ffaeb5b26206d number=18 hash=55605d..9291aa txs=0 withdrawals=0 gas=0 fees=0 root=b89564..840372 elapsed="64.315µs"
+INFO [08-22|11:05:35.136] Stopping work on payload                 id=0x861ffaeb5b26206d reason=delivery
+INFO [08-22|11:05:35.152] Imported new potential chain segment     number=18 hash=55605d..9291aa blocks=1 txs=0 mgas=0.000 elapsed=3.164ms     mgasps=0.000 triedirty=0.00B
+INFO [08-22|11:05:35.178] Chain head was updated                   number=18 hash=55605d..9291aa root=b89564..840372 elapsed=2.785802ms
+ERROR[08-22|11:05:35.178] Nil finalized block cannot evict old blobs 
+WARN [08-22|11:05:35.183] Ignoring already known beacon payload    number=18 hash=55605d..9291aa age=0
+WARN [08-22|11:05:35.184] Ignoring already known beacon payload    number=18 hash=55605d..9291aa age=0
+WARN [08-22|11:05:35.184] Ignoring already known beacon payload    number=18 hash=55605d..9291aa age=0
+WARN [08-22|11:05:35.184] Ignoring already known beacon payload    number=18 hash=55605d..9291aa age=0
+INFO [08-22|11:05:35.219] Starting work on payload                 id=0x67a00677b8545afc
+INFO [08-22|11:05:35.219] Updated payload                          id=0x67a00677b8545afc number=19 hash=c2b28b..777bcf txs=0 withdrawals=0 gas=0 fees=0 root=b89564..840372 elapsed="62.249µs"
+INFO [08-22|11:05:47.142] Stopping work on payload                 id=0x67a00677b8545afc reason=delivery
+INFO [08-22|11:05:47.158] Imported new potential chain segment     number=19 hash=c2b28b..777bcf blocks=1 txs=0 mgas=0.000 elapsed=3.243ms     mgasps=0.000 triedirty=0.00B
+INFO [08-22|11:05:47.185] Chain head was updated                   number=19 hash=c2b28b..777bcf root=b89564..840372 elapsed=2.878326ms
+ERROR[08-22|11:05:47.185] Nil finalized block cannot evict old blobs 
+WARN [08-22|11:05:47.190] Ignoring already known beacon payload    number=19 hash=c2b28b..777bcf age=0
+WARN [08-22|11:05:47.190] Ignoring already known beacon payload    number=19 hash=c2b28b..777bcf age=0
+WARN [08-22|11:05:47.191] Ignoring already known beacon payload    number=19 hash=c2b28b..777bcf age=0
+WARN [08-22|11:05:47.191] Ignoring already known beacon payload    number=19 hash=c2b28b..777bcf age=0
+INFO [08-22|11:05:47.220] Starting work on payload                 id=0xe69c41f745551963
+INFO [08-22|11:05:47.220] Updated payload                          id=0xe69c41f745551963 number=20 hash=4f23ab..b0399d txs=0 withdrawals=0 gas=0 fees=0 root=b89564..840372 elapsed="103.293µs"
+INFO [08-22|11:05:59.120] Stopping work on payload                 id=0xe69c41f745551963 reason=delivery
+INFO [08-22|11:05:59.139] Imported new potential chain segment     number=20 hash=4f23ab..b0399d blocks=1 txs=0 mgas=0.000 elapsed=3.489ms     mgasps=0.000 triedirty=0.00B
+INFO [08-22|11:05:59.165] Chain head was updated                   number=20 hash=4f23ab..b0399d root=b89564..840372 elapsed=3.155645ms
+ERROR[08-22|11:05:59.166] Nil finalized block cannot evict old blobs 
+WARN [08-22|11:05:59.171] Ignoring already known beacon payload    number=20 hash=4f23ab..b0399d age=0
+WARN [08-22|11:05:59.172] Ignoring already known beacon payload    number=20 hash=4f23ab..b0399d age=0
+WARN [08-22|11:05:59.172] Ignoring already known beacon payload    number=20 hash=4f23ab..b0399d age=0
+WARN [08-22|11:05:59.172] Ignoring already known beacon payload    number=20 hash=4f23ab..b0399d age=0
+INFO [08-22|11:05:59.173] Starting work on payload                 id=0xe4902ccf3c5e8fa5
+INFO [08-22|11:05:59.173] Updated payload                          id=0xe4902ccf3c5e8fa5 number=21 hash=7b6a56..83fe7a txs=0 withdrawals=0 gas=0 fees=0 root=b89564..840372 elapsed="63.999µs"
+INFO [08-22|11:06:11.139] Stopping work on payload                 id=0xe4902ccf3c5e8fa5 reason=delivery
+INFO [08-22|11:06:11.155] Imported new potential chain segment     number=21 hash=7b6a56..83fe7a blocks=1 txs=0 mgas=0.000 elapsed=3.236ms     mgasps=0.000 triedirty=0.00B
+INFO [08-22|11:06:11.179] Chain head was updated                   number=21 hash=7b6a56..83fe7a root=b89564..840372 elapsed=2.82998ms
+ERROR[08-22|11:06:11.179] Nil finalized block cannot evict old blobs 
+WARN [08-22|11:06:11.184] Ignoring already known beacon payload    number=21 hash=7b6a56..83fe7a age=0
+WARN [08-22|11:06:11.184] Ignoring already known beacon payload    number=21 hash=7b6a56..83fe7a age=0
+WARN [08-22|11:06:11.184] Ignoring already known beacon payload    number=21 hash=7b6a56..83fe7a age=0
+WARN [08-22|11:06:11.184] Ignoring already known beacon payload    number=21 hash=7b6a56..83fe7a age=0
+INFO [08-22|11:06:11.214] Starting work on payload                 id=0x20af2b4e5a8a611b
+INFO [08-22|11:06:11.214] Updated payload                          id=0x20af2b4e5a8a611b number=22 hash=28fb10..28c97b txs=0 withdrawals=0 gas=0 fees=0 root=b89564..840372 elapsed="63.024µs"
+INFO [08-22|11:06:23.131] Stopping work on payload                 id=0x20af2b4e5a8a611b reason=delivery
+INFO [08-22|11:06:23.149] Imported new potential chain segment     number=22 hash=28fb10..28c97b blocks=1 txs=0 mgas=0.000 elapsed=3.189ms     mgasps=0.000 triedirty=0.00B
+INFO [08-22|11:06:23.174] Chain head was updated                   number=22 hash=28fb10..28c97b root=b89564..840372 elapsed=2.923918ms
+ERROR[08-22|11:06:23.174] Nil finalized block cannot evict old blobs 
+WARN [08-22|11:06:23.179] Ignoring already known beacon payload    number=22 hash=28fb10..28c97b age=0
+WARN [08-22|11:06:23.179] Ignoring already known beacon payload    number=22 hash=28fb10..28c97b age=0
+WARN [08-22|11:06:23.179] Ignoring already known beacon payload    number=22 hash=28fb10..28c97b age=0
+WARN [08-22|11:06:23.179] Ignoring already known beacon payload    number=22 hash=28fb10..28c97b age=0
+INFO [08-22|11:06:23.212] Starting work on payload                 id=0x63d44912cae07b71
+INFO [08-22|11:06:23.212] Updated payload                          id=0x63d44912cae07b71 number=23 hash=b3d3b4..cf341a txs=0 withdrawals=0 gas=0 fees=0 root=b89564..840372 elapsed="51.469µs"
+INFO [08-22|11:06:35.122] Stopping work on payload                 id=0x63d44912cae07b71 reason=delivery
+INFO [08-22|11:06:35.142] Imported new potential chain segment     number=23 hash=b3d3b4..cf341a blocks=1 txs=0 mgas=0.000 elapsed=3.499ms     mgasps=0.000 triedirty=0.00B
+INFO [08-22|11:06:35.168] Chain head was updated                   number=23 hash=b3d3b4..cf341a root=b89564..840372 elapsed=2.899089ms
+ERROR[08-22|11:06:35.168] Nil finalized block cannot evict old blobs 
+WARN [08-22|11:06:35.173] Ignoring already known beacon payload    number=23 hash=b3d3b4..cf341a age=0
+WARN [08-22|11:06:35.173] Ignoring already known beacon payload    number=23 hash=b3d3b4..cf341a age=0
+WARN [08-22|11:06:35.173] Ignoring already known beacon payload    number=23 hash=b3d3b4..cf341a age=0
+WARN [08-22|11:06:35.173] Ignoring already known beacon payload    number=23 hash=b3d3b4..cf341a age=0
+INFO [08-22|11:06:35.174] Starting work on payload                 id=0x43bf6ba68305615e
+INFO [08-22|11:06:35.174] Updated payload                          id=0x43bf6ba68305615e number=24 hash=2964b5..4a4a5a txs=0 withdrawals=0 gas=0 fees=0 root=b89564..840372 elapsed="54.789µs"
+INFO [08-22|11:06:47.121] Stopping work on payload                 id=0x43bf6ba68305615e reason=delivery
+INFO [08-22|11:06:47.148] Imported new potential chain segment     number=24 hash=2964b5..4a4a5a blocks=1 txs=0 mgas=0.000 elapsed=3.259ms     mgasps=0.000 triedirty=0.00B
+INFO [08-22|11:06:47.175] Chain head was updated                   number=24 hash=2964b5..4a4a5a root=b89564..840372 elapsed=3.025822ms
+ERROR[08-22|11:06:47.175] Nil finalized block cannot evict old blobs 
+WARN [08-22|11:06:47.180] Ignoring already known beacon payload    number=24 hash=2964b5..4a4a5a age=0
+WARN [08-22|11:06:47.180] Ignoring already known beacon payload    number=24 hash=2964b5..4a4a5a age=0
+WARN [08-22|11:06:47.180] Ignoring already known beacon payload    number=24 hash=2964b5..4a4a5a age=0
+WARN [08-22|11:06:47.181] Ignoring already known beacon payload    number=24 hash=2964b5..4a4a5a age=0
+INFO [08-22|11:06:47.211] Starting work on payload                 id=0x1f66b32e65102a94
+INFO [08-22|11:06:47.211] Updated payload                          id=0x1f66b32e65102a94 number=25 hash=10ca04..8c61a9 txs=0 withdrawals=0 gas=0 fees=0 root=b89564..840372 elapsed="59.201µs"
+INFO [08-22|11:06:59.136] Stopping work on payload                 id=0x1f66b32e65102a94 reason=delivery
+INFO [08-22|11:06:59.156] Imported new potential chain segment     number=25 hash=10ca04..8c61a9 blocks=1 txs=0 mgas=0.000 elapsed=3.239ms     mgasps=0.000 triedirty=0.00B
+INFO [08-22|11:06:59.184] Chain head was updated                   number=25 hash=10ca04..8c61a9 root=b89564..840372 elapsed=2.785785ms
+ERROR[08-22|11:06:59.184] Nil finalized block cannot evict old blobs 
+WARN [08-22|11:06:59.189] Ignoring already known beacon payload    number=25 hash=10ca04..8c61a9 age=0
+WARN [08-22|11:06:59.189] Ignoring already known beacon payload    number=25 hash=10ca04..8c61a9 age=0
+WARN [08-22|11:06:59.190] Ignoring already known beacon payload    number=25 hash=10ca04..8c61a9 age=0
+WARN [08-22|11:06:59.190] Ignoring already known beacon payload    number=25 hash=10ca04..8c61a9 age=0
+INFO [08-22|11:06:59.220] Starting work on payload                 id=0x77b9fef0de28d2e6
+INFO [08-22|11:06:59.220] Updated payload                          id=0x77b9fef0de28d2e6 number=26 hash=6e94dd..ac1953 txs=0 withdrawals=0 gas=0 fees=0 root=b89564..840372 elapsed="60.852µs"
+INFO [08-22|11:07:11.116] Stopping work on payload                 id=0x77b9fef0de28d2e6 reason=delivery
+INFO [08-22|11:07:11.136] Imported new potential chain segment     number=26 hash=6e94dd..ac1953 blocks=1 txs=0 mgas=0.000 elapsed=3.123ms     mgasps=0.000 triedirty=0.00B
+INFO [08-22|11:07:11.162] Chain head was updated                   number=26 hash=6e94dd..ac1953 root=b89564..840372 elapsed=2.847507ms
+ERROR[08-22|11:07:11.162] Nil finalized block cannot evict old blobs 
+WARN [08-22|11:07:11.167] Ignoring already known beacon payload    number=26 hash=6e94dd..ac1953 age=0
+WARN [08-22|11:07:11.167] Ignoring already known beacon payload    number=26 hash=6e94dd..ac1953 age=0
+WARN [08-22|11:07:11.168] Ignoring already known beacon payload    number=26 hash=6e94dd..ac1953 age=0
+WARN [08-22|11:07:11.168] Ignoring already known beacon payload    number=26 hash=6e94dd..ac1953 age=0
+INFO [08-22|11:07:11.168] Starting work on payload                 id=0x0b083b813b0b5fef
+INFO [08-22|11:07:11.169] Updated payload                          id=0x0b083b813b0b5fef number=27 hash=a66013..5f0636 txs=0 withdrawals=0 gas=0 fees=0 root=b89564..840372 elapsed="56.942µs"
+INFO [08-22|11:07:23.114] Stopping work on payload                 id=0x0b083b813b0b5fef reason=delivery
+INFO [08-22|11:07:23.133] Imported new potential chain segment     number=27 hash=a66013..5f0636 blocks=1 txs=0 mgas=0.000 elapsed=3.234ms     mgasps=0.000 triedirty=0.00B
+INFO [08-22|11:07:23.160] Chain head was updated                   number=27 hash=a66013..5f0636 root=b89564..840372 elapsed=2.89334ms
+ERROR[08-22|11:07:23.160] Nil finalized block cannot evict old blobs 
+WARN [08-22|11:07:23.165] Ignoring already known beacon payload    number=27 hash=a66013..5f0636 age=0
+WARN [08-22|11:07:23.165] Ignoring already known beacon payload    number=27 hash=a66013..5f0636 age=0
+WARN [08-22|11:07:23.165] Ignoring already known beacon payload    number=27 hash=a66013..5f0636 age=0
+WARN [08-22|11:07:23.166] Ignoring already known beacon payload    number=27 hash=a66013..5f0636 age=0
+INFO [08-22|11:07:23.202] Starting work on payload                 id=0xef159568809f3dda
+INFO [08-22|11:07:23.202] Updated payload                          id=0xef159568809f3dda number=28 hash=2e4019..fc247e txs=0 withdrawals=0 gas=0 fees=0 root=b89564..840372 elapsed="62.764µs"
+INFO [08-22|11:07:35.134] Stopping work on payload                 id=0xef159568809f3dda reason=delivery
+INFO [08-22|11:07:35.151] Imported new potential chain segment     number=28 hash=2e4019..fc247e blocks=1 txs=0 mgas=0.000 elapsed=3.520ms     mgasps=0.000 triedirty=0.00B
+INFO [08-22|11:07:35.174] Chain head was updated                   number=28 hash=2e4019..fc247e root=b89564..840372 elapsed=2.821359ms
+ERROR[08-22|11:07:35.174] Nil finalized block cannot evict old blobs 
+WARN [08-22|11:07:35.179] Ignoring already known beacon payload    number=28 hash=2e4019..fc247e age=0
+WARN [08-22|11:07:35.179] Ignoring already known beacon payload    number=28 hash=2e4019..fc247e age=0
+WARN [08-22|11:07:35.180] Ignoring already known beacon payload    number=28 hash=2e4019..fc247e age=0
+WARN [08-22|11:07:35.180] Ignoring already known beacon payload    number=28 hash=2e4019..fc247e age=0
+INFO [08-22|11:07:35.210] Starting work on payload                 id=0xcfbc3bf36d046e4f
+INFO [08-22|11:07:35.210] Updated payload                          id=0xcfbc3bf36d046e4f number=29 hash=9be243..60694f txs=0 withdrawals=0 gas=0 fees=0 root=b89564..840372 elapsed="61.894µs"
+INFO [08-22|11:07:47.131] Stopping work on payload                 id=0xcfbc3bf36d046e4f reason=delivery
+INFO [08-22|11:07:47.150] Imported new potential chain segment     number=29 hash=9be243..60694f blocks=1 txs=0 mgas=0.000 elapsed=2.986ms     mgasps=0.000 triedirty=0.00B
+INFO [08-22|11:07:47.180] Chain head was updated                   number=29 hash=9be243..60694f root=b89564..840372 elapsed=2.794489ms
+ERROR[08-22|11:07:47.180] Nil finalized block cannot evict old blobs 
+WARN [08-22|11:07:47.184] Ignoring already known beacon payload    number=29 hash=9be243..60694f age=0
+WARN [08-22|11:07:47.185] Ignoring already known beacon payload    number=29 hash=9be243..60694f age=0
+WARN [08-22|11:07:47.186] Ignoring already known beacon payload    number=29 hash=9be243..60694f age=0
+WARN [08-22|11:07:47.186] Ignoring already known beacon payload    number=29 hash=9be243..60694f age=0
+INFO [08-22|11:07:47.220] Starting work on payload                 id=0xaae15ecef7864309
+INFO [08-22|11:07:47.220] Updated payload                          id=0xaae15ecef7864309 number=30 hash=f6f363..55304d txs=0 withdrawals=0 gas=0 fees=0 root=b89564..840372 elapsed="60.034µs"
+INFO [08-22|11:07:59.130] Stopping work on payload                 id=0xaae15ecef7864309 reason=delivery
+INFO [08-22|11:07:59.151] Imported new potential chain segment     number=30 hash=f6f363..55304d blocks=1 txs=0 mgas=0.000 elapsed=3.562ms     mgasps=0.000 triedirty=0.00B
+INFO [08-22|11:07:59.185] Chain head was updated                   number=30 hash=f6f363..55304d root=b89564..840372 elapsed=2.84222ms
+ERROR[08-22|11:07:59.185] Nil finalized block cannot evict old blobs 
+WARN [08-22|11:07:59.190] Ignoring already known beacon payload    number=30 hash=f6f363..55304d age=0
+WARN [08-22|11:07:59.190] Ignoring already known beacon payload    number=30 hash=f6f363..55304d age=0
+WARN [08-22|11:07:59.191] Ignoring already known beacon payload    number=30 hash=f6f363..55304d age=0
+WARN [08-22|11:07:59.191] Ignoring already known beacon payload    number=30 hash=f6f363..55304d age=0
+INFO [08-22|11:07:59.218] Starting work on payload                 id=0xf26d0b455f48ed1a
+INFO [08-22|11:07:59.219] Updated payload                          id=0xf26d0b455f48ed1a number=31 hash=4c56d2..32b69f txs=0 withdrawals=0 gas=0 fees=0 root=b89564..840372 elapsed="61.02µs"
+INFO [08-22|11:08:11.143] Stopping work on payload                 id=0xf26d0b455f48ed1a reason=delivery
+INFO [08-22|11:08:11.159] Imported new potential chain segment     number=31 hash=4c56d2..32b69f blocks=1 txs=0 mgas=0.000 elapsed=3.099ms     mgasps=0.000 triedirty=0.00B
+INFO [08-22|11:08:11.185] Chain head was updated                   number=31 hash=4c56d2..32b69f root=b89564..840372 elapsed=2.799466ms
+ERROR[08-22|11:08:11.185] Nil finalized block cannot evict old blobs 
+WARN [08-22|11:08:11.190] Ignoring already known beacon payload    number=31 hash=4c56d2..32b69f age=0
+WARN [08-22|11:08:11.190] Ignoring already known beacon payload    number=31 hash=4c56d2..32b69f age=0
+WARN [08-22|11:08:11.191] Ignoring already known beacon payload    number=31 hash=4c56d2..32b69f age=0
+WARN [08-22|11:08:11.191] Ignoring already known beacon payload    number=31 hash=4c56d2..32b69f age=0
+INFO [08-22|11:08:11.223] Starting work on payload                 id=0xb080926277b366d4
+INFO [08-22|11:08:11.223] Updated payload                          id=0xb080926277b366d4 number=32 hash=a85c2c..c3a492 txs=0 withdrawals=0 gas=0 fees=0 root=b89564..840372 elapsed="101.505µs"
+INFO [08-22|11:08:23.220] Stopping work on payload                 id=0xb080926277b366d4 reason=delivery
+INFO [08-22|11:08:23.251] Imported new potential chain segment     number=32 hash=a85c2c..c3a492 blocks=1 txs=0 mgas=0.000 elapsed=3.371ms     mgasps=0.000 triedirty=0.00B
+INFO [08-22|11:08:23.289] Chain head was updated                   number=32 hash=a85c2c..c3a492 root=b89564..840372 elapsed=2.865264ms
+ERROR[08-22|11:08:23.290] Nil finalized block cannot evict old blobs 
+WARN [08-22|11:08:23.300] Ignoring already known beacon payload    number=32 hash=a85c2c..c3a492 age=0
+WARN [08-22|11:08:23.301] Ignoring already known beacon payload    number=32 hash=a85c2c..c3a492 age=0
+WARN [08-22|11:08:23.301] Ignoring already known beacon payload    number=32 hash=a85c2c..c3a492 age=0
+WARN [08-22|11:08:23.301] Ignoring already known beacon payload    number=32 hash=a85c2c..c3a492 age=0
+INFO [08-22|11:08:23.361] Starting work on payload                 id=0x56e1c7de180bbb0b
+INFO [08-22|11:08:23.361] Updated payload                          id=0x56e1c7de180bbb0b number=33 hash=c2450a..091d11 txs=0 withdrawals=0 gas=0 fees=0 root=b89564..840372 elapsed="85.62µs"
+INFO [08-22|11:08:35.142] Stopping work on payload                 id=0x56e1c7de180bbb0b reason=delivery
+INFO [08-22|11:08:35.162] Imported new potential chain segment     number=33 hash=c2450a..091d11 blocks=1 txs=0 mgas=0.000 elapsed=3.314ms     mgasps=0.000 triedirty=0.00B
+INFO [08-22|11:08:35.181] Chain head was updated                   number=33 hash=c2450a..091d11 root=b89564..840372 elapsed=2.991765ms
+ERROR[08-22|11:08:35.181] Nil finalized block cannot evict old blobs 
+WARN [08-22|11:08:35.186] Ignoring already known beacon payload    number=33 hash=c2450a..091d11 age=0
+WARN [08-22|11:08:35.186] Ignoring already known beacon payload    number=33 hash=c2450a..091d11 age=0
+WARN [08-22|11:08:35.187] Ignoring already known beacon payload    number=33 hash=c2450a..091d11 age=0
+WARN [08-22|11:08:35.187] Ignoring already known beacon payload    number=33 hash=c2450a..091d11 age=0
+INFO [08-22|11:08:35.210] Starting work on payload                 id=0x7ea2f984b1f2bcac
+INFO [08-22|11:08:35.210] Updated payload                          id=0x7ea2f984b1f2bcac number=34 hash=4538d4..968942 txs=0 withdrawals=0 gas=0 fees=0 root=b89564..840372 elapsed="59.027µs"
+INFO [08-22|11:08:47.137] Stopping work on payload                 id=0x7ea2f984b1f2bcac reason=delivery
+INFO [08-22|11:08:47.156] Imported new potential chain segment     number=34 hash=4538d4..968942 blocks=1 txs=0 mgas=0.000 elapsed=3.310ms     mgasps=0.000 triedirty=0.00B
+INFO [08-22|11:08:47.173] Chain head was updated                   number=34 hash=4538d4..968942 root=b89564..840372 elapsed=2.917561ms
+ERROR[08-22|11:08:47.173] Nil finalized block cannot evict old blobs 
+WARN [08-22|11:08:47.178] Ignoring already known beacon payload    number=34 hash=4538d4..968942 age=0
+WARN [08-22|11:08:47.178] Ignoring already known beacon payload    number=34 hash=4538d4..968942 age=0
+WARN [08-22|11:08:47.180] Ignoring already known beacon payload    number=34 hash=4538d4..968942 age=0
+WARN [08-22|11:08:47.180] Ignoring already known beacon payload    number=34 hash=4538d4..968942 age=0
+INFO [08-22|11:08:47.202] Starting work on payload                 id=0x7cc4e7cd72da99dd
+INFO [08-22|11:08:47.202] Updated payload                          id=0x7cc4e7cd72da99dd number=35 hash=9e2ad5..095a03 txs=0 withdrawals=0 gas=0 fees=0 root=b89564..840372 elapsed="55.635µs"
+INFO [08-22|11:08:59.120] Stopping work on payload                 id=0x7cc4e7cd72da99dd reason=delivery
+INFO [08-22|11:08:59.139] Imported new potential chain segment     number=35 hash=9e2ad5..095a03 blocks=1 txs=0 mgas=0.000 elapsed=3.327ms     mgasps=0.000 triedirty=0.00B
+INFO [08-22|11:08:59.156] Chain head was updated                   number=35 hash=9e2ad5..095a03 root=b89564..840372 elapsed=2.79634ms
+ERROR[08-22|11:08:59.157] Nil finalized block cannot evict old blobs 
+WARN [08-22|11:08:59.161] Ignoring already known beacon payload    number=35 hash=9e2ad5..095a03 age=0
+WARN [08-22|11:08:59.162] Ignoring already known beacon payload    number=35 hash=9e2ad5..095a03 age=0
+WARN [08-22|11:08:59.162] Ignoring already known beacon payload    number=35 hash=9e2ad5..095a03 age=0
+WARN [08-22|11:08:59.162] Ignoring already known beacon payload    number=35 hash=9e2ad5..095a03 age=0
+INFO [08-22|11:08:59.183] Starting work on payload                 id=0xf58168f16ae30262
+INFO [08-22|11:08:59.183] Updated payload                          id=0xf58168f16ae30262 number=36 hash=5599bf..6eec5a txs=0 withdrawals=0 gas=0 fees=0 root=b89564..840372 elapsed="70.751µs"
+INFO [08-22|11:09:11.133] Stopping work on payload                 id=0xf58168f16ae30262 reason=delivery
+INFO [08-22|11:09:11.151] Imported new potential chain segment     number=36 hash=5599bf..6eec5a blocks=1 txs=0 mgas=0.000 elapsed=3.258ms     mgasps=0.000 triedirty=0.00B
+INFO [08-22|11:09:11.170] Chain head was updated                   number=36 hash=5599bf..6eec5a root=b89564..840372 elapsed=2.853659ms
+ERROR[08-22|11:09:11.170] Nil finalized block cannot evict old blobs 
+WARN [08-22|11:09:11.175] Ignoring already known beacon payload    number=36 hash=5599bf..6eec5a age=0
+WARN [08-22|11:09:11.175] Ignoring already known beacon payload    number=36 hash=5599bf..6eec5a age=0
+WARN [08-22|11:09:11.175] Ignoring already known beacon payload    number=36 hash=5599bf..6eec5a age=0
+WARN [08-22|11:09:11.175] Ignoring already known beacon payload    number=36 hash=5599bf..6eec5a age=0
+INFO [08-22|11:09:11.177] Starting work on payload                 id=0x6788b22b99add4f5
+INFO [08-22|11:09:11.177] Updated payload                          id=0x6788b22b99add4f5 number=37 hash=5e2ead..d40b59 txs=0 withdrawals=0 gas=0 fees=0 root=b89564..840372 elapsed="56.879µs"
+INFO [08-22|11:09:23.132] Stopping work on payload                 id=0x6788b22b99add4f5 reason=delivery
+INFO [08-22|11:09:23.150] Imported new potential chain segment     number=37 hash=5e2ead..d40b59 blocks=1 txs=0 mgas=0.000 elapsed=3.223ms     mgasps=0.000 triedirty=0.00B
+INFO [08-22|11:09:23.167] Chain head was updated                   number=37 hash=5e2ead..d40b59 root=b89564..840372 elapsed=2.795411ms
+ERROR[08-22|11:09:23.168] Nil finalized block cannot evict old blobs 
+WARN [08-22|11:09:23.172] Ignoring already known beacon payload    number=37 hash=5e2ead..d40b59 age=0
+WARN [08-22|11:09:23.173] Ignoring already known beacon payload    number=37 hash=5e2ead..d40b59 age=0
+WARN [08-22|11:09:23.173] Ignoring already known beacon payload    number=37 hash=5e2ead..d40b59 age=0
+WARN [08-22|11:09:23.173] Ignoring already known beacon payload    number=37 hash=5e2ead..d40b59 age=0
+INFO [08-22|11:09:23.196] Starting work on payload                 id=0x0519b6699c032c03
+INFO [08-22|11:09:23.196] Updated payload                          id=0x0519b6699c032c03 number=38 hash=50722f..bbbb9b txs=0 withdrawals=0 gas=0 fees=0 root=b89564..840372 elapsed="73.838µs"
+INFO [08-22|11:09:35.142] Stopping work on payload                 id=0x0519b6699c032c03 reason=delivery
+INFO [08-22|11:09:35.161] Imported new potential chain segment     number=38 hash=50722f..bbbb9b blocks=1 txs=0 mgas=0.000 elapsed=3.099ms     mgasps=0.000 triedirty=0.00B
+INFO [08-22|11:09:35.177] Chain head was updated                   number=38 hash=50722f..bbbb9b root=b89564..840372 elapsed=2.783879ms
+ERROR[08-22|11:09:35.178] Nil finalized block cannot evict old blobs 
+WARN [08-22|11:09:35.182] Ignoring already known beacon payload    number=38 hash=50722f..bbbb9b age=0
+WARN [08-22|11:09:35.182] Ignoring already known beacon payload    number=38 hash=50722f..bbbb9b age=0
+WARN [08-22|11:09:35.183] Ignoring already known beacon payload    number=38 hash=50722f..bbbb9b age=0
+INFO [08-22|11:09:35.183] Starting work on payload                 id=0x71508778f5a6840c
+WARN [08-22|11:09:35.183] Ignoring already known beacon payload    number=38 hash=50722f..bbbb9b age=0
+INFO [08-22|11:09:35.183] Updated payload                          id=0x71508778f5a6840c number=39 hash=d7d05e..dc7e3f txs=0 withdrawals=0 gas=0 fees=0 root=b89564..840372 elapsed="58.088µs"
+INFO [08-22|11:09:47.138] Stopping work on payload                 id=0x71508778f5a6840c reason=delivery
+INFO [08-22|11:09:47.156] Imported new potential chain segment     number=39 hash=d7d05e..dc7e3f blocks=1 txs=0 mgas=0.000 elapsed=3.011ms     mgasps=0.000 triedirty=0.00B
+INFO [08-22|11:09:47.174] Chain head was updated                   number=39 hash=d7d05e..dc7e3f root=b89564..840372 elapsed=2.850556ms
+ERROR[08-22|11:09:47.174] Nil finalized block cannot evict old blobs 
+WARN [08-22|11:09:47.178] Ignoring already known beacon payload    number=39 hash=d7d05e..dc7e3f age=0
+WARN [08-22|11:09:47.179] Ignoring already known beacon payload    number=39 hash=d7d05e..dc7e3f age=0
+WARN [08-22|11:09:47.180] Ignoring already known beacon payload    number=39 hash=d7d05e..dc7e3f age=0
+WARN [08-22|11:09:47.180] Ignoring already known beacon payload    number=39 hash=d7d05e..dc7e3f age=0
+INFO [08-22|11:09:47.200] Starting work on payload                 id=0xb66bb34c903af8b8
+INFO [08-22|11:09:47.200] Updated payload                          id=0xb66bb34c903af8b8 number=40 hash=a59540..59b78e txs=0 withdrawals=0 gas=0 fees=0 root=b89564..840372 elapsed="56.468µs"
+INFO [08-22|11:09:59.133] Stopping work on payload                 id=0xb66bb34c903af8b8 reason=delivery
+INFO [08-22|11:09:59.153] Imported new potential chain segment     number=40 hash=a59540..59b78e blocks=1 txs=0 mgas=0.000 elapsed=3.160ms     mgasps=0.000 triedirty=0.00B
+INFO [08-22|11:09:59.172] Chain head was updated                   number=40 hash=a59540..59b78e root=b89564..840372 elapsed=2.991188ms
+ERROR[08-22|11:09:59.173] Nil finalized block cannot evict old blobs 
+WARN [08-22|11:09:59.178] Ignoring already known beacon payload    number=40 hash=a59540..59b78e age=0
+WARN [08-22|11:09:59.180] Ignoring already known beacon payload    number=40 hash=a59540..59b78e age=0
+WARN [08-22|11:09:59.180] Ignoring already known beacon payload    number=40 hash=a59540..59b78e age=0
+WARN [08-22|11:09:59.180] Ignoring already known beacon payload    number=40 hash=a59540..59b78e age=0
+INFO [08-22|11:09:59.201] Starting work on payload                 id=0x1bbe92630243b6ea
+INFO [08-22|11:09:59.202] Updated payload                          id=0x1bbe92630243b6ea number=41 hash=b58eb6..87b33e txs=0 withdrawals=0 gas=0 fees=0 root=b89564..840372 elapsed="63.669µs"
+INFO [08-22|11:10:11.120] Stopping work on payload                 id=0x1bbe92630243b6ea reason=delivery
+INFO [08-22|11:10:11.140] Imported new potential chain segment     number=41 hash=b58eb6..87b33e blocks=1 txs=0 mgas=0.000 elapsed=3.268ms     mgasps=0.000 triedirty=0.00B
+INFO [08-22|11:10:11.159] Chain head was updated                   number=41 hash=b58eb6..87b33e root=b89564..840372 elapsed=2.783359ms
+ERROR[08-22|11:10:11.159] Nil finalized block cannot evict old blobs 
+WARN [08-22|11:10:11.163] Ignoring already known beacon payload    number=41 hash=b58eb6..87b33e age=0
+WARN [08-22|11:10:11.163] Ignoring already known beacon payload    number=41 hash=b58eb6..87b33e age=0
+WARN [08-22|11:10:11.164] Ignoring already known beacon payload    number=41 hash=b58eb6..87b33e age=0
+WARN [08-22|11:10:11.164] Ignoring already known beacon payload    number=41 hash=b58eb6..87b33e age=0
+INFO [08-22|11:10:11.185] Starting work on payload                 id=0x5a7cc27f4d04be40
+INFO [08-22|11:10:11.185] Updated payload                          id=0x5a7cc27f4d04be40 number=42 hash=7c771a..a0ec35 txs=0 withdrawals=0 gas=0 fees=0 root=b89564..840372 elapsed="60.122µs"
+INFO [08-22|11:10:23.129] Stopping work on payload                 id=0x5a7cc27f4d04be40 reason=delivery
+INFO [08-22|11:10:23.150] Imported new potential chain segment     number=42 hash=7c771a..a0ec35 blocks=1 txs=0 mgas=0.000 elapsed=3.200ms     mgasps=0.000 triedirty=0.00B
+INFO [08-22|11:10:23.168] Chain head was updated                   number=42 hash=7c771a..a0ec35 root=b89564..840372 elapsed=2.900443ms
+ERROR[08-22|11:10:23.168] Nil finalized block cannot evict old blobs 
+WARN [08-22|11:10:23.173] Ignoring already known beacon payload    number=42 hash=7c771a..a0ec35 age=0
+WARN [08-22|11:10:23.173] Ignoring already known beacon payload    number=42 hash=7c771a..a0ec35 age=0
+WARN [08-22|11:10:23.173] Ignoring already known beacon payload    number=42 hash=7c771a..a0ec35 age=0
+WARN [08-22|11:10:23.174] Ignoring already known beacon payload    number=42 hash=7c771a..a0ec35 age=0
+INFO [08-22|11:10:23.199] Starting work on payload                 id=0x4aebec820f26665a
+INFO [08-22|11:10:23.199] Updated payload                          id=0x4aebec820f26665a number=43 hash=ff790b..6b9f0f txs=0 withdrawals=0 gas=0 fees=0 root=b89564..840372 elapsed="96.757µs"
+INFO [08-22|11:10:35.127] Stopping work on payload                 id=0x4aebec820f26665a reason=delivery
+INFO [08-22|11:10:35.146] Imported new potential chain segment     number=43 hash=ff790b..6b9f0f blocks=1 txs=0 mgas=0.000 elapsed=3.529ms     mgasps=0.000 triedirty=0.00B
+INFO [08-22|11:10:35.164] Chain head was updated                   number=43 hash=ff790b..6b9f0f root=b89564..840372 elapsed=2.791249ms
+ERROR[08-22|11:10:35.164] Nil finalized block cannot evict old blobs 
+WARN [08-22|11:10:35.168] Ignoring already known beacon payload    number=43 hash=ff790b..6b9f0f age=0
+WARN [08-22|11:10:35.169] Ignoring already known beacon payload    number=43 hash=ff790b..6b9f0f age=0
+WARN [08-22|11:10:35.169] Ignoring already known beacon payload    number=43 hash=ff790b..6b9f0f age=0
+WARN [08-22|11:10:35.169] Ignoring already known beacon payload    number=43 hash=ff790b..6b9f0f age=0
+INFO [08-22|11:10:35.169] Starting work on payload                 id=0xfc7205a9ed84818a
+INFO [08-22|11:10:35.169] Updated payload                          id=0xfc7205a9ed84818a number=44 hash=ea696d..c69c7d txs=0 withdrawals=0 gas=0 fees=0 root=b89564..840372 elapsed="55.284µs"
+INFO [08-22|11:10:47.126] Stopping work on payload                 id=0xfc7205a9ed84818a reason=delivery
+INFO [08-22|11:10:47.147] Imported new potential chain segment     number=44 hash=ea696d..c69c7d blocks=1 txs=0 mgas=0.000 elapsed=3.257ms     mgasps=0.000 triedirty=0.00B
+INFO [08-22|11:10:47.166] Chain head was updated                   number=44 hash=ea696d..c69c7d root=b89564..840372 elapsed=2.84512ms
+ERROR[08-22|11:10:47.166] Nil finalized block cannot evict old blobs 
+WARN [08-22|11:10:47.171] Ignoring already known beacon payload    number=44 hash=ea696d..c69c7d age=0
+WARN [08-22|11:10:47.171] Ignoring already known beacon payload    number=44 hash=ea696d..c69c7d age=0
+WARN [08-22|11:10:47.171] Ignoring already known beacon payload    number=44 hash=ea696d..c69c7d age=0
+WARN [08-22|11:10:47.172] Ignoring already known beacon payload    number=44 hash=ea696d..c69c7d age=0
+INFO [08-22|11:10:47.194] Starting work on payload                 id=0xf667d41a7aff5aa2
+INFO [08-22|11:10:47.194] Updated payload                          id=0xf667d41a7aff5aa2 number=45 hash=ab9874..55ab73 txs=0 withdrawals=0 gas=0 fees=0 root=b89564..840372 elapsed="70.081µs"
+INFO [08-22|11:10:59.136] Stopping work on payload                 id=0xf667d41a7aff5aa2 reason=delivery
+INFO [08-22|11:10:59.153] Imported new potential chain segment     number=45 hash=ab9874..55ab73 blocks=1 txs=0 mgas=0.000 elapsed=3.116ms     mgasps=0.000 triedirty=0.00B
+INFO [08-22|11:10:59.171] Chain head was updated                   number=45 hash=ab9874..55ab73 root=b89564..840372 elapsed=2.747084ms
+ERROR[08-22|11:10:59.171] Nil finalized block cannot evict old blobs 
+WARN [08-22|11:10:59.176] Ignoring already known beacon payload    number=45 hash=ab9874..55ab73 age=0
+WARN [08-22|11:10:59.176] Ignoring already known beacon payload    number=45 hash=ab9874..55ab73 age=0
+WARN [08-22|11:10:59.177] Ignoring already known beacon payload    number=45 hash=ab9874..55ab73 age=0
+WARN [08-22|11:10:59.177] Ignoring already known beacon payload    number=45 hash=ab9874..55ab73 age=0
+INFO [08-22|11:10:59.198] Starting work on payload                 id=0x3f5de7d8b9f9235c
+INFO [08-22|11:10:59.198] Updated payload                          id=0x3f5de7d8b9f9235c number=46 hash=91a995..62eaba txs=0 withdrawals=0 gas=0 fees=0 root=b89564..840372 elapsed="111.433µs"
+INFO [08-22|11:11:11.151] Stopping work on payload                 id=0x3f5de7d8b9f9235c reason=delivery
+INFO [08-22|11:11:11.172] Imported new potential chain segment     number=46 hash=91a995..62eaba blocks=1 txs=0 mgas=0.000 elapsed=3.100ms     mgasps=0.000 triedirty=0.00B
+INFO [08-22|11:11:11.192] Chain head was updated                   number=46 hash=91a995..62eaba root=b89564..840372 elapsed=2.927939ms
+ERROR[08-22|11:11:11.192] Nil finalized block cannot evict old blobs 
+WARN [08-22|11:11:11.197] Ignoring already known beacon payload    number=46 hash=91a995..62eaba age=0
+WARN [08-22|11:11:11.197] Ignoring already known beacon payload    number=46 hash=91a995..62eaba age=0
+WARN [08-22|11:11:11.197] Ignoring already known beacon payload    number=46 hash=91a995..62eaba age=0
+WARN [08-22|11:11:11.198] Ignoring already known beacon payload    number=46 hash=91a995..62eaba age=0
+INFO [08-22|11:11:11.218] Starting work on payload                 id=0x245401340e62a187
+INFO [08-22|11:11:11.218] Updated payload                          id=0x245401340e62a187 number=47 hash=3d8b05..a113e8 txs=0 withdrawals=0 gas=0 fees=0 root=b89564..840372 elapsed="61.582µs"
+INFO [08-22|11:11:23.131] Stopping work on payload                 id=0x245401340e62a187 reason=delivery
+INFO [08-22|11:11:23.151] Imported new potential chain segment     number=47 hash=3d8b05..a113e8 blocks=1 txs=0 mgas=0.000 elapsed=3.198ms     mgasps=0.000 triedirty=0.00B
+INFO [08-22|11:11:23.171] Chain head was updated                   number=47 hash=3d8b05..a113e8 root=b89564..840372 elapsed=2.991051ms
+ERROR[08-22|11:11:23.171] Nil finalized block cannot evict old blobs 
+WARN [08-22|11:11:23.176] Ignoring already known beacon payload    number=47 hash=3d8b05..a113e8 age=0
+WARN [08-22|11:11:23.176] Ignoring already known beacon payload    number=47 hash=3d8b05..a113e8 age=0
+WARN [08-22|11:11:23.177] Ignoring already known beacon payload    number=47 hash=3d8b05..a113e8 age=0
+WARN [08-22|11:11:23.177] Ignoring already known beacon payload    number=47 hash=3d8b05..a113e8 age=0
+INFO [08-22|11:11:23.197] Starting work on payload                 id=0x086ef8af31d032c2
+INFO [08-22|11:11:23.198] Updated payload                          id=0x086ef8af31d032c2 number=48 hash=ab4708..64a725 txs=0 withdrawals=0 gas=0 fees=0 root=b89564..840372 elapsed="59.703µs"
+INFO [08-22|11:11:35.136] Stopping work on payload                 id=0x086ef8af31d032c2 reason=delivery
+INFO [08-22|11:11:35.154] Imported new potential chain segment     number=48 hash=ab4708..64a725 blocks=1 txs=0 mgas=0.000 elapsed=3.316ms     mgasps=0.000 triedirty=0.00B
+INFO [08-22|11:11:35.176] Chain head was updated                   number=48 hash=ab4708..64a725 root=b89564..840372 elapsed=2.795274ms
+ERROR[08-22|11:11:35.176] Nil finalized block cannot evict old blobs 
+WARN [08-22|11:11:35.181] Ignoring already known beacon payload    number=48 hash=ab4708..64a725 age=0
+WARN [08-22|11:11:35.181] Ignoring already known beacon payload    number=48 hash=ab4708..64a725 age=0
+WARN [08-22|11:11:35.182] Ignoring already known beacon payload    number=48 hash=ab4708..64a725 age=0
+WARN [08-22|11:11:35.182] Ignoring already known beacon payload    number=48 hash=ab4708..64a725 age=0
+INFO [08-22|11:11:35.205] Starting work on payload                 id=0x01f5386a9b283e3c
+INFO [08-22|11:11:35.206] Updated payload                          id=0x01f5386a9b283e3c number=49 hash=16e456..9a148e txs=0 withdrawals=0 gas=0 fees=0 root=b89564..840372 elapsed="66.808µs"
+INFO [08-22|11:11:47.114] Stopping work on payload                 id=0x01f5386a9b283e3c reason=delivery
+INFO [08-22|11:11:47.136] Imported new potential chain segment     number=49 hash=16e456..9a148e blocks=1 txs=0 mgas=0.000 elapsed=4.630ms     mgasps=0.000 triedirty=0.00B
+INFO [08-22|11:11:47.156] Chain head was updated                   number=49 hash=16e456..9a148e root=b89564..840372 elapsed=2.842736ms
+ERROR[08-22|11:11:47.156] Nil finalized block cannot evict old blobs 
+WARN [08-22|11:11:47.161] Ignoring already known beacon payload    number=49 hash=16e456..9a148e age=0
+WARN [08-22|11:11:47.161] Ignoring already known beacon payload    number=49 hash=16e456..9a148e age=0
+WARN [08-22|11:11:47.161] Ignoring already known beacon payload    number=49 hash=16e456..9a148e age=0
+WARN [08-22|11:11:47.162] Ignoring already known beacon payload    number=49 hash=16e456..9a148e age=0
+INFO [08-22|11:11:47.183] Starting work on payload                 id=0x4856c2d9eb0d010a
+INFO [08-22|11:11:47.183] Updated payload                          id=0x4856c2d9eb0d010a number=50 hash=68468d..8b5620 txs=0 withdrawals=0 gas=0 fees=0 root=b89564..840372 elapsed="73.128µs"
+INFO [08-22|11:11:59.145] Stopping work on payload                 id=0x4856c2d9eb0d010a reason=delivery
+INFO [08-22|11:11:59.161] Imported new potential chain segment     number=50 hash=68468d..8b5620 blocks=1 txs=0 mgas=0.000 elapsed=3.106ms     mgasps=0.000 triedirty=0.00B
+INFO [08-22|11:11:59.179] Chain head was updated                   number=50 hash=68468d..8b5620 root=b89564..840372 elapsed=2.991639ms
+ERROR[08-22|11:11:59.179] Nil finalized block cannot evict old blobs 
+WARN [08-22|11:11:59.184] Ignoring already known beacon payload    number=50 hash=68468d..8b5620 age=0
+WARN [08-22|11:11:59.184] Ignoring already known beacon payload    number=50 hash=68468d..8b5620 age=0
+WARN [08-22|11:11:59.184] Ignoring already known beacon payload    number=50 hash=68468d..8b5620 age=0
+WARN [08-22|11:11:59.184] Ignoring already known beacon payload    number=50 hash=68468d..8b5620 age=0
+INFO [08-22|11:11:59.207] Starting work on payload                 id=0x4a66baa1699105b0
+INFO [08-22|11:11:59.207] Updated payload                          id=0x4a66baa1699105b0 number=51 hash=7bc07f..e8f3d8 txs=0 withdrawals=0 gas=0 fees=0 root=b89564..840372 elapsed="71.099µs"
+INFO [08-22|11:12:11.207] Stopping work on payload                 id=0x4a66baa1699105b0 reason=timeout
+INFO [08-22|11:12:15.004] Starting work on payload                 id=0x4f93175595ab4bf1
+INFO [08-22|11:12:15.005] Updated payload                          id=0x4f93175595ab4bf1 number=51 hash=a63367..555c21 txs=0 withdrawals=0 gas=0 fees=0 root=b89564..840372 elapsed="73.207µs"
+INFO [08-22|11:12:27.005] Stopping work on payload                 id=0x4f93175595ab4bf1 reason=timeout

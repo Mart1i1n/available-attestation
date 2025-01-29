@@ -354,3 +354,7 @@ INFO[0002] Command completed                             prefix=genesis
  ⠿ Container validator-1  Started                                                                                        11.6s
 start testcase success
 ```
+
+## 4. Data Availability
+
+The raw log files from the experiments presented in the paper are located in the ``data`` folder. The data used to generate the figures in the paper can be found in the ``result`` folder. 

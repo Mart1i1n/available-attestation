@@ -1,0 +1,5 @@
+operation, vanilla, modified
+block generation, 6.44ms, 6.61ms
+block verification, 16.49ms, 18.28ms
+attestation generation, 17.39us, 17.74us
+attestation verification, 17.07us, 19.99us

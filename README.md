@@ -73,7 +73,7 @@ To conduct five attacks (i.e., exante reorg attack, sandwich reorg attack, unrea
 ./runtest.sh reorg
 ```
 
-The experiments will run each attack for 9000 seconds (approximately 25 hours in total) across both protocols. After completion, the results can be found in the ``$HOME`` directory. The number of reorg blocks for the modified protocol should match Figure 13 in the paper.
+The experiments will run each attack for 9000 seconds (approximately 25 hours in total) across both protocols. After completion, the results can be found in the ``$HOME`` directory. The number of reorg blocks for the modified protocol should match Figure 13 in the paper (i.e., the number of reorg blocks in the modified protocol is zero). 
 
 #### 3.2.2. Run Individual Attacks
 
@@ -119,7 +119,7 @@ Run the throughput experiment using the following command:
 ./runtest.sh tps
 ```
 
-This experiment will take approximately two hours. After completion, the results can be found in the ``$HOME`` directory. The throughput of the modified protocol should match Figure 14 in the paper.
+This experiment will take approximately two hours. After completion, the results can be found in the ``$HOME`` directory. The throughput of the modified protocol should match Figure 14 in the paper (i.e., the tps of the vanilla protocol and the modified protocol is almost the same).
 
 ---
 
@@ -131,7 +131,7 @@ Run the latency experiment using the following command:
 ./runtest.sh latency
 ```
 
-This experiment will take approximately ten minutes. After completion, the results can be found in the ``$HOME`` directory. The latency of the modified protocol should match Figure 15 in the paper.
+This experiment will take approximately ten minutes. After completion, the results can be found in the ``$HOME`` directory. The latency of the modified protocol should match Figure 15 in the paper (i.e., the latency of the vanilla protocol and the modified protocol is almost the same).
 
 ---
 

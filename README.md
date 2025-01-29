@@ -54,7 +54,7 @@ We conduct three experiments for both vanilla Ethereum PoS protocol and modified
 
 ### 3.1. Build the Docker Image
 
-After entering the repository directory (denoted as ``$HOME``), run the following script to build the Docker image:
+After entering the repository directory (referred to as ``$HOME``), run the following script to build the Docker image:
 
 ```shell
 ./build.sh
@@ -67,7 +67,7 @@ After entering the repository directory (denoted as ``$HOME``), run the followin
 
 #### 3.2.1 Run All Attacks at Once
 
-To conduct five attacks (i.e., exante reorg attack, sandwich reorg attack, unrealized justification reorg attack, justfication withholding attack, and staircase attack) simultaneously, run the command:
+To conduct five attacks (i.e., exante reorg attack, sandwich reorg attack, unrealized justification reorg attack, justification withholding attack, and staircase attack) simultaneously, run the command:
 
 ```shell
 ./runtest.sh reorg
@@ -77,7 +77,7 @@ The experiments will run each attack for 9000 seconds (approximately 25 hours in
 
 #### 3.2.2. Run Individual Attacks
 
-If one does not want to wait for experiments so long, run the following commands to conduct each attack separately. Each attack will last five hours. 
+If one does not want to wait for experiments that long, run the following commands to conduct each attack separately. Each attack will last five hours. 
 
 Run the modified exante reorg attack:
 
@@ -111,7 +111,7 @@ Run the staircase attack:
 
 ---
 
-### 3.3. Throughput experiments
+### 3.3. Throughput experiment
 
 Run the throughput experiment using the following command:
 
@@ -119,11 +119,11 @@ Run the throughput experiment using the following command:
 ./runtest.sh tps
 ```
 
-This experiment will take approximately two hours. After completion, the results can be found in the ``$HOME`` directory. The throughput of the modified protocol should match Figure 14 in the paper (i.e., the tps of the vanilla protocol and the modified protocol is almost the same).
+This experiment will take approximately two hours. After completion, the results can be found in the ``$HOME`` directory. The throughput of the modified protocol should match Figure 14 in the paper (i.e., the throughput of the vanilla protocol and the modified protocol are almost the same).
 
 ---
 
-### 3.4. Latancy experiments
+### 3.4. Latency experiment
 
 Run the latency experiment using the following command:
 
@@ -131,7 +131,7 @@ Run the latency experiment using the following command:
 ./runtest.sh latency
 ```
 
-This experiment will take approximately ten minutes. After completion, the results can be found in the ``$HOME`` directory. The latency of the modified protocol should match Figure 15 in the paper (i.e., the latency of the vanilla protocol and the modified protocol is almost the same).
+This experiment will take approximately ten minutes. After completion, the results can be found in the ``$HOME`` directory. The latency of the modified protocol should match Figure 15 in the paper (i.e., the latency of the vanilla protocol and the modified protocol are almost the same).
 
 ---
 
@@ -357,4 +357,4 @@ start testcase success
 
 ## 4. Data Availability
 
-The raw log files from the experiments presented in the paper are located in the ``data`` folder. The data used to generate the figures in the paper are available at the ``result`` folder. 
+The raw log files from the experiments presented in the paper are located in the ``data`` folder. The data used to generate the figures in the paper are available in the ``result`` folder. 

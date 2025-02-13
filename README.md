@@ -119,7 +119,7 @@ Run the throughput experiment using the following command:
 ./runtest.sh tps
 ```
 
-This experiment will take approximately two hours. After completion, the results can be found in the ``$HOME`` directory. The throughput of the modified protocol should match Figure 14 in the paper (i.e., the throughput of the vanilla protocol and the modified protocol are almost the same).
+This experiment will take approximately 80 minutes. After completion, the results can be found in the ``$HOME`` directory. The throughput of the modified protocol should match Figure 14 in the paper (i.e., the throughput of the vanilla protocol and the modified protocol are almost the same).
 
 ---
 
@@ -131,7 +131,7 @@ Run the latency experiment using the following command:
 ./runtest.sh latency
 ```
 
-This experiment will take approximately ten minutes. After completion, the results can be found in the ``$HOME`` directory. The latency of the modified protocol should match Figure 15 in the paper (i.e., the latency of the vanilla protocol and the modified protocol are almost the same).
+This experiment will take approximately 20 minutes. After completion, the results can be found in the ``$HOME`` directory. The latency of the modified protocol should match Figure 15 in the paper (i.e., the latency of the vanilla protocol and the modified protocol are almost the same).
 
 ---
 

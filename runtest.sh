@@ -20,6 +20,7 @@ updategenesis() {
 		--chain-config-file=/root/config/config.yml \
 		--geth-genesis-json-in=/root/config/genesis.json \
 		--geth-genesis-json-out=/root/config/genesis.json
+}
 
 testBasic() {
 	subdir="basic"

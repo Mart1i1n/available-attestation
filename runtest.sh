@@ -20,6 +20,39 @@ updategenesis() {
 		--chain-config-file=/root/config/config.yml \
 		--geth-genesis-json-in=/root/config/genesis.json \
 		--geth-genesis-json-out=/root/config/genesis.json
+
+testBasic() {
+	subdir="basic"
+	targetdir="${casedir}/${subdir}"
+	resultdir="${basedir}/results/${subdir}"
+	reportfile="${resultdir}/report.txt"
+	# if resultdir exist, delete it.
+	if [ -d $resultdir ]; then
+		rm -rf $resultdir
+	fi
+	mkdir -p $resultdir
+
+	echo "Running testcase $subdir"
+	echo "first test with vanilla version"
+	updategenesis
+	docker compose -f $targetdir/docker-compose-normal.yml up -d 
+	echo "wait $caseduration seconds" && sleep $caseduration
+	docker compose -f $targetdir/docker-compose-normal.yml down
+	sudo mv data $resultdir/data-normal
+	cd $basedir
+
+	echo "second test with modified version"
+	updategenesis
+	docker compose -f $targetdir/docker-compose-reorg.yml up -d
+	echo "wait $caseduration seconds" && sleep $caseduration
+	docker compose -f $targetdir/docker-compose-reorg.yml down
+	sudo mv data $resultdir/data-reorg
+	cd $resultdir/data-reorg
+	cd $basedir
+	echo "test done and all data in $resultdir"
+	echo ""
+	echo ""
+
 }
 
 testLatency() {
@@ -75,15 +108,15 @@ testLatency() {
 	sort -t "," -k 1n,1 /tmp/_b.csv > /tmp/normal_getatt.csv
 	awk -F, '{sum+=$2}END{print "Modified version attestation generation cost avg=", sum/NR, "ms" }' /tmp/normal_getatt.csv >> $reportfile
 	cd $basedir
-  echo "test done and all data in $resultdir, report as bellow"
+	echo "test done and all data in $resultdir, report as bellow"
 	# if PYTHON is not empty, then run the following script
 	if [ -n "$PYTHON" ]; then
-    $PYTHON ./collect/CollectLatency.py $reportfile
-  else
-    cat $reportfile
-  fi
-  echo ""
-  echo ""
+		$PYTHON ./collect/CollectLatency.py $reportfile
+	else
+		cat $reportfile
+	fi
+	echo ""
+	echo ""
 
 }
 
@@ -116,33 +149,33 @@ testTps() {
 	docker compose -f $targetdir/docker-compose-reorg.yml down
 	sudo mv data $resultdir/data-reorg
 	echo "Modified version tps detail info: " >> $reportfile
-  grep "test history" $resultdir/data-reorg/txpress/press.log >> $reportfile
+	grep "test history" $resultdir/data-reorg/txpress/press.log >> $reportfile
 
   # if PYTHON is not empty, then run the following script
   if [ -n "$PYTHON" ]; then
-    $PYTHON ./collect/CollectTps.py $reportfile
-    echo "test done and all data in $resultdir, report in $basedir/tps.png"
+	  $PYTHON ./collect/CollectTps.py $reportfile
+	  echo "test done and all data in $resultdir, report in $basedir/tps.png"
   else
-    echo "test done and all data in $resultdir, report as bellow"
-    cat $reportfile
+	  echo "test done and all data in $resultdir, report as bellow"
+	  cat $reportfile
   fi
   echo ""
   echo ""
 }
 
 testReorgs() {
-  reorgs_result_dir="${basedir}/results/reorgtest"
-  reportfile="${reorgs_result_dir}/report.txt"
-  # define a array to store all test cases
-  testcases=("attack-exante" "attack-sandwich" "attack-unrealized" "attack-withholding" "attack-staircase")
-  # loop all test cases
-  for testcase in ${testcases[@]}; do
-    targetdir="${casedir}/${testcase}"
-    resultdir="${reorgs_result_dir}/${testcase}"
+	reorgs_result_dir="${basedir}/results/reorgtest"
+	reportfile="${reorgs_result_dir}/report.txt"
+	# define a array to store all test cases
+	testcases=("attack-exante" "attack-sandwich" "attack-unrealized" "attack-withholding" "attack-staircase")
+	# loop all test cases
+	for testcase in ${testcases[@]}; do
+		targetdir="${casedir}/${testcase}"
+		resultdir="${reorgs_result_dir}/${testcase}"
 
     # if resultdir exist, delete it.
     if [ -d $resultdir ]; then
-      rm -rf $resultdir
+	    rm -rf $resultdir
     fi
     mkdir -p $resultdir
 
@@ -165,110 +198,114 @@ testReorgs() {
     echo "$testcase Modified version reorg event info: " >> $reportfile
     grep "reorg event" $resultdir/data-reorg/attacker-1/d.log >> $reportfile
     echo "$testcase test done and all data in $resultdir"
-  done
+done
 
-  if [ -n "$PYTHON" ]; then
-    $PYTHON ./collect/CollectReorg.py $reorgs_result_dir
-    echo "test done and all data in $resultdir, report in $basedir/reorgs.png"
-  else
-    echo "all test done and all data in $reorgs_result_dir, report as bellow"
-    cat $reportfile
-  fi
-  echo ""
-  echo ""
+if [ -n "$PYTHON" ]; then
+	$PYTHON ./collect/CollectReorg.py $reorgs_result_dir
+	echo "test done and all data in $resultdir, report in $basedir/reorgs.png"
+else
+	echo "all test done and all data in $reorgs_result_dir, report as bellow"
+	cat $reportfile
+fi
+echo ""
+echo ""
 
 }
 
 testOneReorg() {
-  testcase=${1}
-  targetdir="${casedir}/${testcase}"
-  resultdir="${basedir}/results/${testcase}"
-  reportfile="${resultdir}/report.txt"
-  # if resultdir exist, delete it.
-  if [ -d $resultdir ]; then
-    rm -rf $resultdir
-  fi
-  mkdir -p $resultdir
+	testcase=${1}
+	targetdir="${casedir}/${testcase}"
+	resultdir="${basedir}/results/${testcase}"
+	reportfile="${resultdir}/report.txt"
+	# if resultdir exist, delete it.
+	if [ -d $resultdir ]; then
+		rm -rf $resultdir
+	fi
+	mkdir -p $resultdir
 
-  echo "Running testcase ${testcase}"
-  echo "first test with vanilla version"
-  updategenesis
-  docker compose -f $targetdir/docker-compose-normal.yml up -d
-  echo "wait $caseduration seconds" && sleep $caseduration
-  docker compose -f $targetdir/docker-compose-normal.yml down
-  sudo mv data $resultdir/data-normal
-  echo "$testcase Vanilla version reorg event info: " >> $reportfile
-  grep "reorg event" $resultdir/data-normal/attacker-1/d.log >> $reportfile
+	echo "Running testcase ${testcase}"
+	echo "first test with vanilla version"
+	updategenesis
+	docker compose -f $targetdir/docker-compose-normal.yml up -d
+	echo "wait $caseduration seconds" && sleep $caseduration
+	docker compose -f $targetdir/docker-compose-normal.yml down
+	sudo mv data $resultdir/data-normal
+	echo "$testcase Vanilla version reorg event info: " >> $reportfile
+	grep "reorg event" $resultdir/data-normal/attacker-1/d.log >> $reportfile
 
-  echo "second test with modified version"
-  updategenesis
-  docker compose -f $targetdir/docker-compose-reorg.yml up -d
-  echo "wait $caseduration seconds" && sleep $caseduration
-  docker compose -f $targetdir/docker-compose-reorg.yml down
-  sudo mv data $resultdir/data-reorg
-  echo "$testcase Modified version reorg event info: " >> $reportfile
-  grep "reorg event" $resultdir/data-reorg/attacker-1/d.log >> $reportfile
+	echo "second test with modified version"
+	updategenesis
+	docker compose -f $targetdir/docker-compose-reorg.yml up -d
+	echo "wait $caseduration seconds" && sleep $caseduration
+	docker compose -f $targetdir/docker-compose-reorg.yml down
+	sudo mv data $resultdir/data-reorg
+	echo "$testcase Modified version reorg event info: " >> $reportfile
+	grep "reorg event" $resultdir/data-reorg/attacker-1/d.log >> $reportfile
 
-  echo "test done and all data in $resultdir, report as bellow"
-  cat $reportfile
-  echo ""
-  echo ""
+	echo "test done and all data in $resultdir, report as bellow"
+	cat $reportfile
+	echo ""
+	echo ""
 }
 
 testReorg1() {
-  testOneReorg "attack-exante"
+	testOneReorg "attack-exante"
 }
 
 
 testReorg2() {
-  testOneReorg "attack-sandwich"
+	testOneReorg "attack-sandwich"
 }
 
 testReorg3() {
-  testOneReorg "attack-unrealized"
+	testOneReorg "attack-unrealized"
 }
 
 testReorg4() {
-  testOneReorg "attack-withholding"
+	testOneReorg "attack-withholding"
 }
 
 testReorg5() {
-  testOneReorg "attack-staircase"
+	testOneReorg "attack-staircase"
 }
 
 echo "casetype is $casetype"
 case $casetype in
 	1)
-	  caseduration=9000
+		caseduration=9000
 		testReorg1
 		;;
 	2)
-	  caseduration=9000
+		caseduration=9000
 		testReorg2
 		;;
 	3)
-	  caseduration=9000
+		caseduration=9000
 		testReorg3
 		;;
 	4)
-	  caseduration=9000
+		caseduration=9000
 		testReorg4
 		;;
 	5)
-	  caseduration=9000
+		caseduration=90000
 		testReorg5
 		;;
 	"tps")
-	  caseduration=2400
+		caseduration=2400
 		testTps
 		;;
-  "reorg")
-    caseduration=9000
-    testReorgs
-    ;;
+	"reorg")
+		caseduration=9000
+		testReorgs
+		;;
 	"latency")
-	  caseduration=600
+		caseduration=600
 		testLatency
+		;;
+	"basic")
+		caseduration=120
+		testBasic
 		;;
 	*)
 		echo "Invalid case type"

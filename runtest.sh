@@ -123,7 +123,7 @@ testLatency() {
 
 
 testTps() {
-	subdir="tps-normal"
+	subdir="tps"
 	targetdir="${casedir}/${subdir}"
 	resultdir="${basedir}/results/${subdir}"
 	reportfile="${resultdir}/report.txt"
